@@ -13,4 +13,21 @@
  '(helm-rg-active-arg-face ((t (:foreground "LightGreen"))))
  '(helm-rg-file-match-face ((t (:foreground "LightGreen" :underline t))))
  '(helm-rg-preview-line-highlight ((t (:background "LightGreen" :foreground "black"))))
+ '(ivy-virtual ((t (:inherit italic :foreground "medium purple"))))
  '(term ((t (:foreground "#fafafa")))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ivy-fixed-height-minibuffer t)
+ '(ivy-format-function 'ivy-format-function-line)
+ '(ivy-height 15)
+ '(ivy-magic-slash-non-match-action nil)
+ '(ivy-mode t)
+ '(ivy-on-del-error-function nil)
+ '(ivy-rich-mode t)
+ '(ivy-use-selectable-prompt t)
+ '(ivy-use-virtual-buffers t)
+ '(ivy-virtual-abbreviate 'full)
+ '(ivy-wrap t))

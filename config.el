@@ -181,6 +181,7 @@
 
 (after! ivy
   (setq ivy-initial-inputs-alist nil)
+  (setq ivy-use-virtual-buffers t)
   (push '(+ivy/switch-workspace-buffer) ivy-display-functions-alist)
   )
 
