@@ -335,3 +335,22 @@
 (let ((profile "~/.config/doom/profile.el"))
   (when (file-exists-p profile)
     (load-file profile)))
+
+
+(require 'auto-save)
+(auto-save-enable)
+(setq auto-save-slient t)
+(setq auto-save-delete-trailing-whitespace t)
+
+
+
+
+
+
+
+ ;(setq dashboard-startup-banner "~/Dropbox/Picture/zxy.png")
+
+
+;; Fonts
+(setq doom-font (font-spec :family "Iosevka" :size 18))
+(setq doom-big-font (font-spec :family "Iosevka" :size 25))

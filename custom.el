@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "#eeffff" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "nil" :family "Iosevka"))))
+ '(fixed-pitch ((t (:font "-*-Iosevka-*-*-*-*-18-*-*-*-*-*-*-*"))))
  '(font-lock-constant-face ((t (:foreground "#C792EA"))))
  '(font-lock-keyword-face ((t (:foreground "#2BA3FF" :slant italic))))
  '(font-lock-preprocessor-face ((t (:inherit bold :foreground "#2BA3FF" :slant italic :weight normal))))
@@ -20,6 +21,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(c-basic-offset 4)
+ '(c-electric-pound-behavior '(alignleft))
+ '(cmake-tab-width 4)
+ '(display-line-numbers-width nil)
+ '(electric-indent-mode t)
+ '(electric-layout-mode t)
+ '(electric-pair-mode t)
  '(ivy-fixed-height-minibuffer t)
  '(ivy-format-function 'ivy-format-function-line)
  '(ivy-height 15)
@@ -30,4 +38,5 @@
  '(ivy-use-selectable-prompt t)
  '(ivy-use-virtual-buffers t)
  '(ivy-virtual-abbreviate 'full)
- '(ivy-wrap t))
+ '(ivy-wrap t)
+ '(line-number-mode nil))
