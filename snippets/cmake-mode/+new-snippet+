@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: CMAKE_EXPORT_COMPILE_COMMANDS
+# key: ce
+# --
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
