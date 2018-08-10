@@ -159,3 +159,6 @@
        :private
        my-cc
        )
+
+
+        (require 'netease-music)
