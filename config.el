@@ -345,13 +345,6 @@
 (setq auto-save-slient t)
 (setq auto-save-delete-trailing-whitespace t)
 
-(after! netease-music
-(setq netease-music-username "18550451650")
-(setq netease-music-user-password "17126724")
-(setq netease-music-user-id "75783975")
-;; api address default is http://localhost:3000
-(setq netease-music-api "http://localhost:3000")
-     )
 
 
 

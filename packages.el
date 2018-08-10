@@ -15,7 +15,6 @@
 (package! eshell-autojump)
 (package! evil-nerd-commenter)
 (package! link-hint)
-(package! netease-music)
 (package! realgud)
 (package! smart-forward)
 (package! symbol-overlay)
