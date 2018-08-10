@@ -24,6 +24,9 @@
 
 (set-lookup-handlers! 'emacs-lisp-mode :documentation #'helpful-at-point)
 
+(after! dashboard
+  )
+
 (after! eshell
   (defun eshell/l (&rest args) (eshell/ls "-l" args))
   (defun eshell/e (file) (find-file file))
@@ -354,3 +357,4 @@
 ;; Fonts
 (setq doom-font (font-spec :family "Iosevka" :size 18))
 (setq doom-big-font (font-spec :family "Iosevka" :size 25))
+
