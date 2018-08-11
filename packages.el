@@ -9,6 +9,7 @@
 (package! cmake-mode)
 (package! lispyville)
 (package! lsp-mode)
+(package! exwm)
 (package! lsp-ui)
 (package! company-lsp)
 
