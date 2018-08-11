@@ -5,8 +5,8 @@
 (package! avy)
 (package! ag)
 (package! anki-editor)
-(package! yasnippet-snippets)
 (package! cmake-mode)
+(package! flycheck-clang-tidy)
 (package! lispyville)
 (package! lsp-mode)
 (package! lsp-ui)
@@ -30,4 +30,5 @@
 (package! auto-save
   :recipe (:fetcher wiki))
 
+(package! yasnippet-snippets)
 (disable-packages! irony rtags)

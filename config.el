@@ -54,9 +54,9 @@
   (setq evil-snipe-scope 'buffer)
   )
 
-(after! flycheck
-  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  )
+;; (after! flycheck
+;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+;;   )
 
 (after! git-link
   (defun git-link-llvm (hostname dirname filename branch commit start end)
@@ -367,3 +367,6 @@
 (setq doom-big-font (font-spec :family "Iosevka" :size 25))
 
 (setq +doom-dashboard-banner-file "~/Dropbox/Picture/zxy.png")
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
