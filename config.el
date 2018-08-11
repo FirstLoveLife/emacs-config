@@ -1,5 +1,6 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
+
 (load! "+bindings")
 
 (def-package! avy
