@@ -25,9 +25,6 @@
 
 (set-lookup-handlers! 'emacs-lisp-mode :documentation #'helpful-at-point)
 
-(after! dashboard
-  )
-
 (after! eshell
   (defun eshell/l (&rest args) (eshell/ls "-l" args))
   (defun eshell/e (file) (find-file file))
@@ -181,7 +178,7 @@
      )
    )
 
-(setq magit-repository-directories '(("~/Dev" . 2)))
+(setq magit-repository-directories '(("~/dev" . 2)))
 
 (after! ivy
   (setq ivy-initial-inputs-alist nil)
@@ -348,19 +345,17 @@
 
 
 
+(require 'aweshell)
+(require 'eaf)
 
 
-
-
-
- ;(setq dashboard-startup-banner "~/Dropbox/Picture/zxy.png")
 
 
 ;; Fonts
 (setq doom-font (font-spec :family "Iosevka" :size 18))
 (setq doom-big-font (font-spec :family "Iosevka" :size 25))
 
-(setq +doom-dashboard-banner-file "~/Dropbox/Picture/zxy.png")
+(setq +doom-dashboard-banner-file "~/Pictures/zxy.png")
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))

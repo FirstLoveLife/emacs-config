@@ -47,6 +47,6 @@
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (set! :company-backend '(c-mode c++-mode objc-mode) 'company-lsp))
 
-(setq ccls-executable "~/Downloads/ccls/Release/ccls")
+(setq ccls-executable "~/dev/ccls/Release/ccls")
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
