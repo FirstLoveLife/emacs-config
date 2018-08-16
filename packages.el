@@ -3,6 +3,7 @@
 (disable-packages!  company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
 
 (package! avy)
+(package! yasnippet-classic-snippets)
 (package! ag)
 (package! anki-editor)
 (package! cmake-mode)
