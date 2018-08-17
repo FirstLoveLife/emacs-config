@@ -346,7 +346,6 @@
 
 
 (require 'aweshell)
-(require 'eaf)
 
 
 

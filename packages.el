@@ -28,7 +28,6 @@
 (package! function-args)
 (package! lpy :recipe (:fetcher github :repo "abo-abo/lpy" :files ("*")))
 (package! aweshell :recipe (:fetcher github :repo "manateelazycat/aweshell" :files ("*")))
-(package! eaf :recipe (:fetcher github :repo "manateelazycat/emacs-application-framework" :files ("*")))
 
 (package! auto-save
   :recipe (:fetcher wiki))
