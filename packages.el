@@ -10,17 +10,14 @@
 (package! flycheck-clang-tidy)
 (package! lispyville)
 (package! lsp-mode)
-(package! exwm)
+(package! flycheck-clang-analyzer)
 (package! lsp-ui)
 (package! company-lsp)
 
-(package! eshell-autojump)
-(package! evil-nerd-commenter)
 (package! link-hint)
 (package! realgud)
 (package! smart-forward)
 (package! symbol-overlay)
-(package! tldr)
 
 (package! rust-mode)
 (package! lsp-rust)
@@ -29,8 +26,9 @@
 (package! lpy :recipe (:fetcher github :repo "abo-abo/lpy" :files ("*")))
 (package! aweshell :recipe (:fetcher github :repo "manateelazycat/aweshell" :files ("*")))
 
+(package! emacs-cpp-auto-include :recipe (:fetcher github :repo "FirstLoveLife/emacs-cpp-auto-include" :files ("*")))
 (package! auto-save
   :recipe (:fetcher wiki))
 
 (package! yasnippet-snippets)
-(disable-packages! irony rtags)
+(disable-packages! irony eww rtags)

@@ -22,14 +22,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
- '(c-electric-pound-behavior '(alignleft))
+ '(c-electric-pound-behavior (quote (alignleft)))
  '(cmake-tab-width 4)
  '(display-line-numbers-width nil)
  '(electric-indent-mode t)
  '(electric-layout-mode t)
  '(electric-pair-mode t)
  '(ivy-fixed-height-minibuffer t)
- '(ivy-format-function 'ivy-format-function-line)
+ '(ivy-format-function (quote ivy-format-function-line))
  '(ivy-height 15)
  '(ivy-magic-slash-non-match-action nil)
  '(ivy-mode t)
@@ -37,12 +37,56 @@
  '(ivy-rich-mode t)
  '(ivy-use-selectable-prompt t)
  '(ivy-use-virtual-buffers t)
- '(ivy-virtual-abbreviate 'full)
+ '(ivy-virtual-abbreviate (quote full))
  '(ivy-wrap t)
  '(line-number-mode nil)
  '(lsp-ui-doc-header t)
  '(lsp-ui-doc-include-signature t)
  '(lsp-ui-peek-always-show t)
  '(lsp-ui-sideline-enable t)
+ '(org-structure-template-alist
+   (quote
+    (("sc" "#+BEGIN_SRC C++ :flags \"-Werror -Wall -Wextra -pedantic -std=c++17\"
+?
+#+END_SRC")
+     ("n" "#+BEGIN_NOTES
+?
+#+END_NOTES")
+     ("s" "#+BEGIN_SRC ?
+
+#+END_SRC")
+     ("e" "#+BEGIN_EXAMPLE
+?
+#+END_EXAMPLE")
+     ("q" "#+BEGIN_QUOTE
+?
+#+END_QUOTE")
+     ("v" "#+BEGIN_VERSE
+?
+#+END_VERSE")
+     ("V" "#+BEGIN_VERBATIM
+?
+#+END_VERBATIM")
+     ("c" "#+BEGIN_CENTER
+?
+#+END_CENTER")
+     ("C" "#+BEGIN_COMMENT
+?
+#+END_COMMENT")
+     ("l" "#+BEGIN_EXPORT latex
+?
+#+END_EXPORT")
+     ("L" "#+LaTeX: ")
+     ("h" "#+BEGIN_EXPORT html
+?
+#+END_EXPORT")
+     ("H" "#+HTML: ")
+     ("a" "#+BEGIN_EXPORT ascii
+?
+#+END_EXPORT")
+     ("A" "#+ASCII: ")
+     ("i" "#+INDEX: ?")
+     ("I" "#+INCLUDE: %file ?"))))
  '(package-selected-packages
-   '(yasnippet-classic-snippets yasnippet-snippets yaml-mode which-key wgrep visual-fill-column vimrc-mode vi-tilde-fringe use-package treemacs-projectile treemacs-evil toml-mode toc-org tldr symbol-overlay solaire-mode smartparens smart-forward shrink-path rotate-text restart-emacs realgud rainbow-delimiters quickrun quelpa qt-pro-mode qml-mode persp-mode persistent-soft pdf-tools ox-reveal ox-pandoc overseer org-tree-slide org-plus-contrib org-download org-bullets ob-translate ob-sql-mode ob-mongo nav-flash nasm-mode mips-mode markdown-toc magithub magit-todos magit-gitflow macrostep lsp-ui lsp-rust lpy lispyville link-hint latex-preview-pane json-mode ivy-xref ivy-rich ivy-hydra ivy-bibtex intero imenu-list imenu-anywhere htmlize hindent highlight-quoted highlight-numbers highlight-indentation highlight-escape-sequences hide-mode-line helpful haxor-mode graphql-mode gitignore-mode gitconfig-mode git-timemachine git-link git-gutter-fringe function-args flyspell-correct-ivy flycheck-posframe flycheck-popup-tip flycheck-clang-tidy flycheck-cask fish-mode exwm exato evil-visualstar evil-vimish-fold evil-textobj-anyblock evil-snipe evil-org evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-indent-plus evil-goggles evil-exchange evil-escape evil-embrace evil-easymotion evil-commentary evil-collection evil-args evil-anzu esup eshell-autojump emacs-snippets editorconfig eaf dumb-jump dtrt-indent doom-themes dockerfile-mode dired-k dhall-mode devdocs-lookup csv-mode counsel-projectile counsel-dash company-shell company-reftex company-prescient company-math company-lsp company-dict company-auctex command-log-mode cmake-mode clang-format centered-window ccls buttercup aweshell auto-yasnippet auto-save auto-compile anki-editor amx ag adaptive-wrap ace-link)))
+   (quote
+    (yasnippet-classic-snippets yasnippet-snippets yaml-mode which-key wgrep visual-fill-column vimrc-mode vi-tilde-fringe use-package treemacs-projectile treemacs-evil toml-mode toc-org tldr symbol-overlay solaire-mode smartparens smart-forward shrink-path rotate-text restart-emacs realgud rainbow-delimiters quickrun quelpa qt-pro-mode qml-mode persp-mode persistent-soft pdf-tools ox-reveal ox-pandoc overseer org-tree-slide org-plus-contrib org-download org-bullets ob-translate ob-sql-mode ob-mongo nav-flash nasm-mode mips-mode markdown-toc magithub magit-todos magit-gitflow macrostep lsp-ui lsp-rust lpy lispyville link-hint latex-preview-pane json-mode ivy-xref ivy-rich ivy-hydra ivy-bibtex intero imenu-list imenu-anywhere htmlize hindent highlight-quoted highlight-numbers highlight-indentation highlight-escape-sequences hide-mode-line helpful haxor-mode graphql-mode gitignore-mode gitconfig-mode git-timemachine git-link git-gutter-fringe function-args flyspell-correct-ivy flycheck-posframe flycheck-popup-tip flycheck-clang-tidy flycheck-cask fish-mode exwm exato evil-visualstar evil-vimish-fold evil-textobj-anyblock evil-snipe evil-org evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-indent-plus evil-goggles evil-exchange evil-escape evil-embrace evil-easymotion evil-commentary evil-collection evil-args evil-anzu esup eshell-autojump emacs-snippets editorconfig eaf dumb-jump dtrt-indent doom-themes dockerfile-mode dired-k dhall-mode devdocs-lookup csv-mode counsel-projectile counsel-dash company-shell company-reftex company-prescient company-math company-lsp company-dict company-auctex command-log-mode cmake-mode clang-format centered-window ccls buttercup aweshell auto-yasnippet auto-save auto-compile anki-editor amx ag adaptive-wrap ace-link))))

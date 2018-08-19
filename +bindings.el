@@ -1,4 +1,4 @@
-;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
+;;; private/my/+bindings.el -*- lexical-binding: t; -*-
 
 (define-inline +my/prefix-M-x (prefix)
   (inline-quote
@@ -15,6 +15,7 @@
 (map!
  ;; localleader
  :m ","    nil
+ :nm "f" #'avy-goto-char
 
  (:map prog-mode-map
    ;; Override default :n < > ( )
@@ -203,4 +204,3 @@
      )
    )
  )
-

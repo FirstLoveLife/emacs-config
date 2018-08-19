@@ -42,11 +42,6 @@
       (eshell/pushd p)))
   )
 
-(def-package! eshell-autojump)
-
-(def-package! evil-nerd-commenter
-  :commands (evilnc-comment-or-uncomment-lines)
-  )
 
 (after! evil-snipe
   (setq evil-snipe-scope 'buffer)
@@ -354,7 +349,7 @@
 (setq doom-font (font-spec :family "Iosevka" :size 18))
 (setq doom-big-font (font-spec :family "Iosevka" :size 25))
 
-(setq +doom-dashboard-banner-file "~/Pictures/zxy.png")
+(setq +doom-dashboard-banner-file "~/pictures/zxy.png")
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
