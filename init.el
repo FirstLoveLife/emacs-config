@@ -7,6 +7,9 @@
 (setq custom-file "~/.doom.d/custom.el")
 (load custom-file)
 (toggle-frame-fullscreen)
+;;; init.el -*- lexical-binding: t; -*-
+;; Copy me to ~/.doom.d/init.el or ~/.config/doom/init.el, then edit me!
+
 (doom! :feature
       ;debugger          ; FIXME stepping through code, to help you add bugs
        eval              ; run code, run (also, repls)
@@ -24,10 +27,10 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto)           ; as-you-type code completion
-      ; (helm             ; the *other* search engine for love and life
-      ;  +fuzzy)          ; enable fuzzy search backend for helm
+       (helm             ; the *other* search engine for love and life
+        +fuzzy)          ; enable fuzzy search backend for helm
       ;ido               ; the other *other* search engine...
-      ivy              ; a search engine for love and life
+      ;(ivy              ; a search engine for love and life
       ; +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
@@ -38,14 +41,14 @@
        evil-goggles      ; display visual hints when editing in evil
       ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-     ; modeline          ; snazzy, Atom-inspired modeline, plus API
+       ;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
       ;neotree           ; a project drawer, like NERDTree for vim
        treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
-      ;pretty-code       ; replace bits of code with pretty symbols
+      pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
       ;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -53,6 +56,7 @@
        window-select     ; visually switch windows
 
        :editor
+      (format +onsave)  ; automated prettiness
        multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
@@ -61,10 +65,10 @@
        dired             ; making dired pretty [functional]
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
-      ;eshell            ; a consistent, cross-platform shell (WIP)
+      eshell            ; a consistent, cross-platform shell (WIP)
        hideshow          ; basic code-folding support
        imenu             ; an imenu sidebar and searchable code index
-      ;term              ; terminals in Emacs
+      term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
 
        :tools
@@ -83,25 +87,25 @@
       ;wakatime
 
        :lang
-      assembly          ; assembly for fun or debugging
+      ;assembly          ; assembly for fun or debugging
       ;(cc +irony +rtags); C/C++/Obj-C madness
       ;clojure           ; java with a lisp
       ;common-lisp       ; if you've seen one lisp, you've seen them all
       ;crystal           ; ruby at the speed of c
       ;csharp            ; unity, .NET, and mono shenanigans
-       data              ; config/data formats
+      ;data              ; config/data formats
       ;erlang            ; an elegant language for a more civilized age
       ;elixir            ; erlang done right
       ;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
       ;ess               ; emacs speaks statistics
       ;go                ; the hipster dialect
-      (haskell +intero) ; a language that's lazier than I am
+      ;(haskell +intero) ; a language that's lazier than I am
       ;hy                ; readability of scheme w/ speed of python
       ;(java +meghanada) ; the poster child for carpal tunnel syndrome
       ;javascript        ; all(hope(abandon(ye(who(enter(here))))))
       ;julia             ; a better, faster MATLAB
-      latex             ; writing papers in Emacs has never been so fun
+      ;latex             ; writing papers in Emacs has never been so fun
       ;ledger            ; an accounting system in Emacs
       ;lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
@@ -119,7 +123,7 @@
       ;plantuml          ; diagrams for confusing people more
       ;purescript        ; javascript, but functional
       ;python            ; beautiful is better than ugly
-      qt                ; the 'cutest' gui framework ever
+      ;qt                ; the 'cutest' gui framework ever
       ;racket            ; a DSL for DSLs
       ;rest              ; Emacs as a REST client
       ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
@@ -138,9 +142,9 @@
       ;irc               ; how neckbeards socialize
       ;(rss +org)        ; emacs as an RSS reader
       ;twitter           ; twitter client https://twitter.com/vnought
-       ;(write            ; emacs as a word processor (latex + org + markdown)
-       ;+wordnut         ; wordnet (wn) search
-       ;+langtool)       ; a proofreader (grammar/style check) for Emacs
+      ;(write            ; emacs as a word processor (latex + org + markdown)
+      ; +wordnut         ; wordnet (wn) search
+      ; +langtool)       ; a proofreader (grammar/style check) for Emacs
 
        :collab
       ;floobits          ; peer programming for a price
@@ -155,7 +159,4 @@
        ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
        ;; and additional ex commands for evil-mode. Use it as a reference for
        ;; your own modules.
-       (default +bindings +snippets +evil-commands)
-       :private
-       my-cc
-       )
+       (default +bindings +snippets +evil-commands))

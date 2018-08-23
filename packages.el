@@ -1,9 +1,8 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; private/my/packages.el
 (disable-packages!  company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
-
+(package! auto-save  :recipe (:fetcher wiki))
 (package! avy)
-(package! yasnippet-classic-snippets)
 (package! ag)
 (package! anki-editor)
 (package! cmake-mode)
@@ -15,9 +14,6 @@
 (package! company-lsp)
 
 (package! link-hint)
-(package! realgud)
-(package! smart-forward)
-(package! symbol-overlay)
 
 (package! rust-mode)
 (package! lsp-rust)
@@ -27,8 +23,16 @@
 (package! aweshell :recipe (:fetcher github :repo "manateelazycat/aweshell" :files ("*")))
 
 (package! emacs-cpp-auto-include :recipe (:fetcher github :repo "FirstLoveLife/emacs-cpp-auto-include" :files ("*")))
-(package! auto-save
-  :recipe (:fetcher wiki))
 
+(package! company)
+(package! edit-server)
+(package! eaf :recipe (:repo "manateelazycat/emacs-application-framework" :fetcher github :files ("*")))
+(package! ccls)
+;(package! multi-term)
+(package! posframe)
+(package! pyim)
+(package! pyim-basedict)
+
+(package! yasnippet-classic-snippets)
 (package! yasnippet-snippets)
 (disable-packages! irony eww rtags)
