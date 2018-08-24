@@ -5,16 +5,16 @@
 
 (after! helm
   (setq helm-source-list
-                 '(
-                   helm-source-buffers-list
-                   helm-source-recentf
-                   helm-source-projectile-buffers-list
-                   helm-source-projectile-files-list
-                   helm-source-projectile-projects
-                   helm-source-kill-ring
-                   helm-source-locate
-                   helm-source-yasnippet
-                   )))
+        '(
+          helm-source-buffers-list
+          helm-source-recentf
+          helm-source-projectile-buffers-list
+          helm-source-projectile-files-list
+          helm-source-projectile-projects
+          helm-source-kill-ring
+          helm-source-locate
+          helm-source-yasnippet
+          )))
 (def-package! pyim
   :ensure nil
   :demand t
@@ -27,12 +27,12 @@
   (setq default-input-method "pyim")
 
   (require 'pyim-basedict) ; 拼音词库设置，五笔用户 *不需要* 此行设置
-(pyim-basedict-enable)   ; 拼音词库，五笔用户 *不需要* 此行设置
-(setq default-input-method "pyim")
+  (pyim-basedict-enable)   ; 拼音词库，五笔用户 *不需要* 此行设置
+  (setq default-input-method "pyim")
 
   ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
   ;; 我自己使用的中英文动态切换规则是：
-  ;; 1. 光标只有在注释里面时，才可以输入中文。
+  ;; 1. 光标只有在注释里面时，我才可以输入中文。
   ;; 2. 光标前是汉字字符时，才能输入中文。
   ;; 3. 使用 M-j 快捷键，强制将光标前的拼音字符串转换为中文。
   (setq-default pyim-english-input-switch-functions
@@ -40,6 +40,8 @@
                   pyim-probe-isearch-mode
                   pyim-probe-program-mode
                   pyim-probe-org-structure-template))
+
+  (setq pyim-punctuation-translate-p '(no yes auto))   ;使用半角标点。
 
   (setq-default pyim-punctuation-half-width-functions
                 '(pyim-probe-punctuation-line-beginning
@@ -70,10 +72,8 @@
   (setq avy-timeout-seconds 0.2)
   (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
   )
-(def-package! edit-server
-  :defer t
-  :config
-  (edit-server-start))
+(require 'edit-server)
+(edit-server-start)
 
 
 (after! company
@@ -151,3 +151,22 @@
   '(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
 
 
+(defun name-of-recursive-function (n)
+  "documentation..."
+  (if n > 0
+      (workspace/new)
+      (name-of-recursive-function
+       (- n 1))))
+
+
+(defun name-of-recursive-function (fun n)
+  (when (> n 0)
+    (funcall fun)
+    (name-of-recursive-function
+     fun (- n 1))))
+
+
+(run-with-idle-timer
+ 0.1 nil
+ #'(lambda ()
+     (name-of-recursive-function '+workspace/new 8)))

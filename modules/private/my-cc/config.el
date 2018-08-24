@@ -15,11 +15,8 @@
 	     (setq company-transformers nil company-lsp-cache-candidates nil)
              (push 'company-lsp company-backends)
 	     (company-mode)
-	     (require 'init-lsp-ui)
-	     (require 'init-ccls)
-	     (+ccls//enable)
-	     )
-	  )
+	     (require 'lsp-ui)
+	     (+ccls//enable)))
   :config
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
@@ -28,7 +25,7 @@
   ;; https://github.com/maskray/ccls/blob/master/src/config.h
 
   (with-eval-after-load 'projectile
-    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
+    (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")))
 
 (setq ccls-executable "~/dev/ccls/Release/ccls")
 
