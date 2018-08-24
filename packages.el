@@ -24,6 +24,7 @@
 
 (package! emacs-cpp-auto-include :recipe (:fetcher github :repo "FirstLoveLife/emacs-cpp-auto-include" :files ("*")))
 
+(package! pyim-greatdict :recipe (:repo "tumashu/pyim-greatdict" :fetcher github :files ("*")))
 (package! company)
 (package! edit-server)
 (package! eaf :recipe (:repo "manateelazycat/emacs-application-framework" :fetcher github :files ("*")))

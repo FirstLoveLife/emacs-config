@@ -16,18 +16,16 @@
           helm-source-yasnippet
           )))
 (def-package! pyim
-  :ensure nil
   :demand t
   :config
   ;; 激活 basedict 拼音词库
-  (def-package! pyim-basedict
-    :ensure nil
-    :config (pyim-basedict-enable))
+  (def-package! pyim-greatdict
+    :config (pyim-greatdict-enable))
 
   (setq default-input-method "pyim")
 
-  (require 'pyim-basedict) ; 拼音词库设置，五笔用户 *不需要* 此行设置
-  (pyim-basedict-enable)   ; 拼音词库，五笔用户 *不需要* 此行设置
+  (require 'pyim-greatdict) ; 拼音词库设置，五笔用户 *不需要* 此行设置
+  (pyim-greatdict-enable)   ; 拼音词库，五笔用户 *不需要* 此行设置
   (setq default-input-method "pyim")
 
   ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
