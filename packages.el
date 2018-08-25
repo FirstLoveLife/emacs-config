@@ -14,6 +14,7 @@
 (package! company-lsp)
 
 (package! link-hint)
+(package! sicp)
 
 (package! rust-mode)
 (package! lsp-rust)
