@@ -19,13 +19,13 @@
   :demand t
   :config
   ;; 激活 basedict 拼音词库
-  (def-package! pyim-greatdict
-    :config (pyim-greatdict-enable))
+  (def-package! pyim-basedict
+    :config (pyim-basedict-enable))
 
   (setq default-input-method "pyim")
 
-  (require 'pyim-greatdict) ; 拼音词库设置，五笔用户 *不需要* 此行设置
-  (pyim-greatdict-enable)   ; 拼音词库，五笔用户 *不需要* 此行设置
+  (require 'pyim-basedict) ; 拼音词库设置，五笔用户 *不需要* 此行设置
+  (pyim-basedict-enable)   ; 拼音词库，五笔用户 *不需要* 此行设置
   (setq default-input-method "pyim")
 
   ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
@@ -149,22 +149,44 @@
   '(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
 
 
-(defun name-of-recursive-function (n)
-  "documentation..."
-  (if n > 0
-      (workspace/new)
-      (name-of-recursive-function
-       (- n 1))))
+;(defun name-of-recursive-function (n)
+;  "documentation..."
+;  (if n > 0
+;      (workspace/new)
+;      (name-of-recursive-function
+;       (- n 1))))
 
 
-(defun name-of-recursive-function (fun n)
-  (when (> n 0)
-    (funcall fun)
-    (name-of-recursive-function
-     fun (- n 1))))
+;(defun name-of-recursive-function (fun n)
+;  (when (> n 0)
+;    (funcall fun)
+;    (name-of-recursive-function
+;     fun (- n 1))))
 
 
-(run-with-idle-timer
- 0.1 nil
- #'(lambda ()
-     (name-of-recursive-function '+workspace/new 8)))
+;(run-with-idle-timer
+; 0.1 nil
+; #'(lambda ()
+;     (name-of-recursive-function '+workspace/new 8)))
+
+(require 'persp-mode)
+(add-hook! 'persp-mode-hook
+  (save-window-excursion
+    (delete-other-windows)
+    (switch-to-buffer (doom-fallback-buffer))
+    (require 'persp-mode)
+    (let ((wconf (funcall persp-window-state-get-function (selected-frame))))
+      (dotimes (i 9)
+        (let ((persp (persp-add-new (format "#%d" (1+ i)))))
+          (setf (persp-window-conf persp) wconf))))))
+
+(require 'lsp-ui)
+(require 'lsp-haskell)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+(add-hook 'haskell-mode-hook 'flycheck-mode)
+(add-to-list 'company-backends 'company-ghc)
+
+
+(set-company-backend! 'haskell-mode
+    'company-ghc)

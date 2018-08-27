@@ -11,7 +11,10 @@
 (package! lsp-mode)
 (package! flycheck-clang-analyzer)
 (package! lsp-ui)
+(package! lsp-haskell)
 (package! company-lsp)
+(package! company-ghc)
+
 
 (package! link-hint)
 (package! sicp)
