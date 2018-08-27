@@ -190,3 +190,7 @@
 
 (set-company-backend! 'haskell-mode
     'company-ghc)
+
+(set-popup-rule! "^\\*doom eshell" :side 'left :size 50)
+
+(require 'eaf)
