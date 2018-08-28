@@ -179,6 +179,11 @@
       (dotimes (i 9)
         (let ((persp (persp-add-new (format "#%d" (1+ i)))))
           (setf (persp-window-conf persp) wconf))))))
+(add-hook 'emacs-startup-hook #'(lambda ()(+workspace/switch-to '0)))
+
+;(add-hook 'emacs-startup-hook
+;            #'(lambda () (pyim-restart-1 t)))
+
 
 (require 'lsp-ui)
 (require 'lsp-haskell)
@@ -191,6 +196,7 @@
 (set-company-backend! 'haskell-mode
     'company-ghc)
 
-(set-popup-rule! "^\\*doom eshell" :side 'left :size 50)
+(set-popup-rule! "^*eshell*" :side 'right :size 50)
+(set-popup-rule! "^*eww*" :side 'right :size 50)
 
 (require 'eaf)
