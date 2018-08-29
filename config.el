@@ -195,6 +195,12 @@
 
 (set-company-backend! 'haskell-mode
     'company-ghc)
+;; (set-company-backend! 'c++-mode
+;;     'company-lsp)
+;; (add-hook 'c++-mode-hook
+;;             (lambda ()
+;;               (set (make-local-variable 'company-backends) '(company-lsp))))
+
 
 (set-popup-rule! "^*eshell*" :side 'right :size 80)
 (set-popup-rule! "^*eww*" :side 'right :size 80)
