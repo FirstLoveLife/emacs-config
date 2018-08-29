@@ -26,6 +26,7 @@
  '(electric-indent-mode t)
  '(electric-layout-mode t)
  '(electric-pair-mode t)
+ '(global-visual-line-mode t)
  '(line-number-mode nil)
  '(lsp-ui-doc-header t)
  '(lsp-ui-doc-include-signature t)

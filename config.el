@@ -196,7 +196,14 @@
 (set-company-backend! 'haskell-mode
     'company-ghc)
 
-(set-popup-rule! "^*eshell*" :side 'right :size 50)
-(set-popup-rule! "^*eww*" :side 'right :size 50)
+(set-popup-rule! "^*eshell*" :side 'right :size 80)
+(set-popup-rule! "^*eww*" :side 'right :size 80)
+(set-popup-rule! "^*Custom*" :side 'right :size 80)
 
 (require 'eaf)
+
+(set! :docset 'js2-mode "JavaScript" "JQuery")
+
+(set! :docset 'c++-mode "C++" "Boost")
+(set! :docset 'css-mode "Css" "Html")
+(set! :docset 'html-mode "Html" "Css")
