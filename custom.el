@@ -74,4 +74,7 @@
 #+END_EXPORT")
      ("A" "#+ASCII: ")
      ("i" "#+INDEX: ?")
-     ("I" "#+INCLUDE: %file ?")))))
+     ("I" "#+INCLUDE: %file ?"))))
+ '(prog-mode-hook
+   (quote
+    (+version-control|git-gutter-maybe hl-todo-mode yas-minor-mode-on hl-line-mode highlight-escape-sequences-mode highlight-numbers-mode vi-tilde-fringe-mode))))

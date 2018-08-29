@@ -195,8 +195,8 @@
 
 (set-company-backend! 'haskell-mode
     'company-ghc)
-;; (set-company-backend! 'c++-mode
-;;     'company-lsp)
+(set-company-backend! 'c++-mode
+    'company-lsp)
 ;; (add-hook 'c++-mode-hook
 ;;             (lambda ()
 ;;               (set (make-local-variable 'company-backends) '(company-lsp))))
