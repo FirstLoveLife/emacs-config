@@ -205,11 +205,13 @@
 (set-popup-rule! "^*eshell*" :side 'right :size 80)
 (set-popup-rule! "^*eww*" :side 'right :size 80)
 (set-popup-rule! "^*Custom*" :side 'right :size 80)
-
+(set-popup-rule! "^ag*" :side 'right :size 80)
+(set-popup-rule! "^*info*" :ignore 1)
 (require 'eaf)
 
-(set! :docset 'js2-mode "JavaScript" "JQuery")
+(set-docset! 'js2-mode "JavaScript" "JQuery")
 
-(set! :docset 'c++-mode "C++" "Boost")
-(set! :docset 'css-mode "Css" "Html")
-(set! :docset 'html-mode "Html" "Css")
+(set-docset! 'c++-mode "C++" "Boost")
+(set-docset! 'css-mode "Css" "Html")
+(set-docset! 'html-mode "Html" "Css")
+
