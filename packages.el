@@ -1,6 +1,6 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; private/my/packages.el
-(disable-packages!  company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
+(disable-packages!  +onsave company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
 (package! auto-save  :recipe (:fetcher wiki))
 (package! avy)
 (package! ag)

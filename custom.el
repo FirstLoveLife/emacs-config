@@ -24,7 +24,6 @@
  '(default-input-method "pyim")
  '(display-line-numbers-width nil)
  '(electric-indent-mode t)
- '(electric-layout-mode t)
  '(electric-pair-mode t)
  '(global-visual-line-mode t)
  '(line-number-mode nil)
