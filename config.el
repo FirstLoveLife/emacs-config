@@ -1,7 +1,8 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
-
-
 (load! "+bindings")
+(after! doom-themes
+  :init
+  (setq doom-theme 'doom-one-light))
 
 (after! helm
   (setq helm-source-list
@@ -140,7 +141,7 @@
 
 
 
-(setq doom-font (font-spec :family "Iosevka" :size 18))
+(setq doom-font (font-spec :family "Iosevka" :size 16))
 (setq doom-big-font (font-spec :family "Iosevka" :size 25))
 
 (setq +doom-dashboard-banner-file "~/pictures/zxy.png")
@@ -191,7 +192,6 @@
 (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
 (add-hook 'haskell-mode-hook 'flycheck-mode)
 (add-to-list 'company-backends 'company-ghc)
-
 
 (set-company-backend! 'haskell-mode
     'company-ghc)

@@ -57,7 +57,7 @@
 
        :editor
       ;(format +onsave)  ; automated prettiness
-       format            ; automated prettiness
+       ;format            ; automated prettiness
        multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
@@ -160,6 +160,9 @@
        ;; and additional ex commands for evil-mode. Use it as a reference for
        ;; your own modules.
        (default +bindings +snippets +evil-commands)
-       ;; :private
-       ;; my-cc)
+       :private
+       my-cc
        )
+
+
+
