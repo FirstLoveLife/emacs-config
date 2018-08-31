@@ -1,8 +1,8 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 (load! "+bindings")
 (after! doom-themes
-  :init
-  (setq doom-theme 'doom-one-light))
+   :init
+   (setq doom-theme 'doom-opera))
 
 (after! helm
   (setq helm-source-list
@@ -180,7 +180,7 @@
       (dotimes (i 9)
         (let ((persp (persp-add-new (format "#%d" (1+ i)))))
           (setf (persp-window-conf persp) wconf))))))
-(add-hook 'emacs-startup-hook #'(lambda ()(+workspace/switch-to '0)))
+;(add-hook 'emacs-startup-hook #'(lambda ()(+workspace/switch-to '0)))
 
 ;(add-hook 'emacs-startup-hook
 ;            #'(lambda () (pyim-restart-1 t)))
@@ -207,7 +207,7 @@
 (set-popup-rule! "^*Custom*" :side 'right :size 80)
 (set-popup-rule! "^ag*" :side 'right :size 80)
 (set-popup-rule! "^*info*" :ignore 1)
-(require 'eaf)
+;(require 'eaf)
 
 (set-docset! 'js2-mode "JavaScript" "JQuery")
 
