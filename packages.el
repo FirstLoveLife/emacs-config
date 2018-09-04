@@ -15,9 +15,8 @@
 (package! company-lsp)
 (package! company-ghc)
 (package! nand2tetris)
-
-(package! format-all :recipe (:fetcher github :repo "lassik/emacs-format-all-the-code" :files ("*")))
-
+(package! company-nand2tetris)
+(package! nand2tetris-assembler)
 (package! link-hint)
 (package! sicp)
 

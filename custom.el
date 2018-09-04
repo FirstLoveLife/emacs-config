@@ -15,6 +15,16 @@
  '(auto-save-silent t)
  '(c-basic-offset 4)
  '(cmake-tab-width 4)
+ '(company-auto-complete t)
+ '(company-backends
+   (quote
+    (company-elisp company-keywords company-capf company-dabbrev-code company-files company-ghc company-nand2tetris)))
+ '(company-frontends
+   (quote
+    (company-pseudo-tooltip-frontend company-echo-frontend)))
+ '(company-global-modes
+   (quote
+    (not comint-mode erc-mode message-mode help-mode gud-mode nand2tetris-mode emacs-lisp-mode)))
  '(custom-safe-themes
    (quote
     ("cd736a63aa586be066d5a1f0e51179239fe70e16a9f18991f6f5d99732cabb32" "086970da368bb95e42fd4ddac3149e84ce5f165e90dfc6ce6baceae30cf581ef" default)))
