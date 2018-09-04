@@ -1,7 +1,7 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; private/my/packages.el
 (disable-packages!  company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
-(package! auto-save  :recipe (:fetcher wiki))
+;(package! auto-save  :recipe (:fetcher wiki))
 (package! avy)
 (package! ag)
 (package! anki-editor)
@@ -14,8 +14,8 @@
 (package! lsp-haskell)
 (package! company-lsp)
 (package! company-ghc)
+(package! nand2tetris)
 
-(package! tao-theme-emacs :recipe (:fetcher github :repo "11111000000/tao-theme-emacs" :files ("*")))
 (package! format-all :recipe (:fetcher github :repo "lassik/emacs-format-all-the-code" :files ("*")))
 
 (package! link-hint)
@@ -30,10 +30,10 @@
 
 (package! emacs-cpp-auto-include :recipe (:fetcher github :repo "FirstLoveLife/emacs-cpp-auto-include" :files ("*")))
 
-(package! pyim-greatdict :recipe (:repo "tumashu/pyim-greatdict" :fetcher github :files ("*")))
+;(package! pyim-greatdict :recipe (:repo "tumashu/pyim-greatdict" :fetcher github :files ("*")))
 (package! company)
 (package! edit-server)
-(package! eaf :recipe (:repo "manateelazycat/emacs-application-framework" :fetcher github :files ("*")))
+;(package! eaf :recipe (:repo "manateelazycat/emacs-application-framework" :fetcher github :files ("*")))
 (package! ccls)
 ;(package! multi-term)
 (package! posframe)

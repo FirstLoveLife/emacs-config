@@ -2,8 +2,8 @@
 (load! "+bindings")
 (after! doom-themes
    :init
-   (setq doom-theme 'doom-opera))
-
+   ;(setq doom-theme 'doom-tomorrow-day)
+   (setq doom-theme 'doom-one))
 (after! helm
   (setq helm-source-list
         '(
@@ -129,13 +129,6 @@
                                     :test "ctest")
   )
 
-(require 'auto-save)
-(auto-save-enable)
-(setq auto-save-slient t)
-(setq auto-save-delete-trailing-whitespace t)
-
-
-
 (require 'aweshell)
 
 
@@ -207,7 +200,6 @@
 (set-popup-rule! "^*Custom*" :side 'right :size 80)
 (set-popup-rule! "^ag*" :side 'right :size 80)
 (set-popup-rule! "^*info*" :ignore 1)
-;(require 'eaf)
 
 (set-docset! 'js2-mode "JavaScript" "JQuery")
 
@@ -215,3 +207,4 @@
 (set-docset! 'css-mode "Css" "Html")
 (set-docset! 'html-mode "Html" "Css")
 
+(setq nand2tetris-core-base-dir "~/backup/nand2tetris/")
