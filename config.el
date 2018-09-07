@@ -2,7 +2,7 @@
 (load! "+bindings")
 (after! doom-themes
    :init
-   ;(setq doom-theme 'doom-tomorrow-day)
+   ;(setq doom-theme 'doom-tomorrow-day))
    (setq doom-theme 'doom-one))
 (after! helm
   (setq helm-source-list
@@ -137,7 +137,7 @@
 (setq doom-font (font-spec :family "Iosevka" :size 16))
 (setq doom-big-font (font-spec :family "Iosevka" :size 25))
 
-(setq +doom-dashboard-banner-file "~/pictures/zxy.png")
+;(setq +doom-dashboard-banner-file "~/pictures/zxy.png")
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
@@ -181,6 +181,7 @@
 
 (require 'lsp-ui)
 (require 'lsp-haskell)
+
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
 (add-hook 'haskell-mode-hook 'flycheck-mode)
@@ -207,5 +208,3 @@
 (set-docset! 'c++-mode "C++" "Boost")
 (set-docset! 'css-mode "Css" "Html")
 (set-docset! 'html-mode "Html" "Css")
-
-(setq nand2tetris-core-base-dir "~/backup/nand2tetris/")

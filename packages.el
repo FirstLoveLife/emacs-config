@@ -14,7 +14,7 @@
 (package! lsp-haskell)
 (package! company-lsp)
 (package! company-ghc)
-(package! nand2tetris)
+(package! nand2tetris :recipe (:fetcher github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
 (package! company-nand2tetris)
 (package! nand2tetris-assembler)
 (package! link-hint)
