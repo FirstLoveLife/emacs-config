@@ -66,15 +66,10 @@
    ("C-;" . pyim-delete-word-from-personal-buffer)))
 
 
-(def-package! avy
-  :commands (avy-goto-char-timer)
-  :defer t
-  :init
+(after! avy
   (setq avy-timeout-seconds 0.2)
   (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
   )
-(require 'edit-server)
-(edit-server-start)
 
 
 (after! company
@@ -204,11 +199,11 @@
 
 (set-company-backend! 'c++-mode
     'company-lsp)
-(set-popup-rule! "^*eshell*" :side 'right :size 80)
-(set-popup-rule! "^*eww*" :side 'right :size 80)
-(set-popup-rule! "^*Custom*" :side 'right :size 80)
-(set-popup-rule! "^ag*" :side 'right :size 80)
-(set-popup-rule! "^*info*" :ignore 1)
+;; (set-popup-rule! "^*eshell*" :side 'right :size 80)
+;; (set-popup-rule! "^*eww*" :side 'right :size 80)
+;; (set-popup-rule! "^*Custom*" :side 'right :size 80)
+;; (set-popup-rule! "^ag*" :side 'right :size 80)
+;; (set-popup-rule! "^*info*" :ignore 1)
 
 (set-docset! 'js2-mode "JavaScript" "JQuery")
 
@@ -222,5 +217,5 @@
 ;; (setq netease-music-username "1_18550451650")
 ;; (setq netease-music-user-password "17126724")
 ;; (setq netease-music-user-id "75783975")
-;; ;; api address default is http://localhost:3000
+;; ; api address default is http://localhost:3000
 ;; (setq netease-music-api "http://localhost:3000")

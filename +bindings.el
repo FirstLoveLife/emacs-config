@@ -1,31 +1,13 @@
+(require 'netease-music)
 (map!
  ;; localleader
  :m ","    nil
- :nm "f" #'avy-goto-char-2)
+:nm "f" #'avy-goto-char-2
 
-
-(evil-define-key
-  'normal
-  netease-music-mode-map
-  (kbd "RET")
-  'netease-music-jump-into)
-(evil-define-key
-  'normal
-  netease-music-mode-map
-  (kbd "l")
-  'netease-music-i-like-it)
-(evil-define-key
-  'normal
-  netease-music-mode-map
-  (kbd "n")
-  'netease-music-play-next)
-(evil-define-key
-  'normal
-  netease-music-mode-map
-  (kbd "p")
-  'netease-music-toggle)
-(evil-define-key
-  'normal
-  netease-music-mode-map
-  (kbd "q")
-  'quit-window)
+ (:map netease-music-mode-map
+   :n "RET" #'netease-music-jump-into
+   :n "l" #'netease-music-i-like-it
+   :n "n" #'netease-music-play-next
+   :n "p" #'netease-music-toggle
+   :n "q" #'quit-window
+   ))
