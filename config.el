@@ -18,6 +18,7 @@
           )))
 (def-package! pyim
   :demand t
+  :defer 10
   :config
   ;; 激活 basedict 拼音词库
   (def-package! pyim-basedict
@@ -67,6 +68,7 @@
 
 (def-package! avy
   :commands (avy-goto-char-timer)
+  :defer t
   :init
   (setq avy-timeout-seconds 0.2)
   (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
@@ -84,6 +86,7 @@
 
 (def-package! company-lsp
   :after company
+  :defer t
   :init
   (setq company-transformers nil company-lsp-cache-candidates nil)
   )
@@ -99,6 +102,7 @@
 
 (def-package! lsp-ui
   :demand t
+  :defer t
   :hook (lsp-mode . lsp-ui-mode)
   :config
   (setq
@@ -129,7 +133,10 @@
                                     :test "ctest")
   )
 
-(require 'aweshell)
+;(require 'aweshell)
+(def-package! aweshell
+  :defer 5
+  )
 
 
 
@@ -179,8 +186,8 @@
 ;            #'(lambda () (pyim-restart-1 t)))
 
 
-(require 'lsp-ui)
-(require 'lsp-haskell)
+;(require 'lsp-ui)
+;(require 'lsp-haskell)
 
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
@@ -208,3 +215,12 @@
 (set-docset! 'c++-mode "C++" "Boost")
 (set-docset! 'css-mode "Css" "Html")
 (set-docset! 'html-mode "Html" "Css")
+
+
+
+;; (require 'netease-music)
+;; (setq netease-music-username "1_18550451650")
+;; (setq netease-music-user-password "17126724")
+;; (setq netease-music-user-id "75783975")
+;; ;; api address default is http://localhost:3000
+;; (setq netease-music-api "http://localhost:3000")
