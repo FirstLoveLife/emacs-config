@@ -1,9 +1,9 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 (load! "+bindings")
 (after! doom-themes
-   :init
-   ;(setq doom-theme 'doom-tomorrow-day))
-   (setq doom-theme 'doom-one))
+  :init
+                                        ;(setq doom-theme 'doom-tomorrow-day))
+  (setq doom-theme 'doom-one))
 (after! helm
   (setq helm-source-list
         '(
@@ -128,7 +128,7 @@
                                     :test "ctest")
   )
 
-;(require 'aweshell)
+                                        ;(require 'aweshell)
 (def-package! aweshell
   :defer 5
   )
@@ -139,31 +139,31 @@
 (setq doom-font (font-spec :family "Iosevka" :size 16))
 (setq doom-big-font (font-spec :family "Iosevka" :size 25))
 
-;(setq +doom-dashboard-banner-file "~/pictures/zxy.png")
+                                        ;(setq +doom-dashboard-banner-file "~/pictures/zxy.png")
 
 (eval-after-load 'flycheck
   '(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
 
 
-;(defun name-of-recursive-function (n)
-;  "documentation..."
-;  (if n > 0
-;      (workspace/new)
-;      (name-of-recursive-function
-;       (- n 1))))
+                                        ;(defun name-of-recursive-function (n)
+                                        ;  "documentation..."
+                                        ;  (if n > 0
+                                        ;      (workspace/new)
+                                        ;      (name-of-recursive-function
+                                        ;       (- n 1))))
 
 
-;(defun name-of-recursive-function (fun n)
-;  (when (> n 0)
-;    (funcall fun)
-;    (name-of-recursive-function
-;     fun (- n 1))))
+                                        ;(defun name-of-recursive-function (fun n)
+                                        ;  (when (> n 0)
+                                        ;    (funcall fun)
+                                        ;    (name-of-recursive-function
+                                        ;     fun (- n 1))))
 
 
-;(run-with-idle-timer
-; 0.1 nil
-; #'(lambda ()
-;     (name-of-recursive-function '+workspace/new 8)))
+                                        ;(run-with-idle-timer
+                                        ; 0.1 nil
+                                        ; #'(lambda ()
+                                        ;     (name-of-recursive-function '+workspace/new 8)))
 
 (require 'persp-mode)
 (add-hook! 'persp-mode-hook
@@ -175,30 +175,39 @@
       (dotimes (i 9)
         (let ((persp (persp-add-new (format "#%d" (1+ i)))))
           (setf (persp-window-conf persp) wconf))))))
-;(add-hook 'emacs-startup-hook #'(lambda ()(+workspace/switch-to '0)))
+                                        ;(add-hook 'emacs-startup-hook #'(lambda ()(+workspace/switch-to '0)))
 
-;(add-hook 'emacs-startup-hook
-;            #'(lambda () (pyim-restart-1 t)))
+                                        ;(add-hook 'emacs-startup-hook
+                                        ;            #'(lambda () (pyim-restart-1 t)))
 
 
-;(require 'lsp-ui)
-;(require 'lsp-haskell)
+                                        ;(require 'lsp-ui)
+                                        ;(require 'lsp-haskell)
 
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
-(add-hook 'haskell-mode-hook 'flycheck-mode)
+                                        ;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+                                        ;(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+(def-package! eglot
+  :init
+  (add-hook 'haskell-mode-hook 'eglot-ensure)
+  (add-hook 'ruby-mode-hook 'eglot-ensure)
+  (add-hook 'python-mode-hook 'eglot-ensure)
+  (add-hook 'kotlin-mode-hook 'eglot-ensure)
+  :config
+(add-to-list 'eglot-server-programs '((haskell-mode) . (eglot-cquery "hie-wrapper"))))
+
+;(add-hook 'haskell-mode-hook 'flycheck-mode)
 (add-to-list 'company-backends 'company-ghc)
 (add-to-list 'company-backends 'company-nand2tetris)
 
 (set-company-backend! 'haskell-mode
-    'company-ghc)
+  'company-ghc)
 (set-company-backend! 'emacs-lisp-mode
-    'company-elisp)
+  'company-elisp)
 (set-company-backend! 'nand2tetris-mode
-    'company-nand2tetris)
+  'company-nand2tetris)
 
 (set-company-backend! 'c++-mode
-    'company-lsp)
+  'company-lsp)
 ;; (set-popup-rule! "^*eshell*" :side 'right :size 80)
 ;; (set-popup-rule! "^*eww*" :side 'right :size 80)
 ;; (set-popup-rule! "^*Custom*" :side 'right :size 80)
