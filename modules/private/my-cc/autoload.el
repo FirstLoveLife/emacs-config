@@ -1,24 +1,28 @@
-;;; my-cc/autoload.el -*- lexical-binding: t; -*-
+;;; private/my-cc/autoload.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
 (defun +ccls//enable ()
   (require 'ccls)
+  (setq-local lsp-ui-sideline-show-symbol nil)
   (condition-case nil
       (lsp-ccls-enable)
     (user-error nil)))
 
-(defun ccls/base () (interactive) (lsp-ui-peek-find-custom 'base "$ccls/base"))
-(defun ccls/callers () (interactive) (lsp-ui-peek-find-custom 'callers "$ccls/callers"))
-(defun ccls/vars (kind) (lsp-ui-peek-find-custom 'vars "$ccls/vars" (plist-put (lsp--text-document-position-params) :kind kind)))
-(defun ccls/random () (interactive) (lsp-ui-peek-find-custom 'random "$ccls/random"))
-(defun ccls/bases ()
+(defun ccls/callee ()
   (interactive)
-  (lsp-ui-peek-find-custom 'base "$ccls/inheritanceHierarchy"
-                           (append (lsp--text-document-position-params) '(:flat t :level 3))))
-(defun ccls/derived ()
+  (lsp-ui-peek-find-custom 'callee "$ccls/call" '(:callee t)))
+(defun ccls/caller ()
   (interactive)
-  (lsp-ui-peek-find-custom 'derived "$ccls/inheritanceHierarchy"
-                           (append (lsp--text-document-position-params) '(:flat t :level 3 :derived t))))
+  (lsp-ui-peek-find-custom 'caller "$ccls/call"))
+(defun ccls/vars (kind)
+  (lsp-ui-peek-find-custom 'vars "$ccls/vars" `(:kind ,kind)))
+(defun ccls/base (levels)
+  (lsp-ui-peek-find-custom 'base "$ccls/inheritance" `(:levels ,levels)))
+(defun ccls/derived (levels)
+  (lsp-ui-peek-find-custom 'derived "$ccls/inheritance" `(:levels ,levels :derived t)))
+(defun ccls/member ()
+  (interactive)
+  (lsp-ui-peek-find-custom 'member "$ccls/member"))
 
 ;; The meaning of :role corresponds to https://github.com/maskray/ccls/blob/master/src/symbol.h
 
@@ -94,18 +98,5 @@
     (let ((symbols (lsp--send-request (lsp--make-request
                                        "workspace/symbol"
                                        `(:query ,pattern)))))
-      (mapcar (lambda (x) (lsp--symbol-information-to-xref pattern x)) symbols))))
-
-    ;; auto insert C/C++
-    (define-auto-insert
-      (cons "\\.\\([Cc]\\|cc\\|cpp\\)\\'" "My C++ implementation")
-      '(nil
-    	"// " (file-name-nondirectory buffer-file-name) "\n"
-    	"//\n"
-    	(let* ((noext (substring buffer-file-name 0 (match-beginning 0)))
-    		   (nopath (file-name-nondirectory noext))
-    		   (ident (concat nopath ".h")))
-    	  (if (file-exists-p ident)
-    		  (concat "#include \"" ident "\"\n")))
-    	))
-
+      (mapcar (lambda (x) (lsp--symbol-information-to-xref pattern x)) symbols)))
+  )

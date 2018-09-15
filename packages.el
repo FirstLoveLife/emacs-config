@@ -1,7 +1,35 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; private/my/packages.el
-(disable-packages!  company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
-(package! auto-save  :recipe (:fetcher wiki))
+(disable-packages! cmake-mode company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
+
+(package! avy)
+(package! atomic-chrome)
+(package! lispyville)
+(package! lsp-mode)
+(package! lsp-ui)
+(package! company-lsp)
+
+(package! eshell-autojump)
+(package! evil-nerd-commenter)
+(package! link-hint)
+(package! smart-forward)
+(package! symbol-overlay)
+(package! tldr)
+
+(package! rust-mode)
+(package! lsp-rust)
+
+(package! function-args)
+(package! lpy :recipe (:fetcher github :repo "abo-abo/lpy" :files ("*")))
+
+(disable-packages! company-prescient)
+
+
+
+
+
+
+
 (package! ag)
 (package! anki-editor)
 (package! cmake-mode)
