@@ -10,6 +10,7 @@
   :commands (avy-goto-char-timer)
   :init
   (setq avy-timeout-seconds 0.2)
+  (setq avy-all-windows t)
   (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?q ?w ?e ?r ?u ?i ?o ?p))
   )
 
@@ -311,13 +312,6 @@
      ("_" counsel-projectile-switch-project-action-org-capture
       "org-capture into project"))))
 
-(def-package! smartparens
-  :config
-  (setq sp-autoinsert-pair nil
-        sp-autodelete-pair nil
-        sp-escape-quotes-after-insert nil)
-  (setq-default sp-autoskip-closing-pair nil)
-  )
 
 (def-package! tldr
   :commands (tldr)
@@ -370,8 +364,14 @@
   'company-nand2tetris)
 (set-company-backend! 'haskell-mode 'company-lsp)
 
-(require 'lsp-ui)
-(require 'lsp-haskell)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
-(add-hook 'haskell-mode-hook 'flycheck-mode)
+
+(after! haskell-mode
+  (require 'lsp-ui )
+  (require 'lsp-haskell)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+  (add-hook 'haskell-mode-hook 'flycheck-mode))
+
+(setq nand2tetris-core-base-dir "~/nand2tetris")
+
+(visual-line-mode)
