@@ -53,6 +53,7 @@
 
        :editor
        multiple-cursors  ; editing in many places at once
+      (format +onsave)  ; automated prettiness
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
 
@@ -122,10 +123,11 @@
       ;qt                ; the 'cutest' gui framework ever
       ;racket            ; a DSL for DSLs
       ;rest              ; Emacs as a REST client
-      ;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-      ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-      ;scala             ; java, but good
-       sh                ; she sells (ba|z)sh shells on the C xor
+      ;; ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+      ;; ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+      ;; ;scala             ; java, but good
+      ;;  sh
+                                        ; she sells (ba|z)sh shells on the C xor
       ;solidity          ; do you need a blockchain? No.
       ;swift             ; who asked for emoji variables?
       ;web               ; the tubes

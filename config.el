@@ -23,7 +23,9 @@
 
 (def-package! company-lsp
   :after company
-  :init
+  :config
+  (add-hook 'java-mode-hook (lambda () (push 'company-lsp company-backends)))
+  (push 'java-mode company-global-modes)
   (setq company-transformers nil company-lsp-cache-candidates nil)
   )
 
@@ -349,7 +351,7 @@
   :init
   ;; (add-hook 'haskell-mode-hook 'eglot-ensure)
   ;; (add-hook 'c++-mode-hook 'eglot-ensure)
-  (add-hook 'ruby-mode-hook 'eglot-ensure)
+  ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
   (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
 ;(add-hook 'haskell-mode-hook 'flycheck-mode)
@@ -360,10 +362,13 @@
 ;  'company-ghc)
 (set-company-backend! 'emacs-lisp-mode
   'company-elisp)
+(set-company-backend! 'ruby-mode
+  'company-lsp)
 (set-company-backend! 'nand2tetris-mode
   'company-nand2tetris)
 (set-company-backend! 'haskell-mode 'company-lsp)
-
+;; (set-company-backend! 'ruby-mode
+;;   'company-elisp)
 
 (after! haskell-mode
   (require 'lsp-ui )
@@ -375,3 +380,14 @@
 (setq nand2tetris-core-base-dir "~/nand2tetris")
 
 (visual-line-mode)
+
+
+(require 'lsp-java)
+  (add-hook 'java-mode-hook  'lsp-java-enable)
+
+(def-package! lsp-ruby
+  :init
+  (add-hook 'ruby-mode-hook #'lsp-ruby-enable)
+  :config
+  (setq lsp-hover-text-function 'lsp--text-document-signature-help)
+)

@@ -7,6 +7,9 @@
 (package! lispyville)
 (package! lsp-mode)
 (package! lsp-ui)
+(package! lsp-java)
+(package! lsp-ruby)
+(package! dap-mode)
 (package! company-lsp)
 
 (package! eshell-autojump)
@@ -64,6 +67,6 @@
 (package! posframe)
 (package! pyim)
 (package! pyim-basedict)
-(package! yasnippet-classic-snippets)
-(package! yasnippet-snippets)
+;; (package! yasnippet-classic-snippets)
+;; (package! yasnippet-snippets)
 (disable-packages! irony eww rtags)
