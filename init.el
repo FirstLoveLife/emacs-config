@@ -19,12 +19,14 @@
        :completion
        (company          ; the ultimate code completion backend
         +auto            ; as-you-type code completion
-        +childframe)     ; a nicer company UI (Emacs 26+ only)
+        ;; +childframe
+        )     ; a nicer company UI (Emacs 26+ only)
       ;(helm             ; the *other* search engine for love and life
       ; +fuzzy)          ; enable fuzzy search backend for helm
       ;ido               ; the other *other* search engine...
        (ivy              ; a search engine for love and life
-        +childframe)
+        ;; +childframe
+        )
 
        :ui
        doom              ; what makes DOOM look the way it does
@@ -38,9 +40,10 @@
        nav-flash         ; blink the current line after jumping
       ;neotree           ; a project drawer, like NERDTree for vim
        treemacs          ; a project drawer, like neotree but cooler
-       (popup            ; tame sudden yet inevitable temporary windows
-        +all             ; catch all popups that start with an asterix
-        +defaults)       ; default popup rules
+       ;; (popup            ; tame sudden yet inevitable temporary windows
+       ;;  +all             ; catch all popups that start with an asterix
+       ;;  +defaults)
+                                        ; default popup rules
       ;pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
       ;unicode           ; extended unicode support for various languages
@@ -90,16 +93,18 @@
       ;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
       ;ess               ; emacs speaks statistics
-       go                ; the hipster dialect
-       haskell           ; a language that's lazier than I am
+       ;; go                ; the hipster dialect
+       ;; haskell
+                                        ; a language that's lazier than I am
       ;hy                ; readability of scheme w/ speed of python
       ;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       javascript        ; all(hope(abandon(ye(who(enter(here))))))
-      ;julia             ; a better, faster MATLAB
-      ;latex             ; writing papers in Emacs has never been so fun
-      ;ledger            ; an accounting system in Emacs
-      ;lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+      ;;  javascript        ; all(hope(abandon(ye(who(enter(here))))))
+      ;; ;julia             ; a better, faster MATLAB
+      ;; ;latex             ; writing papers in Emacs has never been so fun
+      ;; ;ledger            ; an accounting system in Emacs
+      ;; ;lua               ; one-based indices? one-based indices
+      ;;  markdown
+                                        ; writing docs for people to ignore
       ;nim               ; python + lisp at the speed of c
       ;nix               ; I hereby declare "nix geht mehr!"
       ;ocaml             ; an objective camel
@@ -131,11 +136,12 @@
        :app
       ;(email +gmail)    ; emacs as an email client
       ;irc               ; how neckbeards socialize
-       (rss +org)        ; emacs as an RSS reader
-      ;twitter           ; twitter client https://twitter.com/vnought
-       (write            ; emacs as a word processor (latex + org + markdown)
-        +wordnut         ; wordnet (wn) search
-        +langtool)       ; a proofreader (grammar/style check) for Emacs
+      ;;  (rss +org)        ; emacs as an RSS reader
+      ;; ;twitter           ; twitter client https://twitter.com/vnought
+      ;;  (write            ; emacs as a word processor (latex + org + markdown)
+      ;;   +wordnut         ; wordnet (wn) search
+      ;;   +langtool)
+                                        ; a proofreader (grammar/style check) for Emacs
 
        :collab
       ;floobits          ; peer programming for a price
@@ -151,7 +157,6 @@
        ;; and additional ex commands for evil-mode. Use it as a reference for
        ;; your own modules.
        (default +bindings +snippets +evil-commands)
-
        :private
        my-cc
        )

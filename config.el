@@ -353,6 +353,7 @@
 (def-package! eglot
   :init
   (add-hook 'haskell-mode-hook 'eglot-ensure)
+  ;; (add-hook 'c++-mode-hook 'eglot-ensure)
   (add-hook 'ruby-mode-hook 'eglot-ensure)
   (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
