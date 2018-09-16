@@ -128,6 +128,7 @@
 (def-package! lsp-mode
   :defer t
   :init
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (setq lsp-project-blacklist '("/CC/"))
   )
 
@@ -352,14 +353,14 @@
 
 (def-package! eglot
   :init
-  (add-hook 'haskell-mode-hook 'eglot-ensure)
+  ;; (add-hook 'haskell-mode-hook 'eglot-ensure)
   ;; (add-hook 'c++-mode-hook 'eglot-ensure)
   (add-hook 'ruby-mode-hook 'eglot-ensure)
   (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
 ;(add-hook 'haskell-mode-hook 'flycheck-mode)
 ;(add-to-list 'company-backends 'company-ghc)
-(add-to-list 'company-backends 'company-nand2tetris)
+;; (add-to-list 'company-backends 'company-nand2tetris)
 
 ;(set-company-backend! 'haskell-mode
 ;  'company-ghc)
@@ -367,3 +368,10 @@
   'company-elisp)
 (set-company-backend! 'nand2tetris-mode
   'company-nand2tetris)
+(set-company-backend! 'haskell-mode 'company-lsp)
+
+(require 'lsp-ui)
+(require 'lsp-haskell)
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+(add-hook 'haskell-mode-hook 'flycheck-mode)
