@@ -1,6 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
 ;; Copy me to ~/.doom.d/init.el or ~/.config/doom/init.el, then edit me!
 (setq doom-localleader-key ",")
+(setq custom-file "~/.doom.d/custom.el")
+(load custom-file)
 
 (doom! :feature
        debugger          ; FIXME stepping through code, to help you add bugs
