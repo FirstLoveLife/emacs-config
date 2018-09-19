@@ -18,39 +18,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(avy-all-windows (quote all-frames))
- '(avy-background t)
- '(avy-timeout-seconds 0.2)
- '(c-basic-offset 4)
- '(cmake-tab-width 4)
- '(company-auto-complete t)
- '(company-auto-complete-chars (quote (41 46)))
- '(company-backends
-   (quote
-    (company-elisp company-keywords company-capf company-dabbrev-code company-files company-ghc company-nand2tetris)))
- '(company-frontends
-   (quote
-    (company-pseudo-tooltip-frontend company-echo-frontend)))
- '(company-global-modes t)
- '(custom-safe-themes
-   (quote
-    ("cd736a63aa586be066d5a1f0e51179239fe70e16a9f18991f6f5d99732cabb32" "086970da368bb95e42fd4ddac3149e84ce5f165e90dfc6ce6baceae30cf581ef" default)))
- '(default-input-method "pyim")
- '(display-line-numbers-width nil)
- '(eldoc-idle-delay 0)
- '(flycheck-display-errors-function (quote +syntax-checker-show-popup))
- '(flycheck-global-modes nil)
- '(flycheck-indication-mode (quote right-fringe))
- '(flycheck-popup-tip-error-prefix "✕ ")
- '(global-flycheck-mode t)
- '(global-visual-line-mode t)
- '(line-number-mode nil)
- '(lsp-ui-doc-header t)
- '(lsp-ui-doc-include-signature t)
- '(lsp-ui-peek-always-show t)
- '(lsp-ui-sideline-enable t)
- '(nand2tetris-core-base-dir "~/nand2tetris/")
- '(nand2tetris-tools-dir "~/nand2tetris/tools/")
  '(org-structure-template-alist
    (quote
     (("sc" "#+BEGIN_SRC C++ :flags \"-Werror -Wall -Wextra -pedantic -std=c++17\"
