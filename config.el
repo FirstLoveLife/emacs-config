@@ -352,7 +352,7 @@
   ;; (add-hook 'haskell-mode-hook 'eglot-ensure)
   ;; (add-hook 'c++-mode-hook 'eglot-ensure)
   ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
-  (add-hook 'python-mode-hook 'eglot-ensure)
+  ;; (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
 ;(add-hook 'haskell-mode-hook 'flycheck-mode)
 ;(add-to-list 'company-backends 'company-ghc)
@@ -404,3 +404,9 @@
       (if (executable-find "gzip")
           (concat file ".gz")
         file)))
+
+(def-package! lsp-python
+  :after lsp-mode
+  :config
+  (add-hook 'python-mode-hook #'lsp-python-enable)
+)

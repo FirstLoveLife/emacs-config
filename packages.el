@@ -9,6 +9,7 @@
 (package! lsp-ui)
 (package! lsp-java)
 (package! lsp-ruby)
+(package! lsp-python)
 (package! dap-mode)
 (package! company-lsp)
 
