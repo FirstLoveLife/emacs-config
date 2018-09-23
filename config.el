@@ -356,7 +356,6 @@
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
 ;(add-hook 'haskell-mode-hook 'flycheck-mode)
 ;(add-to-list 'company-backends 'company-ghc)
-;; (add-to-list 'company-backends 'company-nand2tetris)
 
 ;(set-company-backend! 'haskell-mode
 ;  'company-ghc)
@@ -364,8 +363,7 @@
   'company-elisp)
 (set-company-backend! 'ruby-mode
   'company-lsp)
-(set-company-backend! 'nand2tetris-mode
-  'company-nand2tetris)
+
 (set-company-backend! 'haskell-mode 'company-lsp)
 ;; (set-company-backend! 'ruby-mode
 ;;   'company-elisp)
@@ -377,13 +375,20 @@
   (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
   (add-hook 'haskell-mode-hook 'flycheck-mode))
 
-(setq nand2tetris-core-base-dir "~/nand2tetris")
 
 (visual-line-mode)
 
+(def-package! nand2tetris
+  :init
+  (setq nand2tetris-core-base-dir "~/nand2tetris")
+  (add-to-list 'company-backends 'company-nand2tetris)
+  (set-company-backend! 'nand2tetris-mode
+    'company-nand2tetris)
+  :config
+  )
 
 (require 'lsp-java)
-  (add-hook 'java-mode-hook  'lsp-java-enable)
+(add-hook 'java-mode-hook  'lsp-java-enable)
 
 (def-package! lsp-ruby
   :init
@@ -391,3 +396,11 @@
   :config
   (setq lsp-hover-text-function 'lsp--text-document-signature-help)
 )
+
+
+
+(after! undo-tree
+  (defun doom*undo-tree-make-history-save-file-name (file)
+      (if (executable-find "gzip")
+          (concat file ".gz")
+        file)))
