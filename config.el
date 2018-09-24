@@ -354,7 +354,7 @@
   ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
   ;; (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
-;(add-hook 'haskell-mode-hook 'flycheck-mode)
+(add-hook 'haskell-mode-hook 'flycheck-mode)
 ;(add-to-list 'company-backends 'company-ghc)
 
 ;(set-company-backend! 'haskell-mode
@@ -375,8 +375,6 @@
   (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
   (add-hook 'haskell-mode-hook 'flycheck-mode))
 
-
-(visual-line-mode)
 
 (def-package! nand2tetris
   :config
@@ -413,3 +411,6 @@
 (def-package! cpp-auto-include
   :load-path "~/dev/emacs-cpp-auto-include/"
   :defer t)
+
+(require 'edit-server)
+(edit-server-start)

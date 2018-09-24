@@ -68,6 +68,7 @@
 (package! posframe)
 (package! pyim)
 (package! pyim-basedict)
+(package! edit-server)
 ;; (package! yasnippet-classic-snippets)
 ;; (package! yasnippet-snippets)
 (disable-packages! irony eww rtags)
