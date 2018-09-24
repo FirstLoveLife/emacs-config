@@ -18,7 +18,6 @@
   (setq company-minimum-prefix-length 2
         company-quickhelp-delay nil
         company-show-numbers t
-        company-global-modes '(not comint-mode erc-mode message-mode help-mode gud-mode)
         ))
 
 (def-package! company-lsp
@@ -410,3 +409,7 @@
   :config
   (add-hook 'python-mode-hook #'lsp-python-enable)
 )
+
+(def-package! cpp-auto-include
+  :load-path "~/dev/emacs-cpp-auto-include/"
+  :defer t)

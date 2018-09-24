@@ -71,3 +71,4 @@
 ;; (package! yasnippet-classic-snippets)
 ;; (package! yasnippet-snippets)
 (disable-packages! irony eww rtags)
+(package! cpp-auto-include :ignore t)
