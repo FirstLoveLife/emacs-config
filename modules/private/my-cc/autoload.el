@@ -1,4 +1,6 @@
 ;;; private/my-cc/autoload.el -*- lexical-binding: t; -*-
+;;;###autoload
+(defvar +ccls-path-mappings [])
 
 ;;;###autoload
 (defun +ccls//enable ()
@@ -20,10 +22,8 @@
   (lsp-ui-peek-find-custom 'base "$ccls/inheritance" `(:levels ,levels)))
 (defun ccls/derived (levels)
   (lsp-ui-peek-find-custom 'derived "$ccls/inheritance" `(:levels ,levels :derived t)))
-(defun ccls/member ()
-  (interactive)
-  (lsp-ui-peek-find-custom 'member "$ccls/member"))
-
+(defun ccls/member (kind)
+  (lsp-ui-peek-find-custom 'member "$ccls/member" `(:kind ,kind)))
 ;; The meaning of :role corresponds to https://github.com/maskray/ccls/blob/master/src/symbol.h
 
 ;; References w/ Role::Address bit (e.g. variables explicitly being taken addresses)

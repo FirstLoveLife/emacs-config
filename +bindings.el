@@ -158,7 +158,9 @@
    :n "E" (λ! (ccls-call-hierarchy t))
 
    ;; $ccls/member
-   :n "m" #'ccls/member
+   :n "s" (λ! (ccls/member 2))        ; 2 (Type) => nested classes/namespace members
+   :n "f" (λ! (ccls/member 3))        ; 3 (Func) => member functions
+   :n "m" (λ! (ccls/member 0))        ; other => member variables
    :n "M" #'ccls-member-hierarchy
 
    :n "h" (λ! (ccls-navigate "L"))

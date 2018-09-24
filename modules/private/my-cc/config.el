@@ -4,16 +4,14 @@
   ;; https://github.com/radare/radare2
 
   (setq c-default-style "bsd")
-  (add-hook 'c-mode-common-hook
-            (lambda ()
-              (c-set-style "my-cc")
-              (modify-syntax-entry ?_ "w")
-              ))
-
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . +cc-c-c++-objc-mode))
 
   (map!
    :map (c-mode-map c++-mode-map)
+   :n "C-h" (λ! (ccls-navigate "U"))
+   :n "C-j" (λ! (ccls-navigate "R"))
+   :n "C-k" (λ! (ccls-navigate "L"))
+   :n "C-l" (λ! (ccls-navigate "D"))
    (:leader
      :n "=" #'clang-format-region
      )
@@ -39,6 +37,7 @@
   )
 
 (def-package! ccls
+  :defer t
   :init
   (add-hook! (c-mode c++-mode objc-mode) #'+ccls//enable)
   (setq ccls-executable "~/dev/ccls/Release/ccls")
@@ -49,14 +48,14 @@
   (ccls-use-default-rainbow-sem-highlight)
   ;; https://github.com/maskray/ccls/blob/master/src/config.h
   (setq ccls-extra-init-params
-        '(:completion
-          (
-           :includeBlacklist
-           ("^/usr/(local/)?include/c\\+\\+/[0-9\\.]+/(bits|tr1|tr2|profile|ext|debug)/"
-            "^/usr/(local/)?include/c\\+\\+/v1/"
-            ))
-          :diagnostics (:frequencyMs 5000)
-          :index (:reparseForDependency 1)))
+        `(:clang (:pathMappings ,+ccls-path-mappings)
+                 :completion
+                 (
+                  :includeBlacklist
+                  ("^/usr/(local/)?include/c\\+\\+/[0-9\\.]+/(bits|tr1|tr2|profile|ext|debug)/"
+                   "^/usr/(local/)?include/c\\+\\+/v1/"
+                   ))
+                 :index (:reparseForDependency 1)))
 
   (with-eval-after-load 'projectile
     (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))

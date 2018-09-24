@@ -133,6 +133,7 @@
   :init
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (setq lsp-project-blacklist '("/CC/"))
+  (setq lsp--json-array-use-vector t)
   )
 
 (def-package! lsp-ui
@@ -379,12 +380,11 @@
 (visual-line-mode)
 
 (def-package! nand2tetris
-  :init
+  :config
   (setq nand2tetris-core-base-dir "~/nand2tetris")
   (add-to-list 'company-backends 'company-nand2tetris)
   (set-company-backend! 'nand2tetris-mode
     'company-nand2tetris)
-  :config
   )
 
 (require 'lsp-java)
