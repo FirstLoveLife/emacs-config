@@ -414,3 +414,7 @@
 
 (require 'edit-server)
 (edit-server-start)
+
+(defun my/eldoc-display-message-p ()
+  t)
+(advice-add 'eldoc-display-message-p :override 'my/eldoc-display-message-p)
