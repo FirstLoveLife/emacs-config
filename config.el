@@ -64,15 +64,15 @@
 
 (after! git-link
   (defun git-link-llvm (hostname dirname filename branch commit start end)
-      (format "https://github.com/llvm-mirror/%s/tree/%s/%s"
-              (file-name-base dirname)
-                (or branch commit)
-              (concat filename
-                      (when start
-                        (concat "#"
-                                (if end
-                                    (format "L%s-%s" start end)
-                                  (format "L%s" start)))))))
+    (format "https://github.com/llvm-mirror/%s/tree/%s/%s"
+            (file-name-base dirname)
+            (or branch commit)
+            (concat filename
+                    (when start
+                      (concat "#"
+                              (if end
+                                  (format "L%s-%s" start end)
+                                (format "L%s" start)))))))
   (defun git-link-sourceware (hostname dirname filename branch commit start end)
     (format "https://sourceware.org/git/?p=%s.git;a=blob;hb=%s;f=%s"
             (file-name-base dirname)
@@ -80,24 +80,25 @@
             (concat filename
                     (when start
                       (concat "#" (format "l%s" start))))))
-    (add-to-list 'git-link-remote-alist '("git.llvm.org" git-link-llvm))
-    (add-to-list 'git-link-remote-alist '("sourceware.org" git-link-sourceware))
+  (add-to-list 'git-link-remote-alist '("git.llvm.org" git-link-llvm))
+  (add-to-list 'git-link-remote-alist '("sourceware.org" git-link-sourceware))
   )
 
 (def-package! link-hint
   :commands link-hint-open-link link-hint-open-all-links)
 
 (def-package! lispy
-  :hook (emacs-lisp-mode . lispy-mode)
+  :hook ( (emacs-lisp-mode scheme-mode racket-mode) . lispy-mode)
   :config
   (setq lispy-outline "^;; \\(?:;[^#]\\|\\*+\\)"
         lispy-outline-header ";; "
         lispy-ignore-whitespace t)
-  (map! :map lispy-mode-map
-        :i "C-c (" #'lispy-wrap-round
-        :i "_" #'special-lispy-different
-        "d" nil
-        :i [remap delete-backward-char] #'lispy-delete-backward))
+  ;; (map! :map lispy-mode-map
+  ;;       :i "C-c (" #'lispy-wrap-round
+  ;;       :i "_" #'special-lispy-different
+  ;;       "d" nil
+  ;;       :i [remap delete-backward-char] #'lispy-delete-backward)
+  )
 
 ;; Also use lispyville in prog-mode for [ ] < >
 (def-package! lispyville
@@ -105,26 +106,26 @@
   :after (evil)
   :hook (lispy-mode . lispyville-mode)
   :config
-  (lispyville-set-key-theme
-   '(operators
-     c-w
-     (escape insert)
-     (slurp/barf-lispy)
-     additional-movement))
-  (map! :map emacs-lisp-mode-map
-        :nm "xk" #'lispyville-backward-up-list
-        :nm "xj" #'lispyville-up-list
-        :nm "J" #'lispyville-forward-sexp
-        :nm "K" #'lispyville-backward-sexp
-        :n "gh" #'helpful-at-point
-        :n "C-<left>" #'lispy-forward-barf-sexp
-        :n "C-<right>" #'lispy-forward-slurp-sexp
-        :n "C-M-<left>" #'lispy-backward-slurp-sexp
-        :n "C-M-<right>" #'lispy-backward-barf-sexp
-        :n "<tab>" #'lispyville-prettify
-        :localleader
-        :n "e" (λ! (save-excursion (forward-sexp) (eval-last-sexp nil)))
-        )
+  ;; (lispyville-set-key-theme
+  ;;  '(operators
+  ;;    c-w
+  ;;    (escape insert)
+  ;;    (slurp/barf-lispy)
+  ;;    additional-movement))
+  ;; (map! :map emacs-lisp-mode-map
+  ;;       :nm "xk" #'lispyville-backward-up-list
+  ;;       :nm "xj" #'lispyville-up-list
+  ;;       :nm "J" #'lispyville-forward-sexp
+  ;;       :nm "K" #'lispyville-backward-sexp
+  ;;       :n "gh" #'helpful-at-point
+  ;;       :n "C-<left>" #'lispy-forward-barf-sexp
+  ;;       :n "C-<right>" #'lispy-forward-slurp-sexp
+  ;;       :n "C-M-<left>" #'lispy-backward-slurp-sexp
+  ;;       :n "C-M-<right>" #'lispy-backward-barf-sexp
+  ;;       :n "<tab>" #'lispyville-prettify
+  ;;       :localleader
+  ;;       :n "e" (λ! (save-excursion (forward-sexp) (eval-last-sexp nil)))
+  ;;       )
   )
 
 (def-package! lsp-mode
@@ -159,39 +160,39 @@
    '(lsp-ui-sideline-current-symbol ((t (:foreground "grey38" :box nil))))
    '(lsp-ui-sideline-symbol ((t (:foreground "grey30" :box nil)))))
 
-   (map! :after lsp-ui-peek
-         :map lsp-ui-peek-mode-map
-         "h" #'lsp-ui-peek--select-prev-file
-         "j" #'lsp-ui-peek--select-next
-         "k" #'lsp-ui-peek--select-prev
-         "l" #'lsp-ui-peek--select-next-file
-         )
+  (map! :after lsp-ui-peek
+        :map lsp-ui-peek-mode-map
+        "h" #'lsp-ui-peek--select-prev-file
+        "j" #'lsp-ui-peek--select-next
+        "k" #'lsp-ui-peek--select-prev
+        "l" #'lsp-ui-peek--select-next-file
+        )
 
-   (defhydra hydra/ref (evil-normal-state-map "x")
-     "reference"
-     ("d" lsp-ui-peek-find-definitions "next" :bind nil)
-     ("n" (-let [(i . n) (lsp-ui-find-next-reference)]
-            (if (> n 0) (message "%d/%d" i n))) "next")
-     ("p" (-let [(i . n) (lsp-ui-find-prev-reference)]
-            (if (> n 0) (message "%d/%d" i n))) "prev")
-     ("R" (-let [(i . n) (lsp-ui-find-prev-reference
-                          (lambda (x)
-                            (/= (logand (gethash "role" x 0) 8) 0)))]
-            (if (> n 0) (message "read %d/%d" i n))) "prev read" :bind nil)
-     ("r" (-let [(i . n) (lsp-ui-find-next-reference
-                          (lambda (x)
-                            (/= (logand (gethash "role" x 0) 8) 0)))]
-            (if (> n 0) (message "read %d/%d" i n))) "next read" :bind nil)
-     ("W" (-let [(i . n) (lsp-ui-find-prev-reference
-                          (lambda (x)
-                            (/= (logand (gethash "role" x 0) 16) 0)))]
-            (if (> n 0) (message "write %d/%d" i n))) "prev write" :bind nil)
-     ("w" (-let [(i . n) (lsp-ui-find-next-reference
-                          (lambda (x)
-                            (/= (logand (gethash "role" x 0) 16) 0)))]
-            (if (> n 0) (message "write %d/%d" i n))) "next write" :bind nil)
-     )
-   )
+  (defhydra hydra/ref (evil-normal-state-map "x")
+    "reference"
+    ("d" lsp-ui-peek-find-definitions "next" :bind nil)
+    ("n" (-let [(i . n) (lsp-ui-find-next-reference)]
+           (if (> n 0) (message "%d/%d" i n))) "next")
+    ("p" (-let [(i . n) (lsp-ui-find-prev-reference)]
+           (if (> n 0) (message "%d/%d" i n))) "prev")
+    ("R" (-let [(i . n) (lsp-ui-find-prev-reference
+                         (lambda (x)
+                           (/= (logand (gethash "role" x 0) 8) 0)))]
+           (if (> n 0) (message "read %d/%d" i n))) "prev read" :bind nil)
+    ("r" (-let [(i . n) (lsp-ui-find-next-reference
+                         (lambda (x)
+                           (/= (logand (gethash "role" x 0) 8) 0)))]
+           (if (> n 0) (message "read %d/%d" i n))) "next read" :bind nil)
+    ("W" (-let [(i . n) (lsp-ui-find-prev-reference
+                         (lambda (x)
+                           (/= (logand (gethash "role" x 0) 16) 0)))]
+           (if (> n 0) (message "write %d/%d" i n))) "prev write" :bind nil)
+    ("w" (-let [(i . n) (lsp-ui-find-next-reference
+                         (lambda (x)
+                           (/= (logand (gethash "role" x 0) 16) 0)))]
+           (if (> n 0) (message "write %d/%d" i n))) "next write" :bind nil)
+    )
+  )
 
 (setq magit-repository-directories '(("~/Dev" . 2)))
 
@@ -285,7 +286,7 @@
 (after! projectile
   (setq projectile-require-project-root t)
   (setq compilation-read-command nil)  ; no prompt in projectile-compile-project
-  ;; . -> Build
+
   (projectile-register-project-type 'cmake '("CMakeLists.txt")
                                     :configure "cmake %s"
                                     :compile "cmake --build Debug"
@@ -333,10 +334,10 @@
   (advice-add 'nav-flash-show :around #'+advice/nav-flash-show))
 
 (set-popup-rules! '(
-  ("^\\*helpful" :size 0.4)
-  ("^\\*info.*" :size 80 :size right)
-  ("^\\*Man.*" :size 80 :side right)
-  ))
+                    ("^\\*helpful" :size 0.4)
+                    ("^\\*info.*" :size 80 :size right)
+                    ("^\\*Man.*" :size 80 :side right)
+                    ))
 
 
 (set-docset! 'js2-mode "JavaScript" "JQuery")
@@ -349,37 +350,37 @@
 
 (def-package! eglot
   :init
-  ;; (add-hook 'haskell-mode-hook 'eglot-ensure)
-  ;; (add-hook 'c++-mode-hook 'eglot-ensure)
+  (add-hook 'haskell-mode-hook 'eglot-ensure)
+  (add-hook 'c++-mode-hook 'eglot-ensure)
   ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
   ;; (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
-(add-hook 'haskell-mode-hook 'flycheck-mode)
-;(add-to-list 'company-backends 'company-ghc)
+;; (add-hook 'haskell-mode-hook 'flycheck-mode)
+                                        ;(add-to-list 'company-backends 'company-ghc)
 
-;(set-company-backend! 'haskell-mode
-;  'company-ghc)
+                                        ;(set-company-backend! 'haskell-mode
+                                        ;  'company-ghc)
 (set-company-backend! 'emacs-lisp-mode
   'company-elisp)
 (set-company-backend! 'ruby-mode
   'company-lsp)
 
-(set-company-backend! 'haskell-mode 'company-lsp)
+;; (set-company-backend! 'haskell-mode 'company-lsp)
 ;; (set-company-backend! 'ruby-mode
 ;;   'company-elisp)
 
-(after! haskell-mode
-  (require 'lsp-ui )
-  (require 'lsp-haskell)
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
-  (add-hook 'haskell-mode-hook 'flycheck-mode))
+;; (after! haskell-mode
+;;   (require 'lsp-ui )
+;;   (require 'lsp-haskell)
+;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;   (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+;;   (add-hook 'haskell-mode-hook 'flycheck-mode))
 
 
 (def-package! nand2tetris
   :config
   (setq nand2tetris-core-base-dir "~/nand2tetris")
-  (add-to-list 'company-backends 'company-nand2tetris)
+                                        ;(add-to-list 'company-backends 'company-nand2tetris)
   (set-company-backend! 'nand2tetris-mode
     'company-nand2tetris)
   )
@@ -392,21 +393,21 @@
   (add-hook 'ruby-mode-hook #'lsp-ruby-enable)
   :config
   (setq lsp-hover-text-function 'lsp--text-document-signature-help)
-)
+  )
 
 
 
 (after! undo-tree
   (defun doom*undo-tree-make-history-save-file-name (file)
-      (if (executable-find "gzip")
-          (concat file ".gz")
-        file)))
+    (if (executable-find "gzip")
+        (concat file ".gz")
+      file)))
 
 (def-package! lsp-python
   :after lsp-mode
   :config
   (add-hook 'python-mode-hook #'lsp-python-enable)
-)
+  )
 
 (def-package! cpp-auto-include
   :load-path "~/dev/emacs-cpp-auto-include/"
@@ -418,3 +419,10 @@
 (defun my/eldoc-display-message-p ()
   t)
 (advice-add 'eldoc-display-message-p :override 'my/eldoc-display-message-p)
+
+(set-company-backend! 'c++-mode
+     'company-lsp)
+(def-package! lsp-racket
+ :config
+ :after lsp-mode
+ (add-hook 'racket-mode-hook #'lsp-racket-enable))

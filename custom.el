@@ -23,6 +23,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(c-tab-always-indent nil)
+ '(company-global-modes t)
  '(evil-respect-visual-line-mode t)
  '(global-company-mode t)
  '(global-visual-line-mode t)
@@ -76,4 +78,5 @@
  '(prog-mode-hook
    (quote
     (+version-control|git-gutter-maybe hl-todo-mode yas-minor-mode-on hl-line-mode highlight-escape-sequences-mode highlight-numbers-mode vi-tilde-fringe-mode)))
- '(scheme-program-name "scheme"))
+ '(scheme-program-name "scheme")
+ '(tab-always-indent (quote complete)))

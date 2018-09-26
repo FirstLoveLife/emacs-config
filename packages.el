@@ -59,9 +59,11 @@
 (package! netease-music :recipe (:fetcher github :repo "nicehiro/netease-music" :files ("*")))
 
 (package! emacs-cpp-auto-include :recipe (:fetcher github :repo "FirstLoveLife/emacs-cpp-auto-include" :files ("*")))
-
+(package! lsp-racket :recipe (:fetcher github :repo "vishesh/lsp-racket" :files ("*")))
 ;(package! pyim-greatdict :recipe (:repo "tumashu/pyim-greatdict" :fetcher github :files ("*")))
 (package! company)
+(package! quack)
+(package! geiser)
 ;(package! eaf :recipe (:repo "manateelazycat/emacs-application-framework" :fetcher github :files ("*")))
 (package! ccls)
 (package! multi-term)

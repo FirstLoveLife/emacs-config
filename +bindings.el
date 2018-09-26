@@ -194,15 +194,15 @@
    "C-f"   #'forward-char
    )
 
- (:after company
-   (:map company-active-map
-     ;; Don't interfere with `evil-delete-backward-word' in insert mode
-     "C-v"        #'company-next-page
-     "M-v"        #'company-previous-page
-     "C-i"        #'company-complete-selection
-     "RET"        nil
-     [return]     nil
-     "SPC"        nil))
+ ;; (:after company
+ ;;   (:map company-active-map
+ ;;     ;; Don't interfere with `evil-delete-backward-word' in insert mode
+ ;;     "C-v"        #'company-next-page
+ ;;     "M-v"        #'company-previous-page
+ ;;     "C-i"        #'company-complete-selection
+ ;;     "RET"        nil
+ ;;     [return]     nil
+ ;;     "SPC"        nil))
 
  (:after realgud
    (:map realgud-track-mode-map
