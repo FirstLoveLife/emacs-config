@@ -13,7 +13,7 @@
 (package! company-lsp)
 
 (package! lsp-rust)
-
+(package! edit-server)
 (package! ag)
 (package! cmake-mode)
 (package! eglot)

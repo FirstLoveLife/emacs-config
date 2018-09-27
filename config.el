@@ -160,3 +160,7 @@
 ;;  :config
 ;;  :after lsp-mode
 ;;  (add-hook 'racket-mode-hook #'lsp-racket-enable))
+
+
+(require 'edit-server)
+(edit-server-start)
