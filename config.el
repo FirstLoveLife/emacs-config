@@ -5,6 +5,12 @@
 (load! "+ui")
 
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
+(after! doom-themes
+  :init
+  (setq doom-theme 'doom-dracula)
+  ;; (setq doom-theme 'doom-tomorrow-day)
+  )
+  ;; (setq doom-theme 'doom-one))
 
 (def-package! avy
   :commands (avy-goto-char-timer)
@@ -351,7 +357,7 @@
 (def-package! eglot
   :init
   (add-hook 'haskell-mode-hook 'eglot-ensure)
-  (add-hook 'c++-mode-hook 'eglot-ensure)
+  ;; (add-hook 'c++-mode-hook 'eglot-ensure)
   ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
   ;; (add-hook 'python-mode-hook 'eglot-ensure)
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
@@ -426,3 +432,5 @@
  :config
  :after lsp-mode
  (add-hook 'racket-mode-hook #'lsp-racket-enable))
+
+;(require 'eaf)
