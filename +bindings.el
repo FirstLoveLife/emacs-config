@@ -14,6 +14,7 @@
 
 (require 'persp-mode)
 (map!
+
  ;; localleader
  :m ","    nil
  :nm "f" #'avy-goto-char-2
@@ -52,9 +53,9 @@
  :n "C-,"  #'+my/find-references
  ;; all symbols
  :n ";"    (λ! (if lsp-mode
-                    (progn (+my/avy-document-symbol t)
-                           (+my/find-definitions))
-                  (avy-goto-word-0 nil)))
+                   (progn (+my/avy-document-symbol t)
+                          (+my/find-definitions))
+                 (avy-goto-word-0 nil)))
  ;; outline
  :n "z;"   (λ! (+my/avy-document-symbol nil) (+my/find-definitions))
 
@@ -67,7 +68,7 @@
  :n "] M-i" #'symbol-overlay-switch-forward
 
  (:leader
-   :n "SPC" #'+ivy/switch-workspace-buffer
+   ;; :n "SPC" #'+ivy/switch-workspace-buffer
    :n "M-u" (+my/simulate-key "SPC [")
    :n "M-i" (+my/simulate-key "SPC ]")
    (:desc "app" :prefix "a"
@@ -155,7 +156,7 @@
    :n "B" (λ! (ccls/base 3))
    :n "d" (λ! (ccls/derived 1))
    :n "D" (λ! (ccls/derived 3))
-   :n "i" #'ccls-inheritance-hierarchy  ; base hierarchy
+   :n "i" #'ccls-inheritance-hierarchy        ; base hierarchy
    :n "I" (λ! (ccls-inheritance-hierarchy t)) ; derived hierarchy
 
    ;; $ccls/call
@@ -167,9 +168,9 @@
    :n "E" (λ! (ccls-call-hierarchy t))
 
    ;; $ccls/member
-   :n "s" (λ! (ccls/member 2))        ; 2 (Type) => nested classes/namespace members
-   :n "f" (λ! (ccls/member 3))        ; 3 (Func) => member functions
-   :n "m" (λ! (ccls/member 0))        ; other => member variables
+   :n "s" (λ! (ccls/member 2))    ; 2 (Type) => nested classes/namespace members
+   :n "f" (λ! (ccls/member 3))    ; 3 (Func) => member functions
+   :n "m" (λ! (ccls/member 0))    ; other => member variables
    :n "M" #'ccls-member-hierarchy
 
    :n "h" (λ! (ccls-navigate "L"))
@@ -179,8 +180,8 @@
    :n "L" #'ccls-code-lens-mode
    :n "t" #'lsp-goto-type-definition
    ;; https://github.com/maskray/ccls/blob/master/src/messages/ccls_vars.cc#L15
-   :n "v" (λ! (ccls/vars 3))           ; field or local variable
-   :n "V" (λ! (ccls/vars 1))           ; field
+   :n "v" (λ! (ccls/vars 3))            ; field or local variable
+   :n "V" (λ! (ccls/vars 1))            ; field
    :n "x" #'evil-delete-char)
 
  (:prefix "C-x"
