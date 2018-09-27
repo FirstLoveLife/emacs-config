@@ -1,7 +1,6 @@
 ;;; private/my-cc/config.el -*- lexical-binding: t; -*-
 
 (after! cc-mode
-  ;; https://github.com/radare/radare2
 
   (setq c-default-style "bsd")
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . +cc-c-c++-objc-mode))
@@ -12,9 +11,6 @@
    :n "C-j" (λ! (ccls-navigate "R"))
    :n "C-k" (λ! (ccls-navigate "L"))
    :n "C-l" (λ! (ccls-navigate "D"))
-   (:leader
-     :n "=" #'clang-format-region
-     )
    (:localleader
      :n "a" #'ccls/references-address
      :n "c" #'ccls/callers

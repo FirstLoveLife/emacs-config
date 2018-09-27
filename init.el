@@ -67,7 +67,7 @@
        :emacs
        dired      ; making dired pretty [functional]
        ;; ediff             ; comparing files in Emacs
-       ;; electric
+       electric
                                         ; smarter, keyword-based electric-indent
        ;;eshell            ; a consistent, cross-platform shell (WIP)
        hideshow                     ; basic code-folding support
@@ -120,12 +120,13 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org          ; organize your plain life in plain text
-        +attach      ; custom attachment system
-        +babel       ; running code in org
-        +capture     ; org-capture in and outside of Emacs
-        +export      ; Exporting org to whatever you want
-        +present)    ; Emacs for presentations
+       ;; (org          ; organize your plain life in plain text
+       ;;  +attach      ; custom attachment system
+       ;;  +babel       ; running code in org
+       ;;  +capture     ; org-capture in and outside of Emacs
+       ;;  +export      ; Exporting org to whatever you want
+       ;;  +present)
+                                        ; Emacs for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more

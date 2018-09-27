@@ -23,11 +23,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-tab-always-indent nil)
+ '(c-basic-offset 4)
  '(company-global-modes t)
+ '(dtrt-indent-verbosity 0)
+ '(electric-indent-mode t)
  '(evil-respect-visual-line-mode t)
  '(global-company-mode t)
  '(global-visual-line-mode t)
+ '(indent-tabs-mode nil)
  '(lsp-ui-doc-header t)
  '(lsp-ui-doc-include-signature t)
  '(lsp-ui-doc-max-height 80)
@@ -76,4 +79,5 @@
      ("i" "#+INDEX: ?")
      ("I" "#+INCLUDE: %file ?"))))
  '(scheme-program-name "scheme")
- '(tab-always-indent (quote complete)))
+ '(tab-always-indent (quote complete))
+ '(yas-also-auto-indent-first-line t))
