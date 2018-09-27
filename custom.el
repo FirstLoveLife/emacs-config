@@ -75,8 +75,5 @@
      ("A" "#+ASCII: ")
      ("i" "#+INDEX: ?")
      ("I" "#+INCLUDE: %file ?"))))
- '(prog-mode-hook
-   (quote
-    (+version-control|git-gutter-maybe hl-todo-mode yas-minor-mode-on hl-line-mode highlight-escape-sequences-mode highlight-numbers-mode vi-tilde-fringe-mode)))
  '(scheme-program-name "scheme")
  '(tab-always-indent (quote complete)))
