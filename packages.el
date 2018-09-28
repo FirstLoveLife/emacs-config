@@ -35,5 +35,6 @@
 (package! lsp-racket :recipe (:fetcher github :repo "vishesh/lsp-racket" :files ("*")))
 (package! geiser)
 (package! pamparam :recipe (:fetcher github :repo "abo-abo/pamparam" :files ("*")))
+(package! helm-rg)
 (package! ccls)
 (package! posframe)

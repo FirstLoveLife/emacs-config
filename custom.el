@@ -78,6 +78,8 @@
      ("A" "#+ASCII: ")
      ("i" "#+INDEX: ?")
      ("I" "#+INCLUDE: %file ?"))))
+ '(prog-mode-hook
+   (quote
+    (hl-todo-mode yas-minor-mode-on highlight-escape-sequences-mode highlight-numbers-mode flycheck-mode)))
  '(scheme-program-name "scheme")
- '(tab-always-indent (quote complete))
  '(yas-also-auto-indent-first-line t))
