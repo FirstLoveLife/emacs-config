@@ -28,10 +28,10 @@
 (package! nand2tetris :recipe (:fetcher github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
 (package! company-nand2tetris)
 (package! nand2tetris-assembler)
+(package! exwm)
 (package! sicp)
 (package! lsp-rust)
 
-(package! emacs-cpp-auto-include :recipe (:fetcher github :repo "FirstLoveLife/emacs-cpp-auto-include" :files ("*")))
 (package! lsp-racket :recipe (:fetcher github :repo "vishesh/lsp-racket" :files ("*")))
 (package! geiser)
 (package! pamparam :recipe (:fetcher github :repo "abo-abo/pamparam" :files ("*")))

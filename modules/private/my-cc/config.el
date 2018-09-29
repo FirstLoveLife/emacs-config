@@ -28,18 +28,16 @@
                (evil-normal-state))))
   )
 
-(def-package! clang-format
-  :commands (clang-format-region)
-  )
-
 (def-package! ccls
   :defer t
   :init
   (add-hook! (c-mode c++-mode objc-mode) #'+ccls//enable)
   (setq ccls-executable "~/dev/ccls/Release/ccls")
   :config
-  ;; overlay is slow
-  ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
+  ;; (map!  :map c++-mode-map
+  ;;        :leader
+  ;;        :desc "Include headers and formatted"  :n "ih" (lambda! (my/cpp-auto-include)))
+  :config
   (setq ccls-sem-highlight-method 'font-lock)
   ;; (setq ccls-sem-highlight-method 'overlay)
   (ccls-use-default-rainbow-sem-highlight)
@@ -58,5 +56,4 @@
     (add-to-list 'projectile-globally-ignored-directories ".ccls-cache"))
 
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
-  (set-company-backend! '(c-mode c++-mode objc-mode) 'company-lsp)
-  )
+  (set-company-backend! '(c-mode c++-mode objc-mode) 'company-lsp))

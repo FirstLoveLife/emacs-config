@@ -148,9 +148,6 @@
 ;;   (add-hook 'python-mode-hook #'lsp-python-enable)
 ;;   )
 
-;; (def-package! cpp-auto-include
-;;   :load-path "~/dev/emacs-cpp-auto-include/"
-;;   :defer t)
 
 ;; (advice-add 'eldoc-display-message-p :override 'my/eldoc-display-message-p)
 
@@ -164,3 +161,4 @@
 
 (require 'edit-server)
 (edit-server-start)
+
