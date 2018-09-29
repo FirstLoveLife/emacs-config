@@ -34,10 +34,6 @@
   (add-hook! (c-mode c++-mode objc-mode) #'+ccls//enable)
   (setq ccls-executable "~/dev/ccls/Release/ccls")
   :config
-  ;; (map!  :map c++-mode-map
-  ;;        :leader
-  ;;        :desc "Include headers and formatted"  :n "ih" (lambda! (my/cpp-auto-include)))
-  :config
   (setq ccls-sem-highlight-method 'font-lock)
   ;; (setq ccls-sem-highlight-method 'overlay)
   (ccls-use-default-rainbow-sem-highlight)
