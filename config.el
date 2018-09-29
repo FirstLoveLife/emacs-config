@@ -163,7 +163,7 @@
 (edit-server-start)
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(after! c++-mode
+(after! ccls
       (map!
        :map c++-mode-map
        :leader

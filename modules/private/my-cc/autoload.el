@@ -103,7 +103,8 @@
 
 ;;;###autoload
 (defun my/cpp-auto-include ()
-    "auto-include and format buffer"
+  "auto-include and format buffer"
   (interactive)
   (cpp-auto-include)
-  (+format/buffer))
+  (+format/buffer)
+  (save-buffer))
