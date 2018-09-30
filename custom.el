@@ -81,5 +81,6 @@
  '(prog-mode-hook
    (quote
     (hl-todo-mode yas-minor-mode-on highlight-escape-sequences-mode highlight-numbers-mode flycheck-mode)))
+ '(projectile-indexing-method (quote alien))
  '(scheme-program-name "scheme")
  '(yas-also-auto-indent-first-line t))

@@ -163,8 +163,9 @@
 (edit-server-start)
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(after! ccls
-      (map!
-       :map c++-mode-map
-       :leader
-       :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))) )
+;; (after! ccls
+;;       (map!
+;;        :map c++-mode-map
+;;        :leader
+;;        :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))) )
+(setq projectile-generic-command "fd -H --ignore-file .projectile -t f -0")
