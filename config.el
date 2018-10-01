@@ -68,7 +68,7 @@
   )
 
 (def-package! lsp-ui
-  ;; :demand t
+  :demand t
   :hook (lsp-mode . lsp-ui-mode)
   :config
   (setq
