@@ -4,8 +4,6 @@
 
 (package! avy)
 (package! lispyville)
-(package! lsp-mode)
-(package! lsp-ui)
 (package! lsp-java)
 (package! lsp-ruby)
 (package! lsp-python)

@@ -24,12 +24,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
+ '(ccls-member-hierarchy-qualified t)
  '(company-global-modes t)
  '(dtrt-indent-verbosity 0)
  '(electric-indent-mode t)
  '(evil-respect-visual-line-mode t)
  '(global-company-mode t)
  '(global-visual-line-mode t)
+ '(helm-projectile-fuzzy-match nil)
  '(indent-tabs-mode nil)
  '(lsp-ui-doc-header t)
  '(lsp-ui-doc-include-signature t)
@@ -81,6 +83,11 @@
  '(prog-mode-hook
    (quote
     (hl-todo-mode yas-minor-mode-on highlight-escape-sequences-mode highlight-numbers-mode flycheck-mode)))
+ '(projectile-dynamic-mode-line nil)
+ '(projectile-enable-caching t)
  '(projectile-indexing-method (quote alien))
+ '(projectile-mode t nil (projectile))
+ '(projectile-require-project-root t)
+ '(projectile-switch-project-action (quote +workspaces|set-project-action))
  '(scheme-program-name "scheme")
  '(yas-also-auto-indent-first-line t))
