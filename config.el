@@ -63,7 +63,7 @@
   )
 
 (def-package! lsp-ui
-  :demand t
+  ;; :demand t
   :hook (lsp-mode . lsp-ui-mode)
   :config
   (setq
@@ -75,7 +75,8 @@
    lsp-ui-doc-border (doom-color 'fg)
 
    lsp-ui-peek-force-fontify nil
-   lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs))))
+   lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs)))
+ )
 
 (setq magit-repository-directories '(("~/dev" . 2)))
 

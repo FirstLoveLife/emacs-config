@@ -29,7 +29,6 @@
    :nevi "C-M-u" #'lispy-left
    :nevi "C-M-n" #'lispy-right
    :nevi "M-r" #'lispy-raise
-   :nevi "M-?" #'lispy-convolute
    :nevi "C-)" #'lispy-forward-slurp-sexp
    :nevi "C-<right>" #'lispy-forward-slurp-sexp
    :nevi "C-}" #'lispy-forward-barf-sexp
