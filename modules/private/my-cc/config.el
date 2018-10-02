@@ -10,7 +10,7 @@
   :defer t
   :init
   (add-hook! (c-mode c++-mode objc-mode) #'+ccls//enable)
-  (setq ccls-executable "~/dev/ccls/Release/ccls")
+  (setq ccls-executable "~/fork/ccls/Release/ccls")
   :config
   (setq ccls-sem-highlight-method 'font-lock)
   ;; (setq ccls-sem-highlight-method 'overlay)
@@ -32,5 +32,5 @@
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (set-company-backend! '(c-mode c++-mode objc-mode) 'company-lsp))
 
-;(def-package! emacs-cpp-auto-include
- ; :load-path "/home/firstlove/dev/emacs-cpp-auto-include")
+(def-package! cpp-auto-include
+  :load-path "/home/firstlove/dev/emacs-cpp-auto-include")
