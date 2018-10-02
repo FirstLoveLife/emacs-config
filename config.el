@@ -49,6 +49,7 @@
 (def-package! lispy
   :hook ( (emacs-lisp-mode scheme-mode racket-mode) . lispy-mode)
   :config
+  (lispy-set-key-theme '(special paredit c-digits))
   (setq lispy-outline "^;; \\(?:;[^#]\\|\\*+\\)"
         lispy-outline-header ";; "
         lispy-ignore-whitespace t))

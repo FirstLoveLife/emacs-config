@@ -23,35 +23,35 @@
      ;; localleader
      :m ","    nil
 
-     (:map prog-mode-map
-       :nevi "C-M-f" #'lispy-down
-       :nevi "C-M-b" #'lispy-up
-       :nevi "C-M-u" #'lispy-left
-       :nevi "C-M-n" #'lispy-right
-       :nevi "M-r" #'lispy-raise
-       :nevi "C-)" #'lispy-forward-slurp-sexp
-       :nevi "C-<right>" #'lispy-forward-slurp-sexp
-       :nevi "C-}" #'lispy-forward-barf-sexp
-       :nevi "C-<left>" #'lispy-forward-barf-sexp
-       :nevi "C-(" #'lispy-backward-slurp-sexp
-       :nevi "C-M-<left>" #'lispy-backward-slurp-sexp
-       :nevi "C-{" #'lispy-backward-barf-sexp
+     ;; (:map prog-mode-map
+     ;;   :nevi "C-M-f" #'lispy-down
+     ;;   :nevi "C-M-b" #'lispy-up
+     ;;   :nevi "C-M-u" #'lispy-left
+     ;;   :nevi "C-M-n" #'lispy-right
+     ;;   :nevi "M-r" #'lispy-raise
+     ;;   :nevi "C-)" #'lispy-forward-slurp-sexp
+     ;;   :nevi "C-<right>" #'lispy-forward-slurp-sexp
+     ;;   :nevi "C-}" #'lispy-forward-barf-sexp
+     ;;   :nevi "C-<left>" #'lispy-forward-barf-sexp
+     ;;   :nevi "C-(" #'lispy-backward-slurp-sexp
+     ;;   :nevi "C-M-<left>" #'lispy-backward-slurp-sexp
+     ;;   :nevi "C-{" #'lispy-backward-barf-sexp
 
-       :nevi "C-M-<right>" #'lispy-backward-barf-sexp
+     ;;   :nevi "C-M-<right>" #'lispy-backward-barf-sexp
 
-       :nevi "M-<up>"  #'lispy-splice-sexp-killing-backward
-       :nevi "M-<down>"  #'lispy-splice-sexp-killing-forward
+     ;;   :nevi "M-<up>"  #'lispy-splice-sexp-killing-backward
+     ;;   :nevi "M-<down>"  #'lispy-splice-sexp-killing-forward
 
-       :nevi "M-S"       #'lispy-split
-       :nevi "M-J"       #'lispy-join
+     ;;   :nevi "M-S"       #'lispy-split
+     ;;   :nevi "M-J"       #'lispy-join
 
-       :nevi "C-M-f"     #'lispy-forward
-       :nevi "C-M-b"     #'lispy-backward
+     ;;   :nevi "C-M-f"     #'lispy-forward
+     ;;   :nevi "C-M-b"     #'lispy-backward
 
 
-       :nevi "C-k"       #'lispy-kill
-       :nevi "C-j"       #'lispy-newline-and-indent
-       )
+     ;;   :nevi "C-k"       #'lispy-kill
+     ;;   :nevi "C-j"       #'lispy-newline-and-indent
+     ;;   )
      )
 
 
