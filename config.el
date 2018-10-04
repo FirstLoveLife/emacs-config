@@ -130,13 +130,13 @@
 ;; ;;   (add-hook 'haskell-mode-hook 'flycheck-mode))
 
 
-;; (def-package! nand2tetris
-;;   :config
-;;   (setq nand2tetris-core-base-dir "~/nand2tetris")
-;;                                         ;(add-to-list 'company-backends 'company-nand2tetris)
-;;   (set-company-backend! 'nand2tetris-mode
-;;     'company-nand2tetris)
-;;   )
+ (def-package! nand2tetris
+   :config
+   (setq nand2tetris-core-base-dir "~/nand2tetris")
+                                         ;(add-to-list 'company-backends 'company-nand2tetris)
+   (set-company-backend! 'nand2tetris-mode
+     'company-nand2tetris)
+   )
 
 ;; (add-hook 'java-mode-hook  'lsp-java-enable)
 
