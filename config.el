@@ -175,3 +175,12 @@
 ;;        :map c++-mode-map
 ;;        :leader
 ;        :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))) )
+
+
+(def-package! sml-mode
+  )
+(require 'company-sml)
+(add-hook 'company-sml 'company-sml-setup)
+
+(setq auto-save-file-name-transforms
+          `((".*" ,(concat user-emacs-directory "auto-save/") t)))

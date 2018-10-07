@@ -13,6 +13,7 @@
 (package! lsp-rust)
 (package! edit-server)
 (package! ag)
+(package! sml-mode)
 (package! cmake-mode)
 (package! eglot)
 (package! flycheck-clang-tidy)
@@ -23,7 +24,12 @@
 (package! kotlin-mode)
 (package! company-lsp)
 (package! company-ghc)
+
+
 (package! nand2tetris :recipe (:fetcher github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
+(package! flymake-sml :recipe (:fetcher github :repo "oskimura/flymake-sml" :files ("*")))
+
+(package! company-sml :recipe (:fetcher github :repo "nverno/company-sml" :files ("*")))
 
 (package! rmsbolt
 	  :recipe
