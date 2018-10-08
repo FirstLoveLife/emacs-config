@@ -1,4 +1,4 @@
-;;; private/my/config.el -*- lexical-binding: t; -*-
+;; ;; private/my/config.el -*- lexical-binding: t; -*-
 
 
 
@@ -183,7 +183,6 @@
   (add-hook 'company-sml 'company-sml-setup)
   (set-company-backend! 'sml-mode
     'company-keywords)
-
   )
 
 (setq auto-save-file-name-transforms
