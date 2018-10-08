@@ -178,9 +178,13 @@
 
 
 (def-package! sml-mode
+  :config
+  (require 'company-sml)
+  (add-hook 'company-sml 'company-sml-setup)
+  (set-company-backend! 'sml-mode
+    'company-keywords)
+
   )
-(require 'company-sml)
-(add-hook 'company-sml 'company-sml-setup)
 
 (setq auto-save-file-name-transforms
-          `((".*" ,(concat user-emacs-directory "auto-save/") t)))
+      `((".*" ,(concat user-emacs-directory "auto-save/") t)))
