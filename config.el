@@ -84,9 +84,6 @@
    lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs)))
  )
 
-(setq magit-repository-directories '(("~/dev" . 2)))
-
-
 ;; (def-package! lsp-rust
 ;;   :init (add-hook 'rust-mode-hook #'lsp-rust-enable))
 
@@ -131,6 +128,7 @@
 
 
  (def-package! nand2tetris
+   :defer t
    :config
    (setq nand2tetris-core-base-dir "~/nand2tetris")
                                          ;(add-to-list 'company-backends 'company-nand2tetris)
@@ -178,12 +176,10 @@
 
 
 (def-package! sml-mode
+  :defer t
   :config
   (require 'company-sml)
   (add-hook 'company-sml 'company-sml-setup)
   (set-company-backend! 'sml-mode
     'company-keywords)
   )
-
-(setq auto-save-file-name-transforms
-      `((".*" ,(concat user-emacs-directory "auto-save/") t)))
