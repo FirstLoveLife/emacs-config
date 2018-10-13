@@ -183,3 +183,18 @@
   (set-company-backend! 'sml-mode
     'company-keywords)
   )
+
+
+(defvar last-insert-marker nil)
+
+(defun +evil|leave-insert-mode ()
+  (setq last-insert-marker (make-marker))
+  (set-marker last-insert-marker (point)))
+(add-hook 'evil-insert-state-exit-hook #'+evil|leave-insert-mode)
+
+(defun +evil*insert-resume (count)
+  (interactive "p")
+  (goto-char last-insert-marker)
+  (unless (evil-visual-state-p)
+    (evil-insert count)))
+(advice-add #'evil-insert-resume :override #'+evil*insert-resume)
