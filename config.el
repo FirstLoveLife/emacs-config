@@ -98,15 +98,15 @@
 ;;   )
 
 
-;; (def-package! eglot
-;;   :init
-;;   (add-hook 'haskell-mode-hook 'eglot-ensure)
-;;   ;; (add-hook 'c++-mode-hook 'eglot-ensure)
-;;   ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
-;;   ;; (add-hook 'python-mode-hook 'eglot-ensure)
-;;   (add-hook 'kotlin-mode-hook 'eglot-ensure))
-;; ;; (add-hook 'haskell-mode-hook 'flycheck-mode)
-;;                                         ;(add-to-list 'company-backends 'company-ghc)
+(def-package! eglot
+  :init
+  ;; (add-hook 'haskell-mode-hook 'eglot-ensure)
+  ;; (add-hook 'c++-mode-hook 'eglot-ensure)
+  ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
+  ;; (add-hook 'python-mode-hook 'eglot-ensure)
+  (add-hook 'kotlin-mode-hook 'eglot-ensure))
+;; (add-hook 'haskell-mode-hook 'flycheck-mode)
+                                        ;(add-to-list 'company-backends 'company-ghc)
 
 ;;                                         ;(set-company-backend! 'haskell-mode
 ;;                                         ;  'company-ghc)
@@ -119,12 +119,12 @@
 ;; ;; (set-company-backend! 'ruby-mode
 ;; ;;   'company-elisp)
 
-;; ;; (after! haskell-mode
-;; ;;   (require 'lsp-ui )
-;; ;;   (require 'lsp-haskell)
-;; ;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-;; ;;   (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
-;; ;;   (add-hook 'haskell-mode-hook 'flycheck-mode))
+(after! haskell-mode
+  (require 'lsp-ui )
+  (require 'lsp-haskell)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+  (add-hook 'haskell-mode-hook 'flycheck-mode))
 
 
  (def-package! nand2tetris
