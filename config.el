@@ -94,7 +94,6 @@
 ;;   (projectile-register-project-type 'cmake '("CMakeLists.txt")
 ;;                                     :configure "cmake %s"
 ;;                                     :compile "cmake --build Debug"
-;;                                     :test "ctest")
 ;;   )
 
 
@@ -184,17 +183,9 @@
     'company-keywords)
   )
 
+(set-docset! 'js2-mode "JavaScript" "JQuery")
+(set-docset! 'haskell-mode "Haskell")
 
-(defvar last-insert-marker nil)
-
-(defun +evil|leave-insert-mode ()
-  (setq last-insert-marker (make-marker))
-  (set-marker last-insert-marker (point)))
-(add-hook 'evil-insert-state-exit-hook #'+evil|leave-insert-mode)
-
-(defun +evil*insert-resume (count)
-  (interactive "p")
-  (goto-char last-insert-marker)
-  (unless (evil-visual-state-p)
-    (evil-insert count)))
-(advice-add #'evil-insert-resume :override #'+evil*insert-resume)
+(set-docset! 'c++-mode "C++" "Boost")
+(set-docset! 'css-mode "Css" "Html")
+(set-docset! 'html-mode "Html" "Css")
