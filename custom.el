@@ -37,8 +37,8 @@
  '(helm-buffers-fuzzy-matching t)
  '(helm-candidate-number-limit 50)
  '(helm-completion-in-region-fuzzy-match t)
- '(helm-dash-browser-func (quote eww))
- '(helm-dash-enable-debugging nil)
+ '(helm-dash-browser-func (quote eww) t)
+ '(helm-dash-enable-debugging nil t)
  '(helm-default-prompt-display-function (quote +helm--set-prompt-display))
  '(helm-display-buffer-default-height 0.25)
  '(helm-display-header-line nil)
@@ -107,4 +107,5 @@
  '(prog-mode-hook
    (quote
     (hl-todo-mode yas-minor-mode-on highlight-escape-sequences-mode highlight-numbers-mode flycheck-mode)))
- '(projectile-enable-caching t))
+ '(projectile-enable-caching t)
+ '(sml-font-lock-symbols t))

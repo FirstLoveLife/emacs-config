@@ -3,8 +3,6 @@
 
 
  
-(add-to-list 'load-path "/home/firstlove/dev/emacs-cpp-auto-include")
-  
 (load! "+bindings")
 (load! "+org")
 (load! "+ui")
@@ -84,8 +82,10 @@
    lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs)))
  )
 
-;; (def-package! lsp-rust
-;;   :init (add-hook 'rust-mode-hook #'lsp-rust-enable))
+(def-package! lsp-rust
+  :init (add-hook 'rust-mode-hook #'lsp-rust-enable)
+  :config
+  (set-company-backend! 'rust-mode 'company-lsp))
 
 ;; (after! projectile
 ;;   (setq projectile-require-project-root t)
@@ -127,9 +127,9 @@
 
 
  (def-package! nand2tetris
+   :load-path "~/dev/nand2tetris"
    :defer t
    :config
-   (setq nand2tetris-core-base-dir "~/nand2tetris")
                                          ;(add-to-list 'company-backends 'company-nand2tetris)
    (set-company-backend! 'nand2tetris-mode
      'company-nand2tetris)
