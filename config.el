@@ -32,8 +32,8 @@
 (def-package! company-lsp
   :after company
   :config
-  (add-hook 'java-mode-hook (lambda () (push 'company-lsp company-backends)))
-  (push 'java-mode company-global-modes)
+  ;; (add-hook 'java-mode-hook (lambda () (push 'company-lsp company-backends)))
+  ;; (push 'java-mode company-global-modes)
   (setq company-transformers nil company-lsp-cache-candidates nil)
   )
 
@@ -103,6 +103,7 @@
   ;; (add-hook 'c++-mode-hook 'eglot-ensure)
   ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
   ;; (add-hook 'python-mode-hook 'eglot-ensure)
+  ;; (add-hook 'java-mode-hook 'eglot-ensure)
   (add-hook 'kotlin-mode-hook 'eglot-ensure))
 ;; (add-hook 'haskell-mode-hook 'flycheck-mode)
                                         ;(add-to-list 'company-backends 'company-ghc)

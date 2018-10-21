@@ -10,7 +10,7 @@
   :defer t
   :init
   (add-hook! (c-mode c++-mode objc-mode) #'+ccls//enable)
-  (setq ccls-executable "~/fork/ccls/Release/ccls")
+  (setq ccls-executable "~/dev/ccls/Release/ccls")
   :config
   (setq ccls-sem-highlight-method 'font-lock)
   ;; (setq ccls-sem-highlight-method 'overlay)
