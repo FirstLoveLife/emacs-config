@@ -87,14 +87,6 @@
   :config
   (set-company-backend! 'rust-mode 'company-lsp))
 
-;; (after! projectile
-;;   (setq projectile-require-project-root t)
-;;   (setq compilation-read-command nil)  ; no prompt in projectile-compile-project
-
-;;   (projectile-register-project-type 'cmake '("CMakeLists.txt")
-;;                                     :configure "cmake %s"
-;;                                     :compile "cmake --build Debug"
-;;   )
 
 
 (def-package! eglot

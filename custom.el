@@ -61,6 +61,7 @@
  '(lsp-ui-doc-include-signature t)
  '(lsp-ui-doc-max-height 80)
  '(lsp-ui-sideline-enable t)
+ '(org-babel-load-languages (quote ((java . t) (emacs-lisp . t))))
  '(org-structure-template-alist
    (quote
     (("sc" "#+BEGIN_SRC C++ :flags \"-Werror -Wall -Wextra -pedantic -std=c++17\"
@@ -108,4 +109,5 @@
    (quote
     (hl-todo-mode yas-minor-mode-on highlight-escape-sequences-mode highlight-numbers-mode flycheck-mode)))
  '(projectile-enable-caching t)
+ '(projectile-indexing-method (quote native))
  '(sml-font-lock-symbols t))
