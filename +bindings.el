@@ -14,6 +14,11 @@
      :i "M-8"(lambda! (+workspace/switch-to 7))
      :i "M-9"(lambda! (+workspace/switch-to 8))
 
+     :inv "M-n" #'lsp-ui-peek-jump-forward
+     :inv "M-p" #'lsp-ui-peek-jump-backward
+     :inv "M-[" #'lsp-ui-peek-find-definitions
+     :inv "M-]" #'lsp-ui-peek-find-implementation
+
                                             ;:map c++-mode-map
                                             ;  :leader
                                             ;  :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))
@@ -108,3 +113,7 @@
      :n "v3" (λ! (ccls/vars 3))              ; field or local variable
      :n "v1" (λ! (ccls/vars 1))              ; field
      :n "v7" (λ! (ccls/vars 7)))
+
+(setcdr evil-insert-state-map nil)
+(define-key evil-insert-state-map (read-kbd-macro evil-toggle-key) 'evil-normal-state)
+(define-key evil-insert-state-map [escape] 'evil-normal-state)

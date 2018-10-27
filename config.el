@@ -182,3 +182,7 @@
 (set-docset! 'c++-mode "C++" "Boost")
 (set-docset! 'css-mode "Css" "Html")
 (set-docset! 'html-mode "Html" "Css")
+
+;; (require 'exwm)
+;; (require 'exwm-config)
+;; (exwm-config-default)
