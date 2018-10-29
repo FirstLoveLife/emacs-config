@@ -108,6 +108,18 @@
  '(prog-mode-hook
    (quote
     (hl-todo-mode yas-minor-mode-on highlight-escape-sequences-mode highlight-numbers-mode flycheck-mode)))
+ '(projectile-dynamic-mode-line nil)
  '(projectile-enable-caching t)
- '(projectile-indexing-method (quote native))
+ '(projectile-git-command "git ls-files")
+ '(projectile-git-ignored-command "git check-ignore * .*")
+ '(projectile-globally-ignored-directories
+   (quote
+    (".attach" ".ccls-cache" ".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "~/.emacs.d/.local/" ".sync" "node_modules" "flow-typed" "Release" "clang_archive_hashes" "cmake" "third_party" "~/.emacs.d/.local/" ".sync" "node_modules" "flow-typed" "~/.emacs.d/.local/" ".sync" "node_modules" "flow-typed" "doc")))
+ '(projectile-globally-ignored-file-suffixes (quote (".elc" ".pyc" ".o" ".projectile")))
+ '(projectile-globally-ignored-files (quote (".DS_Store" "Icon" "TAGS")))
+ '(projectile-globally-unignored-directories (quote ("src")))
+ '(projectile-indexing-method (quote alien))
+ '(projectile-mode t nil (projectile))
+ '(projectile-require-project-root t)
+ '(projectile-switch-project-action (quote +workspaces|set-project-action))
  '(sml-font-lock-symbols t))
