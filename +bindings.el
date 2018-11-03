@@ -4,16 +4,17 @@
     (require 'persp-mode)
     (map!
      :nm "f" #'avy-goto-char-2
-     :i "M-1"(lambda! (+workspace/switch-to 0))
-     :i "M-2"(lambda! (+workspace/switch-to 1))
-     :i "M-3"(lambda! (+workspace/switch-to 2))
-     :i "M-4"(lambda! (+workspace/switch-to 3))
-     :i "M-5"(lambda! (+workspace/switch-to 4))
-     :i "M-6"(lambda! (+workspace/switch-to 5))
-     :i "M-7"(lambda! (+workspace/switch-to 6))
-     :i "M-8"(lambda! (+workspace/switch-to 7))
-     :i "M-9"(lambda! (+workspace/switch-to 8))
+     :ei "M-1"(lambda! (+workspace/switch-to 0))
+     :ie "M-2"(lambda! (+workspace/switch-to 1))
+     :ie "M-3"(lambda! (+workspace/switch-to 2))
+     :ie "M-4"(lambda! (+workspace/switch-to 3))
+     :ie "M-5"(lambda! (+workspace/switch-to 4))
+     :ie "M-6"(lambda! (+workspace/switch-to 5))
+     :ie "M-7"(lambda! (+workspace/switch-to 6))
+     :ie "M-8"(lambda! (+workspace/switch-to 7))
+     :ie "M-9"(lambda! (+workspace/switch-to 8))
 
+     :inv "C-;" #'+workspace/switch-to
      :inv "M-n" #'lsp-ui-peek-jump-forward
      :inv "M-p" #'lsp-ui-peek-jump-backward
      :inv "M-[" #'lsp-ui-peek-find-definitions
@@ -61,34 +62,35 @@
 
 
 
-    (map! :after cc-mode
-          :map c++-mode-map
-          :leader
-          :nv "ih" #'my/cpp-auto-include
-          :nv "lfpr" #'lsp-ui-find-prev-reference
-          :nv "lgi" #'lsp-goto-implementation
-          :nv "lgtd" #'lsp-goto-type-definition
-          :nv "lfnr" #'lsp-ui-find-next-reference
-          :nv "lpfr" #'lsp-ui-peek-find-references
-          :nv "lpfd" #'lsp-ui-peek-find-definitions
-          :nv "lpfi" #'lsp-ui-peek-find-implementation)
+(map! :after cc-mode
+      :map c++-mode-map
+      :leader
+      :nv "ih" #'my/cpp-auto-include)
 
-    (map!
-     :after ccls
-     :localleader
-     :n ";" (λ! (+my/avy-document-symbol t) (+my/find-references))
+;; (map!
+;;  :after lsp-ui
+;;  :localleader
+;;  :n "i" #'lsp-ui-imenu
+;;  :n "r" #'lsp-ui-peek-find-references
+;; )
+(map!
+ :after ccls
+ :localleader
+ ;; :n "m" #'ccls-member-hierarchy
+ :n "b" #'ccls-inheritance-hierarchy        ; base hierarchy
+ :n "d" (λ! (ccls-inheritance-hierarchy t)) ; derived hierarchy
 
-     ;; $ccls/inheritance
-     :n "b1" (λ! (ccls/base 1))
-     :n "b3" (λ! (ccls/base 3))
-     :n "d1" (λ! (ccls/derived 1))
-     :n "d3" (λ! (ccls/derived 3))
-     :n "ihb" #'ccls-inheritance-hierarchy        ; base hierarchy
-     :n "ihd" (λ! (ccls-inheritance-hierarchy t)) ; derived hierarchy
+     ;; :n ";" (λ! (+my/avy-document-symbol t) (+my/find-references))
+ ;; $ccls/inheritance
+     ;; :n "b1" (λ! (ccls/base 1))
+     ;; :n "b3" (λ! (ccls/base 3))
+     ;; :n "d1" (λ! (ccls/derived 1))
+     ;; :n "d3" (λ! (ccls/derived 3))
 
-     ;; $ccls/call
-     :n "cr" #'ccls/caller
-     :n "ce" #'ccls/callee
+     ;; ;; $ccls/call
+     ;; :n
+     ;; "cr" #'ccls/caller
+     ;; :n "ce" #'ccls/callee
      ;; caller hierarchy
      :n "chr" #'ccls-call-hierarchy
      ;; callee hierarchy

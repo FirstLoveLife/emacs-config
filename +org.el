@@ -1,4 +1,4 @@
-;;;  -*- lexical-binding: t; -*-
+;src/.;;  -*- lexical-binding: t; -*-
 
 (setq org-capture-templates
   '(
