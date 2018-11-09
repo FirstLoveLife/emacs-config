@@ -14,15 +14,17 @@
      :ie "M-8"(lambda! (+workspace/switch-to 7))
      :ie "M-9"(lambda! (+workspace/switch-to 8))
 
+     :ien "C-x w" #'elfeed
+
      :inv "C-;" #'+workspace/switch-to
      :inv "M-n" #'lsp-ui-peek-jump-forward
      :inv "M-p" #'lsp-ui-peek-jump-backward
      :inv "M-[" #'lsp-ui-peek-find-definitions
      :inv "M-]" #'lsp-ui-peek-find-implementation
 
-                                            ;:map c++-mode-map
-                                            ;  :leader
-                                            ;  :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))
+                                        ;:map c++-mode-map
+                                        ;  :leader
+                                        ;  :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))
      )
 
     (map!
@@ -78,6 +80,7 @@
  :localleader
  ;; :n "m" #'ccls-member-hierarchy
  :n "b" #'ccls-inheritance-hierarchy        ; base hierarchy
+ :n "f" #'helm-dash-at-point        ; dash
  :n "d" (λ! (ccls-inheritance-hierarchy t)) ; derived hierarchy
 
      ;; :n ";" (λ! (+my/avy-document-symbol t) (+my/find-references))

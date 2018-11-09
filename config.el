@@ -215,3 +215,7 @@
 	  :fringe-bitmap 'flycheck-fringe-bitmap-ball
 	  :fringe-face 'flycheck-fringe-error
 	  :error-list-face 'flycheck-error-list-error))
+
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "chromium")
+(setq helm-dash-browser-func 'browse-url-generic)
