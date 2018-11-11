@@ -1,10 +1,24 @@
     ;;; private/my/+bindings.el -*- lexical-binding: t; -*-
-
-
-    (require 'persp-mode)
-    (map!
+(map!
+ :ien "C-x w" #'elfeed
+ )
+(map! :after lsp-ui
+      :inv "M-n" #'lsp-ui-peek-jump-forward
+      :inv "M-p" #'lsp-ui-peek-jump-backward
+      :inv "M-[" #'lsp-ui-peek-find-definitions
+      :inv "M-]" #'lsp-ui-peek-find-implementation
+      )
+(map! :after elfeed
+      )
+(map! :after avy
      :nm "f" #'avy-goto-char-2
-     :ei "M-1"(lambda! (+workspace/switch-to 0))
+      )
+(map! :after helm-projectile
+      :ine "M-r" #'helm-projectile-rg)
+
+(map! :after persp-mode
+      :inv "C-;" #'+workspace/switch-to
+     :ie "M-1"(lambda! (+workspace/switch-to 0))
      :ie "M-2"(lambda! (+workspace/switch-to 1))
      :ie "M-3"(lambda! (+workspace/switch-to 2))
      :ie "M-4"(lambda! (+workspace/switch-to 3))
@@ -13,143 +27,53 @@
      :ie "M-7"(lambda! (+workspace/switch-to 6))
      :ie "M-8"(lambda! (+workspace/switch-to 7))
      :ie "M-9"(lambda! (+workspace/switch-to 8))
-
-     :ien "C-x w" #'elfeed
-
-     :inv "C-;" #'+workspace/switch-to
-     :inv "M-n" #'lsp-ui-peek-jump-forward
-     :inv "M-p" #'lsp-ui-peek-jump-backward
-     :inv "M-[" #'lsp-ui-peek-find-definitions
-     :inv "M-]" #'lsp-ui-peek-find-implementation
-
-                                        ;:map c++-mode-map
-                                        ;  :leader
-                                        ;  :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))
-     )
-
-    (map!
-     ;; localleader
-     :m ","    nil
-
-     ;; (:map prog-mode-map
-     ;;   :nevi "C-M-f" #'lispy-down
-     ;;   :nevi "C-M-b" #'lispy-up
-     ;;   :nevi "C-M-u" #'lispy-left
-     ;;   :nevi "C-M-n" #'lispy-right
-     ;;   :nevi "M-r" #'lispy-raise
-     ;;   :nevi "C-)" #'lispy-forward-slurp-sexp
-     ;;   :nevi "C-<right>" #'lispy-forward-slurp-sexp
-     ;;   :nevi "C-}" #'lispy-forward-barf-sexp
-     ;;   :nevi "C-<left>" #'lispy-forward-barf-sexp
-     ;;   :nevi "C-(" #'lispy-backward-slurp-sexp
-     ;;   :nevi "C-M-<left>" #'lispy-backward-slurp-sexp
-     ;;   :nevi "C-{" #'lispy-backward-barf-sexp
-
-     ;;   :nevi "C-M-<right>" #'lispy-backward-barf-sexp
-
-     ;;   :nevi "M-<up>"  #'lispy-splice-sexp-killing-backward
-     ;;   :nevi "M-<down>"  #'lispy-splice-sexp-killing-forward
-
-     ;;   :nevi "M-S"       #'lispy-split
-     ;;   :nevi "M-J"       #'lispy-join
-
-     ;;   :nevi "C-M-f"     #'lispy-forward
-     ;;   :nevi "C-M-b"     #'lispy-backward
-
-
-     ;;   :nevi "C-k"       #'lispy-kill
-     ;;   :nevi "C-j"       #'lispy-newline-and-indent
-     ;;   )
-     )
-
-
+ )
 
 (map! :after cc-mode
       :map c++-mode-map
       :leader
       :nv "ih" #'my/cpp-auto-include)
 
-;; (map!
-;;  :after lsp-ui
-;;  :localleader
-;;  :n "i" #'lsp-ui-imenu
-;;  :n "r" #'lsp-ui-peek-find-references
-;; )
 (map!
  :after ccls
  :localleader
-  ;; $ccls/inheritance
-   :n "b" (λ! (ccls/base 1))
-   :n "B" (λ! (ccls/base 3))
-   :n "d" (λ! (ccls/derived 1))
-   :n "D" (λ! (ccls/derived 3))
-   :n "i" #'ccls-inheritance-hierarchy  ; base hierarchy
-   :n "I" (λ! (ccls-inheritance-hierarchy t)) ; derived hierarchy
-
-   ;; $ccls/call
-   :n "c" #'ccls/caller
-   :n "C" #'ccls/callee
-   ;; caller hierarchy
-   :n "e" #'ccls-call-hierarchy
-   ;; callee hierarchy
-   :n "E" (λ! (ccls-call-hierarchy t))
-
-   ;; $ccls/member
-   :n "s" (λ! (ccls/member 2))        ; 2 (Type) => nested classes/namespace members
-   :n "f" (λ! (ccls/member 3))        ; 3 (Func) => member functions
-   :n "m" (λ! (ccls/member 0))        ; other => member variables
-   :n "M" #'ccls-member-hierarchy
-
-   :n "L" #'ccls-code-lens-mode
-   :n "t" #'lsp-goto-type-definition
-   ;; https://github.com/maskray/ccls/blob/master/src/messages/ccls_vars.cc#L15
-   :n "v" (λ! (ccls/vars 3))           ; field or local variable
-   :n "V" (λ! (ccls/vars 1))           ; field
-   :n "C-v" (λ! (ccls/vars 7))         ; any
- ;; :n "m" #'ccls-member-hierarchy
- ;; :n "v" (λ! (ccls/vars 3))           ; field or local variable
- ;; :n "V" (λ! (ccls/vars 1))           ; field
- ;; :n "C-v" (λ! (ccls/vars 7))         ; any
- ;; :n "b" #'ccls-inheritance-hierarchy        ; base hierarchy
- ;; :n "f" #'helm-dash-at-point        ; dash
- ;; :n "d" (λ! (ccls-inheritance-hierarchy t))
- )
-
-     ;; :n ";" (λ! (+my/avy-document-symbol t) (+my/find-references))
  ;; $ccls/inheritance
-     ;; :n "b1" (λ! (ccls/base 1))
-     ;; :n "b3" (λ! (ccls/base 3))
-     ;; :n "d1" (λ! (ccls/derived 1))
-     ;; :n "d3" (λ! (ccls/derived 3))
+ :desc "direct bases"  :n "b" (λ! (ccls/base 1))
+ :desc "base 3" :n "B" (λ! (ccls/base 3))
+ :desc "direct derived" :n "d" (λ! (ccls/derived 1))
+ :desc "derived 3" :n "D" (λ! (ccls/derived 3))
 
-     ;; ;; $ccls/call
-     ;; :n
-     ;; "cr" #'ccls/caller
-     ;; :n "ce" #'ccls/callee
-     ;; caller hierarchy
-     ;; :n "chr" #'ccls-call-hierarchy
-     ;; callee hierarchy
-     ;; :n "che" (λ! (ccls-call-hierarchy t))
+ (:desc "references" :prefix "r"
+   :desc "macro expansions" :n "m" #'ccls/references-macro
+   :desc "read" :n "r" #'ccls/references-read
+   :desc "write" :n "w" #'ccls/references-write
+   :desc "Call bit (e.g. where functions are taken addresses)" :n "n" #'ccls/references-not-call)
 
-     ;; :n "ra" #'ccls/references-address
-     ;; :n "rnc" #'ccls/references-not-call
-     ;; :n "pf" #'ccls-preprocess-file
-     ;; :n "rl" #'ccls-reload
-     ;; :n "rm" #'ccls/references-macro
-     ;; :n "rr" #'ccls/references-read
-     ;; :n "rw" #'ccls/references-write
+ :desc "base" :n "i" #'ccls-inheritance-hierarchy
+ :desc "derived" :n "I" (λ! (ccls-inheritance-hierarchy t))
 
-     ;; $ccls/member
-     ;; :n "m2" (λ! (ccls/member 2))      ; 2 (Type) => nested classes/namespace members
-     ;; :n "m3" (λ! (ccls/member 3))      ; 3 (Func) => member functions
-     ;; :n "m0" (λ! (ccls/member 0))      ; other => member variables
-     ;; :n "mh" #'ccls-member-hierarchy
 
-     ;; :n "L" #'ccls-code-lens-mode
-     ;; https://github.com/maskray/ccls/blob/master/src/messages/ccls_vars.cc#L15
-     ;; :n "v3" (λ! (ccls/vars 3))              ; field or local variable
-     ;; :n "v1" (λ! (ccls/vars 1))              ; field
-     ;; :n "v7" (λ! (ccls/vars 7)))
+ ;; $ccls/call
+ :desc "caller" :n "c" #'ccls/caller
+ :desc "callee":n "C" #'ccls/callee
+ ;; caller hierarchy
+ :desc "caller hierarchy" :n "e" #'ccls-call-hierarchy
+ ;; callee hierarchy
+ :desc "callee hierarchy" :n "E" (λ! (ccls-call-hierarchy t))
+
+ ;; $ccls/member
+ :desc "nested classes/namespace members" :n "s" (λ! (ccls/member 2))
+ :desc "member functions / functions in a namespace" :n "f" (λ! (ccls/member 3))
+ :desc "member variables" :n "m" (λ! (ccls/member 0))
+ :desc "hierarchy" :n "M" #'ccls-member-hierarchy
+
+ :desc "code-lens" :n "L" #'ccls-code-lens-mode
+ :n "t" #'lsp-goto-type-definition
+ ;; https://github.com/maskray/ccls/blob/master/src/messages/ccls_vars.cc#L15
+ :desc "field or local variable" :n "v" (λ! (ccls/vars 3))
+ :desc "field" :n "V" (λ! (ccls/vars 1))
+ :desc "any" :n "C-v" (λ! (ccls/vars 7))
+ )
 
 (setcdr evil-insert-state-map nil)
 (define-key evil-insert-state-map (read-kbd-macro evil-toggle-key) 'evil-normal-state)

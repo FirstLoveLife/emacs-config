@@ -17,7 +17,8 @@
  '(lsp-face-highlight-read ((t (:background "sea green"))))
  '(lsp-face-highlight-write ((t (:background "brown4"))))
  '(lsp-ui-sideline-current-symbol ((t (:foreground "grey38" :box nil))))
- '(lsp-ui-sideline-symbol ((t (:foreground "grey30" :box nil)))))
+ '(lsp-ui-sideline-symbol ((t (:foreground "grey30" :box nil))))
+ '(whitespace-tab ((t (:background "gray17" :foreground "dark magenta")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -130,5 +131,13 @@
  '(projectile-switch-project-action (quote +workspaces|set-project-action))
  '(rmh-elfeed-org-files (quote ("/home/firstlove/notes/elfeed.org")))
  '(sml-font-lock-symbols t)
+ '(which-key-add-column-padding 1)
+ '(which-key-idle-delay 0.001)
+ '(which-key-min-display-lines 6)
+ '(which-key-mode t)
+ '(which-key-side-window-slot -10)
+ '(which-key-sort-order (quote which-key-prefix-then-key-order))
+ '(which-key-sort-uppercase-first nil)
  '(whitespace-global-modes nil)
- '(whitespace-line-column nil))
+ '(whitespace-line-column nil)
+ '(whitespace-style nil))
