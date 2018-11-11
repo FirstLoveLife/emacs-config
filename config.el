@@ -219,3 +219,22 @@
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium")
 (setq helm-dash-browser-func 'browse-url-generic)
+
+(setq elfeed-show-mode-hook
+      (lambda ()
+	(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "Iosevka" :size 17))
+	(setq fill-column 120)
+	(setq elfeed-show-entry-switch #'my-show-elfeed)))
+
+(defun my-show-elfeed (buffer)
+  (with-current-buffer buffer
+    (setq buffer-read-only nil)
+    (goto-char (point-min))
+    (re-search-forward "\n\n")
+    (fill-individual-paragraphs (point) (point-max))
+    (setq buffer-read-only t))
+  (switch-to-buffer buffer))
+
+(after! elfeed
+  (setq elfeed-search-filter "@8-year-ago ")
+)

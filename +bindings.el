@@ -78,10 +78,42 @@
 (map!
  :after ccls
  :localleader
+  ;; $ccls/inheritance
+   :n "b" (λ! (ccls/base 1))
+   :n "B" (λ! (ccls/base 3))
+   :n "d" (λ! (ccls/derived 1))
+   :n "D" (λ! (ccls/derived 3))
+   :n "i" #'ccls-inheritance-hierarchy  ; base hierarchy
+   :n "I" (λ! (ccls-inheritance-hierarchy t)) ; derived hierarchy
+
+   ;; $ccls/call
+   :n "c" #'ccls/caller
+   :n "C" #'ccls/callee
+   ;; caller hierarchy
+   :n "e" #'ccls-call-hierarchy
+   ;; callee hierarchy
+   :n "E" (λ! (ccls-call-hierarchy t))
+
+   ;; $ccls/member
+   :n "s" (λ! (ccls/member 2))        ; 2 (Type) => nested classes/namespace members
+   :n "f" (λ! (ccls/member 3))        ; 3 (Func) => member functions
+   :n "m" (λ! (ccls/member 0))        ; other => member variables
+   :n "M" #'ccls-member-hierarchy
+
+   :n "L" #'ccls-code-lens-mode
+   :n "t" #'lsp-goto-type-definition
+   ;; https://github.com/maskray/ccls/blob/master/src/messages/ccls_vars.cc#L15
+   :n "v" (λ! (ccls/vars 3))           ; field or local variable
+   :n "V" (λ! (ccls/vars 1))           ; field
+   :n "C-v" (λ! (ccls/vars 7))         ; any
  ;; :n "m" #'ccls-member-hierarchy
- :n "b" #'ccls-inheritance-hierarchy        ; base hierarchy
- :n "f" #'helm-dash-at-point        ; dash
- :n "d" (λ! (ccls-inheritance-hierarchy t)) ; derived hierarchy
+ ;; :n "v" (λ! (ccls/vars 3))           ; field or local variable
+ ;; :n "V" (λ! (ccls/vars 1))           ; field
+ ;; :n "C-v" (λ! (ccls/vars 7))         ; any
+ ;; :n "b" #'ccls-inheritance-hierarchy        ; base hierarchy
+ ;; :n "f" #'helm-dash-at-point        ; dash
+ ;; :n "d" (λ! (ccls-inheritance-hierarchy t))
+ )
 
      ;; :n ";" (λ! (+my/avy-document-symbol t) (+my/find-references))
  ;; $ccls/inheritance
@@ -95,29 +127,29 @@
      ;; "cr" #'ccls/caller
      ;; :n "ce" #'ccls/callee
      ;; caller hierarchy
-     :n "chr" #'ccls-call-hierarchy
+     ;; :n "chr" #'ccls-call-hierarchy
      ;; callee hierarchy
-     :n "che" (λ! (ccls-call-hierarchy t))
+     ;; :n "che" (λ! (ccls-call-hierarchy t))
 
-     :n "ra" #'ccls/references-address
-     :n "rnc" #'ccls/references-not-call
-     :n "pf" #'ccls-preprocess-file
-     :n "rl" #'ccls-reload
-     :n "rm" #'ccls/references-macro
-     :n "rr" #'ccls/references-read
-     :n "rw" #'ccls/references-write
+     ;; :n "ra" #'ccls/references-address
+     ;; :n "rnc" #'ccls/references-not-call
+     ;; :n "pf" #'ccls-preprocess-file
+     ;; :n "rl" #'ccls-reload
+     ;; :n "rm" #'ccls/references-macro
+     ;; :n "rr" #'ccls/references-read
+     ;; :n "rw" #'ccls/references-write
 
      ;; $ccls/member
-     :n "m2" (λ! (ccls/member 2))      ; 2 (Type) => nested classes/namespace members
-     :n "m3" (λ! (ccls/member 3))      ; 3 (Func) => member functions
-     :n "m0" (λ! (ccls/member 0))      ; other => member variables
-     :n "mh" #'ccls-member-hierarchy
+     ;; :n "m2" (λ! (ccls/member 2))      ; 2 (Type) => nested classes/namespace members
+     ;; :n "m3" (λ! (ccls/member 3))      ; 3 (Func) => member functions
+     ;; :n "m0" (λ! (ccls/member 0))      ; other => member variables
+     ;; :n "mh" #'ccls-member-hierarchy
 
-     :n "L" #'ccls-code-lens-mode
+     ;; :n "L" #'ccls-code-lens-mode
      ;; https://github.com/maskray/ccls/blob/master/src/messages/ccls_vars.cc#L15
-     :n "v3" (λ! (ccls/vars 3))              ; field or local variable
-     :n "v1" (λ! (ccls/vars 1))              ; field
-     :n "v7" (λ! (ccls/vars 7)))
+     ;; :n "v3" (λ! (ccls/vars 3))              ; field or local variable
+     ;; :n "v1" (λ! (ccls/vars 1))              ; field
+     ;; :n "v7" (λ! (ccls/vars 7)))
 
 (setcdr evil-insert-state-map nil)
 (define-key evil-insert-state-map (read-kbd-macro evil-toggle-key) 'evil-normal-state)
