@@ -9,6 +9,7 @@
 (package! lsp-python)
 (package! dap-mode)
 (package! company-lsp)
+(package! clang-format)
 
 (package! lsp-rust)
 (package! edit-server)
