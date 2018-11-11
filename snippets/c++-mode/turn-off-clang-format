@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: turn off clang-format
+# key: cfoff
+# --
+// clang-format off

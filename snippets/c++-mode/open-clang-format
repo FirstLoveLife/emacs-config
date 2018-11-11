@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: turn on clang-format
+# key: cfon
+# --
+// clang-format on
