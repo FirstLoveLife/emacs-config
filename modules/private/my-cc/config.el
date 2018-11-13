@@ -15,6 +15,8 @@
   (setq ccls-inheritance-hierarchy nil)
   ;; (setq ccls-sem-highlight-method 'font-lock)
   (setq ccls-sem-highlight-method 'overlay)
+  (setq ccls-cache-dir "~/tmp/cclscache")
+
   (ccls-use-default-rainbow-sem-highlight)
   ;; https://github.com/maskray/ccls/blob/master/src/config.h
   (setq ccls-extra-init-params
