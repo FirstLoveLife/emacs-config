@@ -18,15 +18,16 @@
 
 (map! :after persp-mode
       :inv "C-;" #'+workspace/switch-to
-     :ie "M-1"(lambda! (+workspace/switch-to 0))
-     :ie "M-2"(lambda! (+workspace/switch-to 1))
-     :ie "M-3"(lambda! (+workspace/switch-to 2))
-     :ie "M-4"(lambda! (+workspace/switch-to 3))
-     :ie "M-5"(lambda! (+workspace/switch-to 4))
-     :ie "M-6"(lambda! (+workspace/switch-to 5))
-     :ie "M-7"(lambda! (+workspace/switch-to 6))
-     :ie "M-8"(lambda! (+workspace/switch-to 7))
-     :ie "M-9"(lambda! (+workspace/switch-to 8))
+      :inve "C-x b" #'+helm/workspace-buffer-list
+      :ie "M-1"(lambda! (+workspace/switch-to 0))
+      :ie "M-2"(lambda! (+workspace/switch-to 1))
+      :ie "M-3"(lambda! (+workspace/switch-to 2))
+      :ie "M-4"(lambda! (+workspace/switch-to 3))
+      :ie "M-5"(lambda! (+workspace/switch-to 4))
+      :ie "M-6"(lambda! (+workspace/switch-to 5))
+      :ie "M-7"(lambda! (+workspace/switch-to 6))
+      :ie "M-8"(lambda! (+workspace/switch-to 7))
+      :ie "M-9"(lambda! (+workspace/switch-to 8))
  )
 
 (map! :after cc-mode
