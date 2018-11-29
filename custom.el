@@ -18,7 +18,7 @@
  '(lsp-face-highlight-write ((t (:background "brown4"))))
  '(lsp-ui-sideline-current-symbol ((t (:foreground "grey38" :box nil))))
  '(lsp-ui-sideline-symbol ((t (:foreground "grey30" :box nil))))
- '(whitespace-tab ((t (:background "gray17" :foreground "dark magenta")))))
+ '(whitespace-tab ((t (:background "gray17" :foreground "dark violet")))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -46,9 +46,9 @@
  '(helm-buffers-fuzzy-matching t)
  '(helm-candidate-number-limit 50)
  '(helm-completion-in-region-fuzzy-match t)
- '(helm-dash-browser-func (quote browse-url-generic))
+ '(helm-dash-browser-func (quote browse-url-generic) t)
  '(helm-dash-docsets-path "/home/firstlove/.emacs.d/.local/etc/docsets/")
- '(helm-dash-enable-debugging nil)
+ '(helm-dash-enable-debugging nil t)
  '(helm-default-prompt-display-function (quote +helm--set-prompt-display))
  '(helm-display-buffer-default-height 0.25)
  '(helm-display-header-line nil)
@@ -118,11 +118,12 @@
  '(prog-mode-hook
    (quote
     (hl-todo-mode yas-minor-mode-on highlight-escape-sequences-mode highlight-numbers-mode flycheck-mode)))
+ '(projectile-dynamic-mode-line nil)
  '(projectile-enable-caching t)
  '(projectile-globally-ignored-directories
    (quote
     (".attach" ".ccls-cache" ".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "~/.emacs.d/.local/" ".sync" "node_modules" "flow-typed" "Release" "clang_archive_hashes" "cmake" "third_party" "~/.emacs.d/.local/" ".sync" "node_modules" "flow-typed" "~/.emacs.d/.local/" ".sync" "node_modules" "flow-typed" "doc")))
- '(projectile-globally-ignored-file-suffixes (quote (".elc" ".pyc" ".o" ".projectile")))
+ '(projectile-globally-ignored-file-suffixes (quote (".elc" ".pyc" ".o" ".projectile" ".md" ".cmake")))
  '(projectile-globally-ignored-files (quote (".DS_Store" "Icon" "TAGS")))
  '(projectile-globally-unignored-directories (quote ("src")))
  '(projectile-indexing-method (quote alien))
@@ -133,7 +134,9 @@
  '(rmsbolt-automatic-recompile nil)
  '(sml-font-lock-symbols t)
  '(which-key-add-column-padding 1)
- '(which-key-idle-delay 0.001)
+ '(which-key-allow-evil-operators nil)
+ '(which-key-echo-keystrokes 0.02)
+ '(which-key-idle-delay 1.0)
  '(which-key-min-display-lines 6)
  '(which-key-mode t)
  '(which-key-side-window-slot -10)
