@@ -11,7 +11,7 @@
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
 (after! doom-themes
   :init
-  (setq doom-theme 'doom-dracula)
+  ;; (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
   )
   ;; (setq doom-theme 'doom-one))
@@ -76,8 +76,8 @@
    lsp-ui-sideline-ignore-duplicate t
    lsp-ui-doc-header nil
    lsp-ui-doc-include-signature nil
-   lsp-ui-doc-background (doom-color 'base4)
-   lsp-ui-doc-border (doom-color 'fg)
+   ;; lsp-ui-doc-background (doom-color 'base4)
+   ;; lsp-ui-doc-border (doom-color 'fg)
 
    lsp-ui-peek-force-fontify nil
    lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs)))

@@ -14,8 +14,8 @@
        ;eval              ; run code, run (also, repls)
        (evil +everywhere); come to the dark side, we have cookies
        ;file-templates    ; auto-snippets for empty files
-       (lookup           ; helps you navigate your code and documentation
-        +docsets)        ; ...or in Dash docsets locally
+       ;; (lookup           ; helps you navigate your code and documentation
+        ;; +docsets)        ; ...or in Dash docsets locally
        snippets          ; my elves. They type so I don't have to
        ;spellcheck        ; tasing you for misspelling mispelling
        ;(syntax-checker   ; tasing you for every semicolon you forget
@@ -33,10 +33,10 @@
 
        :ui
        ;;deft              ; notational velocity for Emacs
-       doom              ; what makes DOOM look the way it does
+       ;; doom              ; what makes DOOM look the way it does
        ;doom-dashboard    ; a nifty splash screen for Emacs
        ;doom-modeline     ; a snazzy Atom-inspired mode-line
-       doom-quit         ; DOOM quit-message prompts when you quit Emacs
+       ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
        ;;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
@@ -112,7 +112,7 @@
        latex             ; writing papers in Emacs has never been so fun
        ;;ledger            ; an accounting system in Emacs
        ;;lua               ; one-based indices? one-based indices
-       markdown          ; writing docs for people to ignore
+       ;; markdown          ; writing docs for people to ignore
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
@@ -132,7 +132,7 @@
        ;;rest              ; Emacs as a REST client
        ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       scala             ; java, but good
+       ;; scala             ; java, but good
        ;(sh +fish)        ; she sells (ba|z|fi)sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
@@ -143,8 +143,8 @@
        ;; should be loaded late.
        :app
        ;;(email +gmail)    ; emacs as an email client
-       irc               ; how neckbeards socialize
-       (rss +org)        ; emacs as an RSS reader
+       ;; irc               ; how neckbeards socialize
+       ;; (rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
        ;;(write            ; emacs as a word processor (latex + org + markdown)
        ;; +wordnut         ; wordnet (wn) search
