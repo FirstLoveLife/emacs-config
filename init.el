@@ -4,7 +4,7 @@
 
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
 				("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-				("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+				("or-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
 (setq custom-file "~/.doom.d/custom.el")
 (load custom-file)
 
