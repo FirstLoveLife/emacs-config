@@ -11,8 +11,9 @@
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
 (after! doom-themes
   :init
+  ;; (setq doom-theme 'doom-nord-light)
   ;; (setq doom-theme 'doom-dracula)
-  ;; (setq doom-theme 'doom-tomorrow-day)
+  (setq doom-theme 'doom-tomorrow-day)
   )
   ;; (setq doom-theme 'doom-one))
 
