@@ -166,5 +166,6 @@
        (default +bindings +snippets +evil-commands)
        :private
         my-cc
+        my-agda
   )
 
