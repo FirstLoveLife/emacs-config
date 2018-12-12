@@ -63,9 +63,8 @@
 (def-package! lsp-mode
   :defer t
   :init
+  (setq lsp-auto-guess-root t)
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (setq lsp-project-blacklist '("/CC/"))
-  (setq lsp--json-array-use-vector t)
   )
 
 (def-package! lsp-ui
