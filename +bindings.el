@@ -1,14 +1,17 @@
     ;;; private/my/+bindings.el -*- lexical-binding: t; -*-
+;; (map!
+;;  :ien "C-x w" #'elfeed
+;;  )
+
 (map!
- :ien "C-x w" #'elfeed
- )
+ :leader
+ :inv "ob" #'org-brain-visualize)
+
 (map! :after lsp-ui
       :inv "M-n" #'lsp-ui-peek-jump-forward
       :inv "M-p" #'lsp-ui-peek-jump-backward
       :inv "M-[" #'lsp-ui-peek-find-definitions
       :inv "M-]" #'lsp-ui-peek-find-implementation
-      )
-(map! :after elfeed
       )
 (map! :after avy
      :nm "f" #'avy-goto-char-2

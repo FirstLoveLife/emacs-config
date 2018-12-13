@@ -238,7 +238,6 @@
 (after! elfeed
   (setq elfeed-search-filter "@8-year-ago ")
 )
-
 (def-package! org-brain
   :defer 3
   :init
@@ -253,4 +252,4 @@
           "* %i%?" :empty-lines 1)
         org-capture-templates)
   (setq org-brain-visualize-default-choices 'all)
-   )
+  )
