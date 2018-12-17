@@ -21,6 +21,8 @@
 
 (map! :after persp-mode
       :inve "C-;" #'+workspace/switch-to
+      :inve "C-M-l" #'lsp
+      :inve "C-M-f" #'font-lock-mode
       :inve "C-x b" #'+helm/workspace-buffer-list
       :ie "M-1"(lambda! (+workspace/switch-to 0))
       :ie "M-2"(lambda! (+workspace/switch-to 1))
