@@ -4,6 +4,10 @@
 ;;  )
 
 (map!
+ :inve "C-M-f" #'font-lock-mode
+ )
+
+(map!
  :leader
  :inv "ob" #'org-brain-visualize)
 
@@ -19,10 +23,9 @@
 (map! :after helm-projectile
       :ine "M-r" #'helm-projectile-rg)
 
+
 (map! :after persp-mode
       :inve "C-;" #'+workspace/switch-to
-      :inve "C-M-l" #'lsp
-      :inve "C-M-f" #'font-lock-mode
       :inve "C-x b" #'+helm/workspace-buffer-list
       :ie "M-1"(lambda! (+workspace/switch-to 0))
       :ie "M-2"(lambda! (+workspace/switch-to 1))
@@ -39,6 +42,10 @@
       :map c++-mode-map
       :leader
       :nv "ih" #'my/cpp-auto-include)
+(map!
+ :after lsp-mode
+ :inve "C-M-l" #'lsp
+ )
 
 (map!
  :after ccls
