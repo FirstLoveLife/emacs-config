@@ -17,7 +17,7 @@
   (setq ccls-cache-dir "~/tmp/cclscache")
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
-  (setq ccls-sem-highlight-method 'font-lock)
+  ;; (setq ccls-sem-highlight-method 'font-lock)
   (add-hook 'lsp-after-open-hook #'ccls-code-lens-mode)
   (ccls-use-default-rainbow-sem-highlight)
   ;; https://github.com/maskray/ccls/blob/master/src/config.h

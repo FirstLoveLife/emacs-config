@@ -239,7 +239,7 @@
   (setq elfeed-search-filter "@8-year-ago ")
 )
 (def-package! org-brain
-  :defer 3
+  :defer 0.3
   :init
   (setq org-brain-path "~/brain")
   ;; For Evil users
@@ -253,3 +253,6 @@
         org-capture-templates)
   (setq org-brain-visualize-default-choices 'all)
   )
+
+(def-package! aweshell
+  :defer 1)

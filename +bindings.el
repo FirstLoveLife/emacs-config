@@ -20,7 +20,7 @@
       :ine "M-r" #'helm-projectile-rg)
 
 (map! :after persp-mode
-      :inv "C-;" #'+workspace/switch-to
+      :inve "C-;" #'+workspace/switch-to
       :inve "C-x b" #'+helm/workspace-buffer-list
       :ie "M-1"(lambda! (+workspace/switch-to 0))
       :ie "M-2"(lambda! (+workspace/switch-to 1))

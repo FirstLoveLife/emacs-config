@@ -2,8 +2,11 @@
 ;;; private/my/packages.el
 (disable-packages! cmake-mode company-irony company-irony-c-headers flycheck-irony irony irony-eldoc ivy-rtags rtags)
 
+(package!  aweshell :recipe (:fetcher github :repo "manateelazycat/aweshell" :files ("*")))
+
 (package! avy)
 (package! lispyville)
+(package! pamparam)
 (package! lsp-java)
 (package! lsp-ruby)
 (package! lsp-python)
@@ -26,7 +29,7 @@
 (package! company-lsp)
 (package! company-ghc)
 (package! spinner)
-;; (package! org-brain)
+(package! org-brain)
 
 (package! nand2tetris :recipe (:fetcher github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
 (package! flymake-sml :recipe (:fetcher github :repo "oskimura/flymake-sml" :files ("*")))
