@@ -14,6 +14,7 @@
   (add-hook! (c-mode c++-mode cuda-mode objc-mode) #'+ccls//enable)
   (setq ccls-executable "~/dev/ccls/Release/ccls")
   :config
+  (setq lsp-prefer-flymake nil)
   (setq ccls-cache-dir "~/tmp/cclscache")
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
