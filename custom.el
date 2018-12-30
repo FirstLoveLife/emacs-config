@@ -3,6 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bold ((t (:weight bold :height 1.1 :width condensed))))
  '(ccls-sem-global-variable-face ((t (:underline t :weight extra-bold))))
  '(fixed-pitch ((t (:font "-*-Iosevka-*-*-*-*-18-*-*-*-*-*-*-*"))))
  '(flycheck-error ((t (:underline "#ff6c6b"))))
@@ -121,5 +122,5 @@
  '(rmsbolt-automatic-recompile nil)
  '(sml-font-lock-symbols t)
  '(whitespace-global-modes nil)
- '(whitespace-line-column nil t)
- '(whitespace-style nil t))
+ '(whitespace-line-column nil)
+ '(whitespace-style nil))
