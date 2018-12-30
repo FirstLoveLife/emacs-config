@@ -30,7 +30,7 @@
  '(company-lsp-enable-snippet nil)
  '(dtrt-indent-verbosity 0)
  '(electric-indent-mode t)
- '(font-lock-global-modes nil)
+ '(font-lock-global-modes t)
  '(global-company-mode t)
  '(global-font-lock-mode t)
  '(global-visual-line-mode t)

@@ -15,7 +15,8 @@
   (setq ccls-executable "~/dev/ccls/Release/ccls")
   :config
   (setq lsp-prefer-flymake nil)
-  (setq ccls-cache-dir "~/tmp/cclscache")
+  (setq ccls-initialization-options `(:cacheDirectory "~/tmp/cclscache"))
+
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
   ;; (setq ccls-sem-highlight-method 'font-lock)

@@ -256,3 +256,8 @@
 
 (def-package! aweshell
   :defer 1)
+
+
+(def-package! adoc-mode
+       :preface (provide 'adoc-mode)
+       :mode ("\\.adoc\\'"))
