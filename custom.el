@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(bold ((t (:weight bold :height 1.1 :width condensed))))
+ '(bold ((t (:foreground "honeydew2" :weight bold :height 1.1 :width condensed))))
  '(ccls-sem-global-variable-face ((t (:underline t :weight extra-bold))))
  '(fixed-pitch ((t (:font "-*-Iosevka-*-*-*-*-18-*-*-*-*-*-*-*"))))
  '(flycheck-error ((t (:underline "#ff6c6b"))))
@@ -15,6 +15,7 @@
  '(font-lock-string-face ((t (:foreground "#C3E88D"))))
  '(font-lock-type-face ((t (:foreground "#FFCB6B"))))
  '(font-lock-variable-name-face ((t (:foreground "#FF5370"))))
+ '(italic ((t (:foreground "cyan" :slant italic :width extra-expanded))))
  '(lsp-face-highlight-read ((t (:background "sea green"))))
  '(lsp-face-highlight-write ((t (:background "brown4"))))
  '(lsp-ui-sideline-current-symbol ((t (:foreground "grey38" :box nil))))
@@ -122,5 +123,5 @@
  '(rmsbolt-automatic-recompile nil)
  '(sml-font-lock-symbols t)
  '(whitespace-global-modes nil)
- '(whitespace-line-column nil)
- '(whitespace-style nil))
+ '(whitespace-line-column nil t)
+ '(whitespace-style nil t))
