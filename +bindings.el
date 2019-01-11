@@ -38,10 +38,10 @@
       :nmvie "M-9"(lambda! (+workspace/switch-to 8))
  )
 
-(map! :after cc-mode
-      :map c++-mode-map
-      :leader
-      :nv "ih" #'my/cpp-auto-include)
+;; (map! :after cc-mode
+;;       :map c++-mode-map
+;;       :leader
+;;       :nv "ih" #'my/cpp-auto-include)
 (map!
  :after lsp-mode
  :inve "C-M-l" #'lsp

@@ -15,16 +15,16 @@
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
   ;; (setq ccls-sem-highlight-method 'font-lock)
-  (add-hook 'lsp-after-open-hook #'ccls-code-lens-mode)
-  (ccls-use-default-rainbow-sem-highlight)
+  ;; (add-hook 'lsp-after-open-hook #'ccls-code-lens-mode)
+  ;; (ccls-use-default-rainbow-sem-highlight)
   ;; (setq ccls-initialization-options )
   ;; https://github.com/maskray/ccls/blob/master/src/config.h
-  (setq
-   ccls-initialization-options
-   `(
-     :cacheDirectory "~/tmp/cclscache"
-     )
-   )
+  ;; (setq
+  ;;  ccls-initialization-options
+  ;;  `(
+  ;;    :cacheDirectory "~/tmp/cclscache"
+  ;;    )
+  ;;  )
 
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp)

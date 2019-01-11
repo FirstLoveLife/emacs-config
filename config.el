@@ -2,20 +2,24 @@
 
 
 (setq doom-localleader-key ";")
+(def-package! cc-mode
+  :init
+  ;; (display-line-numbers-disable))
+)
 
- 
 (load! "+bindings")
 (load! "+org")
 (load! "+ui")
 
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
-(after! doom-themes
+(def-package! doom-themes
   :init
   ;; (setq doom-theme 'doom-nord-light)
+  (setq doom-theme 'doom-Iosvkem)
   ;; (setq doom-theme 'doom-dracula)
-  (setq doom-theme 'doom-tomorrow-day)
+  ;; (setq doom-theme 'doom-tomorrow-day)
   )
-  ;; (setq doom-theme 'doom-one))
+;; (setq doom-theme 'doom-one))
 
 (def-package! avy
   :commands (avy-goto-char-timer)
@@ -63,10 +67,14 @@
 (def-package! lsp-mode
   :defer t
   :init
-  :hook (c++-mode-hook . lsp-mode)
+  :after  cc-mode
+  :hook (lsp-mode . flycheck-mode)
   :config
   (setq lsp-auto-guess-root t)
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  (require 'lsp-ui-flycheck)
+  (with-eval-after-load 'lsp-mode
+    (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
   )
 
 (def-package! lsp-ui
@@ -83,7 +91,7 @@
 
    lsp-ui-peek-force-fontify nil
    lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs)))
- )
+  )
 
 (def-package! lsp-rust
   :init (add-hook 'rust-mode-hook #'lsp-rust-enable)
@@ -122,14 +130,14 @@
   (add-hook 'haskell-mode-hook 'flycheck-mode))
 
 
- (def-package! nand2tetris
-   :load-path "~/dev/nand2tetris"
-   :defer t
-   :config
-                                         ;(add-to-list 'company-backends 'company-nand2tetris)
-   (set-company-backend! 'nand2tetris-mode
-     'company-nand2tetris)
-   )
+(def-package! nand2tetris
+  :load-path "~/dev/nand2tetris"
+  :defer t
+  :config
+                                        ;(add-to-list 'company-backends 'company-nand2tetris)
+  (set-company-backend! 'nand2tetris-mode
+    'company-nand2tetris)
+  )
 
 ;; (add-hook 'java-mode-hook  'lsp-java-enable)
 
@@ -167,7 +175,7 @@
 ;;       (map!
 ;;        :map c++-mode-map
 ;;        :leader
-;        :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))) )
+                                        ;        :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))) )
 
 
 (def-package! sml-mode
@@ -190,43 +198,15 @@
 ;; (require 'exwm-config)
 ;; (exwm-config-default)
 
-(define-fringe-bitmap 'flycheck-fringe-bitmap-ball
-	(vector #b00000000
-		#b00000000
-		#b00000000
-		#b00000000
-		#b00000000
-		#b00111000
-		#b01111100
-		#b11111110
-		#b11111110
-		#b01111100
-		#b00111000
-		#b00000000
-		#b00000000
-		#b00000000
-		#b00000000
-		#b00000000
-		#b00000000))
-;; (after! flycheck
-;;   :config
-;;   (flycheck-define-error-level 'error
-;; 	  :severity 100
-;; 	  :compilation-level 2
-;; 	  :overlay-category 'flycheck-error-overlay
-;; 	  :fringe-bitmap 'flycheck-fringe-bitmap-ball
-;; 	  :fringe-face 'flycheck-fringe-error
-;; 	  :error-list-face 'flycheck-error-list-error))
-
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium")
 (setq helm-dash-browser-func 'browse-url-generic)
 
 (setq elfeed-show-mode-hook
       (lambda ()
-	(set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "Iosevka" :size 17))
-	(setq fill-column 120)
-	(setq elfeed-show-entry-switch #'my-show-elfeed)))
+	    (set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "Iosevka" :size 17))
+	    (setq fill-column 120)
+	    (setq elfeed-show-entry-switch #'my-show-elfeed)))
 
 (defun my-show-elfeed (buffer)
   (with-current-buffer buffer
@@ -239,7 +219,7 @@
 
 (after! elfeed
   (setq elfeed-search-filter "@8-year-ago ")
-)
+  )
 (def-package! org-brain
   :defer 0.3
   :init
@@ -261,8 +241,8 @@
 
 
 (def-package! adoc-mode
-       :preface (provide 'adoc-mode)
-       :mode ("\\.adoc\\'"))
+  :preface (provide 'adoc-mode)
+  :mode ("\\.adoc\\'"))
 
 
 
@@ -288,3 +268,9 @@
 (add-hook 'org-brain-after-resource-button-functions #'org-brain-insert-resource-icon)
 
 ;; (def-package! wakatime)
+
+(def-package! flycheck
+  :init (global-flycheck-mode))
+
+(after! prog-mode
+  (setq prog-mode-hook '()))

@@ -5,8 +5,8 @@
 (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
 				("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
 				("or-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
-(setq custom-file "~/.doom.d/custom.el")
-(load custom-file)
+;; (setq custom-file "~/.doom.d/custom.el")
+;; (load custom-file)
 
 
 (doom! :feature

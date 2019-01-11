@@ -9,9 +9,9 @@
 ;;;###autoload
 (defun +ccls//enable ()
   (require 'ccls)
-  (setq-local lsp-ui-sideline-show-symbol nil)
-  ((lsp)
-   ))
+  ;; (setq-local lsp-ui-sideline-show-symbol nil)
+  (lsp)
+   )
 
 (defun ccls/callee ()
   (interactive)
