@@ -40,10 +40,10 @@
   )
 
 
-(after! flycheck
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  )
+;; (after! flycheck
+;;   (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+;;   )
 
 
 (def-package! lispy
@@ -63,6 +63,8 @@
 (def-package! lsp-mode
   :defer t
   :init
+  :hook (c++-mode-hook . lsp-mode)
+  :config
   (setq lsp-auto-guess-root t)
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   )
@@ -177,12 +179,12 @@
     'company-keywords)
   )
 
-(set-docset! 'js2-mode "JavaScript" "JQuery")
-(set-docset! 'haskell-mode "Haskell")
+;; (set-docset! 'js2-mode "JavaScript" "JQuery")
+;; (set-docset! 'haskell-mode "Haskell")
 
-(set-docset! 'c++-mode "C++" "Boost")
-(set-docset! 'css-mode "Css" "Html")
-(set-docset! 'html-mode "Html" "Css")
+;; (set-docset! 'c++-mode "C++" "Boost")
+;; (set-docset! 'css-mode "Css" "Html")
+;; (set-docset! 'html-mode "Html" "Css")
 
 ;; (require 'exwm)
 ;; (require 'exwm-config)
@@ -206,15 +208,15 @@
 		#b00000000
 		#b00000000
 		#b00000000))
-(after! flycheck
-  :config
-  (flycheck-define-error-level 'error
-	  :severity 100
-	  :compilation-level 2
-	  :overlay-category 'flycheck-error-overlay
-	  :fringe-bitmap 'flycheck-fringe-bitmap-ball
-	  :fringe-face 'flycheck-fringe-error
-	  :error-list-face 'flycheck-error-list-error))
+;; (after! flycheck
+;;   :config
+;;   (flycheck-define-error-level 'error
+;; 	  :severity 100
+;; 	  :compilation-level 2
+;; 	  :overlay-category 'flycheck-error-overlay
+;; 	  :fringe-bitmap 'flycheck-fringe-bitmap-ball
+;; 	  :fringe-face 'flycheck-fringe-error
+;; 	  :error-list-face 'flycheck-error-list-error))
 
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "chromium")
@@ -284,3 +286,5 @@
                          (all-the-icons-icon-for-file link))))))
 
 (add-hook 'org-brain-after-resource-button-functions #'org-brain-insert-resource-icon)
+
+;; (def-package! wakatime)
