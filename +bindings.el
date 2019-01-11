@@ -17,6 +17,8 @@
       :inv "M-[" #'lsp-ui-peek-find-definitions
       :inv "M-]" #'lsp-ui-peek-find-implementation
       )
+(map! :after flymake
+      :nmvie "C-c ! n" #'flymake-goto-next-error)
 (map! :after avy
      :nm "f" #'avy-goto-char-2
       )
