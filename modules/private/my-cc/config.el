@@ -4,6 +4,16 @@
 
   (setq c-default-style "bsd")
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . +cc-c-c++-objc-mode))
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              ;; TODO work around https://github.com/hlissner/doom-emacs/issues/1006
+              ;; (when (and buffer-file-name (string-match-p "binutils\\|glibc" buffer-file-name))
+              ;;   (setq tab-width 8)
+              ;;   (c-set-style "gnu"))
+              (setq flymake-diagnostic-functions '(lsp--flymake-backend t))
+              (modify-syntax-entry ?_ "w")
+              ))
+
   )
 
 

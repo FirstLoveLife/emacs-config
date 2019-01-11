@@ -5,7 +5,7 @@
 (def-package! cc-mode
   :init
   ;; (display-line-numbers-disable))
-)
+  )
 
 (load! "+bindings")
 (load! "+org")
@@ -68,13 +68,13 @@
   :defer t
   :init
   :after  cc-mode
-  :hook (lsp-mode . flycheck-mode)
+  ;; :hook (lsp-mode . flycheck-mode)
   :config
   (setq lsp-auto-guess-root t)
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (require 'lsp-ui-flycheck)
-  (with-eval-after-load 'lsp-mode
-    (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
+  ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  ;; (require 'lsp-ui-flycheck)
+  ;; (with-eval-after-load 'lsp-mode
+  ;;   (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
   )
 
 (def-package! lsp-ui
@@ -269,8 +269,48 @@
 
 ;; (def-package! wakatime)
 
-(def-package! flycheck
-  :init (global-flycheck-mode))
+;; (def-package! flycheck
+;;   :init (global-flycheck-mode))
 
 (after! prog-mode
   (setq prog-mode-hook '()))
+
+(after! flycheck
+  ;; (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  (global-flycheck-mode -1)
+  )
+
+(after! flymake-proc
+  ;; disable flymake-proc
+  (setq-default flymake-diagnostic-functions nil)
+  )
+(defvar flymake-posframe-delay 0.5)
+(defvar flymake-posframe-buffer "*flymake-posframe*")
+(defvar-local flymake-posframe-timer nil)
+
+(defun flymake-posframe-hide ()
+  (require 'posframe)
+  (posframe-hide flymake-posframe-buffer))
+
+(defun flymake-posframe-display ()
+  (when flymake-mode
+    (flymake-posframe-hide)
+    (when-let ((diag (and flymake-mode
+                          (get-char-property (point) 'flymake-diagnostic))))
+      (posframe-show
+       flymake-posframe-buffer
+       :string (propertize (concat "➤ " (flymake--diag-text diag))
+                           'face
+                           (case (flymake--diag-type diag)
+                             (:error 'error)
+                             (:warning 'warning)
+                             (:note 'info)))))))
+
+(defun flymake-posframe-set-timer ()
+  (when flymake-posframe-timer
+    (cancel-timer flymake-posframe-timer))
+  (setq flymake-posframe-timer
+        (run-with-idle-timer flymake-posframe-delay nil #'flymake-posframe-display)))
+(add-hook 'post-command-hook #'flymake-posframe-set-timer)
+(add-hook! (doom-exit-buffer doom-exit-window) #'flymake-posframe-hide)
