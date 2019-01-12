@@ -321,3 +321,10 @@
   :config
   (set-company-backend! 'cmake-mode 'company-yasnippet)
   )
+
+
+(progn
+  (setq initial-buffer-choice "~/projects/faiz/include/rider/faiz/type_traits.hpp")
+  (require 'projectile)
+  (setq +workspaces-main "faiz")
+  )

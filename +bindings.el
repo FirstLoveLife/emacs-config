@@ -6,8 +6,10 @@
 (map!
  :inve "C-M-f" #'font-lock-mode
  )
+(map! :after company
+      :i "C-c C-f" #'company-files)
 
-(map!
+(map! :after org-brain
  :leader
  :inv "ob" #'org-brain-visualize)
 
