@@ -314,3 +314,10 @@
         (run-with-idle-timer flymake-posframe-delay nil #'flymake-posframe-display)))
 (add-hook 'post-command-hook #'flymake-posframe-set-timer)
 (add-hook! (doom-exit-buffer doom-exit-window) #'flymake-posframe-hide)
+
+(def-package! cmake-mode
+  :defer t
+  :hook (cmake-mode . yas-minor-mode)
+  :config
+  (set-company-backend! 'cmake-mode 'company-yasnippet)
+  )
