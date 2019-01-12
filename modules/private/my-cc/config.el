@@ -29,12 +29,12 @@
   ;; (ccls-use-default-rainbow-sem-highlight)
   ;; (setq ccls-initialization-options )
   ;; https://github.com/maskray/ccls/blob/master/src/config.h
-  ;; (setq
-  ;;  ccls-initialization-options
-  ;;  `(
-  ;;    :cacheDirectory "~/tmp/cclscache"
-  ;;    )
-  ;;  )
+  (setq
+   ccls-initialization-options
+   `(
+     :cacheDirectory "/home/firstlove/tmp/cclscache"
+     )
+   )
 
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp)
