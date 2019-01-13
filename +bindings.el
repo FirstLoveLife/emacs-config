@@ -9,6 +9,10 @@
 (map! :after company
       :i "C-c C-f" #'company-files)
 
+(map!
+      :nmvie "C-p" #'switch-to-next-buffer
+      :nmvie "C-n" #'switch-to-prev-buffer)
+
 (map! :after org-brain
  :leader
  :inv "ob" #'org-brain-visualize)

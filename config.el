@@ -246,6 +246,7 @@
 
 (def-package! adoc-mode
   :defer t
+  :hook (adoc-mode . visual-line-mode)
   :preface (provide 'adoc-mode)
   :mode ("\\.adoc\\'"))
 
@@ -336,3 +337,8 @@
   (setq +workspaces-main "faiz")
   )
 
+
+(def-package! doc-view
+  :defer t
+  :config
+  (setq doc-view-resolution 400))
