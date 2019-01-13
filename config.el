@@ -3,7 +3,9 @@
 
 (setq doom-localleader-key ";")
 (def-package! cc-mode
+  ;; :hook (c++-mode . visual-line-mode)
   :init
+  (visual-line-mode)
   ;; (display-line-numbers-disable))
   )
 
@@ -14,8 +16,8 @@
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
 (def-package! doom-themes
   :init
-  ;; (setq doom-theme 'doom-nord-light)
-  (setq doom-theme 'doom-Iosvkem)
+  (setq doom-theme 'doom-nord-light)
+  ;; (setq doom-theme 'doom-Iosvkem)
   ;; (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
   )
@@ -95,12 +97,14 @@
 
 (def-package! lsp-rust
   :init (add-hook 'rust-mode-hook #'lsp-rust-enable)
+  :defer t
   :config
   (set-company-backend! 'rust-mode 'company-lsp))
 
 
 
 (def-package! eglot
+  :defer t
   :init
   ;; (add-hook 'haskell-mode-hook 'eglot-ensure)
   ;; (add-hook 'c++-mode-hook 'eglot-ensure)
@@ -241,6 +245,7 @@
 
 
 (def-package! adoc-mode
+  :defer t
   :preface (provide 'adoc-mode)
   :mode ("\\.adoc\\'"))
 
@@ -272,7 +277,9 @@
 ;; (def-package! flycheck
 ;;   :init (global-flycheck-mode))
 
-(after! prog-mode
+(def-package! prog-mode
+  :hook (prog-mode . visual-line-mode)
+  :config
   (setq prog-mode-hook '()))
 
 (after! flycheck
@@ -328,3 +335,4 @@
   (require 'projectile)
   (setq +workspaces-main "faiz")
   )
+
