@@ -2,7 +2,7 @@
 # name: TEST_CASE
 # key: test
 # --
-TEST_CASE(${`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`})
+TEST_CASE("${`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}")
 {
     $0
 }
