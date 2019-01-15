@@ -171,9 +171,6 @@
 ;;  (add-hook 'racket-mode-hook #'lsp-racket-enable))
 
 
-(require 'edit-server)
-(edit-server-start)
-
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 ;; (after! ccls
 ;;       (map!
@@ -343,13 +340,11 @@
   :config
   (setq doc-view-resolution 400))
 
-(use-package pyim
-  :ensure t
+(def-package! pyim
   :demand t
   :config
   ;; 激活 basedict 拼音词库，五笔用户请继续阅读 README
-  (use-package pyim-basedict
-    :ensure t
+  (def-package! pyim-basedict
     :config (pyim-basedict-enable))
 
   (setq default-input-method "pyim")
@@ -390,3 +385,54 @@
 (require 'pyim)
 
 (require 'org-ref)
+
+(setq reftex-default-bibliography '("~/bibliography/references.bib"))
+
+;; see org-ref for use of these variables
+(setq org-ref-bibliography-notes "~/bibliography/notes.org"
+      org-ref-default-bibliography '("~/bibliography/references.bib")
+      org-ref-pdf-directory "~/bibliography/bibtex-pdfs/")
+
+(setq org-latex-prefer-user-labels 1)
+
+;; (setq org-latex-pdf-process
+;; '("latexmk -shell-escape -pdf %f"))
+
+
+
+;; (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+;; ;; (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"
+;;                               ;; "xelatex -interaction nonstopmode %f"))
+;; (setq org-latex-default-packages-alist
+;;      (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
+
+
+  ;; 使用xelatex一步生成PDF，不是org-latex-to-pdf-process这个命令
+  (setq org-latex-pdf-process
+        '(
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "rm -fr %b.out %b.log %b.tex auto"
+      ))
+  ;; 设置默认后端为 `xelatex'
+  (setq org-latex-compiler "xelatex")
+
+
+
+;; (add-to-list 'org-latex-classes
+;;              '("my-report"
+;;                "\\documentclass[11pt]{ctexrep}"
+;;                ("\\chapter{%s}" .
+;;                 "{\\ctexset{chapter={numbering=false}}\\chapter{%s}}")
+;;                ("\\section{%s}" . "\\section*{%s}")
+;;                ("\\subsection{%s}" . "\\subsection*{%s}")
+;;                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+;;                ("\\paragraph{%s}" . "\\paragraph*{%s}")))
+
+;; (setq org-latex-to-pdf-process '("xelatex %f"))
+
+(def-package! helm
+  :custom
+  (helm-M-x-fuzzy-match 1)
+  (helm-file-cache-fuzzy-match 1))
