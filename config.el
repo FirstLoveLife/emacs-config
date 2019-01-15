@@ -410,10 +410,14 @@
   ;; 使用xelatex一步生成PDF，不是org-latex-to-pdf-process这个命令
   (setq org-latex-pdf-process
         '(
+      "rm -fr %b.out  %b.bbl %b.log %b.aux %b.blg %b.toc auto texput.log"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "bibtex %b"
       "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
       "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
       "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "rm -fr %b.out %b.log %b.tex auto"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "rm -fr %b.out %b.bbl %b.log %b.aux %b.blg %b.toc auto texput.log"
       ))
   ;; 设置默认后端为 `xelatex'
   (setq org-latex-compiler "xelatex")

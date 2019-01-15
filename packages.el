@@ -9,27 +9,17 @@
 (package! avy)
 (package! lispyville)
 (package! pamparam)
-(package! lsp-java)
-(package! lsp-ruby)
-(package! lsp-python)
-(package! dap-mode)
 (package! company-lsp)
 (package! clang-format)
 
-(package! lsp-rust)
-(package! edit-server)
-(package! ag)
 (package! sml-mode)
 (package! cmake-mode)
 (package! eglot)
-(package! flycheck-clang-tidy)
 (package! lsp-mode)
-(package! flycheck-clang-analyzer)
 (package! lsp-ui)
 (package! lsp-haskell)
 (package! kotlin-mode)
 (package! company-lsp)
-(package! company-ghc)
 (package! spinner)
 (package! org-brain)
 
@@ -38,29 +28,24 @@
 
 (package! company-sml :recipe (:fetcher github :repo "nverno/company-sml" :files ("*")))
 
-(package! rmsbolt
-	  :recipe
-  (:files (:defaults "starters")
-          :fetcher gitlab
-          :repo "jgkamat/rmsbolt"))
+;(package! rmsbolt
+;	  :recipe
+;  (:files (:defaults "starters")
+;          :fetcher gitlab
+;          :repo "jgkamat/rmsbolt"))
 
-(package! company-nand2tetris)
-(package! nand2tetris-assembler)
-(package! exwm)
+;(package! exwm)
 (package! sicp)
 (package! lsp-rust)
 
-(package! lsp-racket :recipe (:fetcher github :repo "vishesh/lsp-racket" :files ("*")))
-(package! pamparam :recipe (:fetcher github :repo "abo-abo/pamparam" :files ("*")))
 (package! helm-rg)
+(package! google-translate)
 (package! ccls)
 (package! posframe)
 
 
+(package! org-ref)
 (package! adoc-mode)
 (package! pyim)
 (package! pyim-basedict)
 
-
-
-(package! org-ref)

@@ -9,6 +9,13 @@
 (map! :after company
       :i "C-c C-f" #'company-files)
 
+(map! :after org
+      :nmvie "M-[" #'org-ref-insert-link)
+
+(map! :after org-ref
+      :nmvie "C-M-[" #'doi-insert-bibtex
+      :nmvie "M-[" #'crossref-add-bibtex-entry)
+
 (map!
       :nmvie "C-p" #'switch-to-next-buffer
       :nmvie "C-n" #'switch-to-prev-buffer)
