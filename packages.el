@@ -58,3 +58,9 @@
 
 
 (package! adoc-mode)
+(package! pyim)
+(package! pyim-basedict)
+
+
+
+(package! org-ref)

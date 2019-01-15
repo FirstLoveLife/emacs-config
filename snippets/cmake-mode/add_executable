@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: add_executable
+# key: add_e
+# --
+add_executable($0)
