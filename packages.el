@@ -26,6 +26,9 @@
 (package! nand2tetris :recipe (:fetcher github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
 (package! flymake-sml :recipe (:fetcher github :repo "oskimura/flymake-sml" :files ("*")))
 
+(package! flycheck)
+(package! pyim-greatdict :recipe (:fetcher github :repo "tumashu/pyim-greatdict" :files ("*")))
+
 (package! company-sml :recipe (:fetcher github :repo "nverno/company-sml" :files ("*")))
 
 ;(package! rmsbolt

@@ -69,14 +69,15 @@
 (def-package! lsp-mode
   :defer t
   :init
+  (setq lsp-prefer-flymake nil)
   :after  cc-mode
-  ;; :hook (lsp-mode . flycheck-mode)
+  :hook (lsp-mode . flycheck-mode)
   :config
   (setq lsp-auto-guess-root t)
   ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  ;; (require 'lsp-ui-flycheck)
-  ;; (with-eval-after-load 'lsp-mode
-  ;;   (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
+  (require 'lsp-ui-flycheck)
+  (with-eval-after-load 'lsp-mode
+    (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
   )
 
 (def-package! lsp-ui
@@ -95,132 +96,126 @@
    lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs)))
   )
 
-(def-package! lsp-rust
-  :init (add-hook 'rust-mode-hook #'lsp-rust-enable)
-  :defer t
-  :config
-  (set-company-backend! 'rust-mode 'company-lsp))
 
 
-
-(def-package! eglot
-  :defer t
-  :init
-  ;; (add-hook 'haskell-mode-hook 'eglot-ensure)
-  ;; (add-hook 'c++-mode-hook 'eglot-ensure)
-  ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
-  ;; (add-hook 'python-mode-hook 'eglot-ensure)
-  ;; (add-hook 'java-mode-hook 'eglot-ensure)
-  (add-hook 'kotlin-mode-hook 'eglot-ensure))
-;; (add-hook 'haskell-mode-hook 'flycheck-mode)
-                                        ;(add-to-list 'company-backends 'company-ghc)
-
-;;                                         ;(set-company-backend! 'haskell-mode
-;;                                         ;  'company-ghc)
-;; (set-company-backend! 'emacs-lisp-mode
-;;   'company-elisp)
-;; (set-company-backend! 'ruby-mode
-;;   'company-lsp)
-
-;; ;; (set-company-backend! 'haskell-mode 'company-lsp)
-;; ;; (set-company-backend! 'ruby-mode
-;; ;;   'company-elisp)
-
-(after! haskell-mode
-  (require 'lsp-ui )
-  (require 'lsp-haskell)
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
-  (add-hook 'haskell-mode-hook 'flycheck-mode))
-
-
-(def-package! nand2tetris
-  :load-path "~/dev/nand2tetris"
-  :defer t
-  :config
-                                        ;(add-to-list 'company-backends 'company-nand2tetris)
-  (set-company-backend! 'nand2tetris-mode
-    'company-nand2tetris)
-  )
-
-;; (add-hook 'java-mode-hook  'lsp-java-enable)
-
-;; (def-package! lsp-ruby
+;; (def-package! eglot
+;;   :defer t
 ;;   :init
-;;   (add-hook 'ruby-mode-hook #'lsp-ruby-enable)
+;;   ;; (add-hook 'haskell-mode-hook 'eglot-ensure)
+;;   ;; (add-hook 'c++-mode-hook 'eglot-ensure)
+;;   ;; (add-hook 'ruby-mode-hook 'eglot-ensure)
+;;   ;; (add-hook 'python-mode-hook 'eglot-ensure)
+;;   ;; (add-hook 'java-mode-hook 'eglot-ensure)
+;;   (add-hook 'kotlin-mode-hook 'eglot-ensure))
+;; ;; (add-hook 'haskell-mode-hook 'flycheck-mode)
+;;                                         ;(add-to-list 'company-backends 'company-ghc)
+
+;; ;;                                         ;(set-company-backend! 'haskell-mode
+;; ;;                                         ;  'company-ghc)
+;; ;; (set-company-backend! 'emacs-lisp-mode
+;; ;;   'company-elisp)
+;; ;; (set-company-backend! 'ruby-mode
+;; ;;   'company-lsp)
+
+;; ;; ;; (set-company-backend! 'haskell-mode 'company-lsp)
+;; ;; ;; (set-company-backend! 'ruby-mode
+;; ;; ;;   'company-elisp)
+
+;; (after! haskell-mode
+;;   (require 'lsp-ui )
+;;   (require 'lsp-haskell)
+;;   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;   (add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+;;   (add-hook 'haskell-mode-hook 'flycheck-mode))
+
+
+;; (def-package! nand2tetris
+;;   :load-path "~/dev/nand2tetris"
+;;   :defer t
 ;;   :config
-;;   (setq lsp-hover-text-function 'lsp--text-document-signature-help)
+;;                                         ;(add-to-list 'company-backends 'company-nand2tetris)
+;;   (set-company-backend! 'nand2tetris-mode
+;;     'company-nand2tetris)
 ;;   )
 
+;; ;; (add-hook 'java-mode-hook  'lsp-java-enable)
+
+;; ;; (def-package! lsp-ruby
+;; ;;   :init
+;; ;;   (add-hook 'ruby-mode-hook #'lsp-ruby-enable)
+;; ;;   :config
+;; ;;   (setq lsp-hover-text-function 'lsp--text-document-signature-help)
+;; ;;   )
 
 
-;; (def-package! lsp-python
-;;   :after lsp-mode
+
+;; ;; (def-package! lsp-python
+;; ;;   :after lsp-mode
+;; ;;   :config
+;; ;;   (add-hook 'python-mode-hook #'lsp-python-enable)
+;; ;;   )
+
+
+;; ;; (advice-add 'eldoc-display-message-p :override 'my/eldoc-display-message-p)
+
+;; ;; (set-company-backend! 'c++-mode
+;; ;;      'company-lsp)
+;; ;; (def-package! lsp-racket
+;; ;;  :config
+;; ;;  :after lsp-mode
+;; ;;  (add-hook 'racket-mode-hook #'lsp-racket-enable))
+
+
+;; (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; ;; (after! ccls
+;; ;;       (map!
+;; ;;        :map c++-mode-map
+;; ;;        :leader
+;;                                         ;        :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))) )
+
+
+;; (def-package! sml-mode
+;;   :defer t
 ;;   :config
-;;   (add-hook 'python-mode-hook #'lsp-python-enable)
+;;   (require 'company-sml)
+;;   (add-hook 'company-sml 'company-sml-setup)
+;;   (set-company-backend! 'sml-mode
+;;     'company-keywords)
 ;;   )
 
+;; ;; (set-docset! 'js2-mode "JavaScript" "JQuery")
+;; ;; (set-docset! 'haskell-mode "Haskell")
 
-;; (advice-add 'eldoc-display-message-p :override 'my/eldoc-display-message-p)
+;; ;; (set-docset! 'c++-mode "C++" "Boost")
+;; ;; (set-docset! 'css-mode "Css" "Html")
+;; ;; (set-docset! 'html-mode "Html" "Css")
 
-;; (set-company-backend! 'c++-mode
-;;      'company-lsp)
-;; (def-package! lsp-racket
-;;  :config
-;;  :after lsp-mode
-;;  (add-hook 'racket-mode-hook #'lsp-racket-enable))
+;; ;; (require 'exwm)
+;; ;; (require 'exwm-config)
+;; ;; (exwm-config-default)
 
+;; (setq browse-url-browser-function 'browse-url-generic
+;;       browse-url-generic-program "chromium")
+;; (setq helm-dash-browser-func 'browse-url-generic)
 
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-;; (after! ccls
-;;       (map!
-;;        :map c++-mode-map
-;;        :leader
-                                        ;        :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))) )
+;; (setq elfeed-show-mode-hook
+;;       (lambda ()
+;; 	    (set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "Iosevka" :size 17))
+;; 	    (setq fill-column 120)
+;; 	    (setq elfeed-show-entry-switch #'my-show-elfeed)))
 
+;; (defun my-show-elfeed (buffer)
+;;   (with-current-buffer buffer
+;;     (setq buffer-read-only nil)
+;;     (goto-char (point-min))
+;;     (re-search-forward "\n\n")
+;;     (fill-individual-paragraphs (point) (point-max))
+;;     (setq buffer-read-only t))
+;;   (switch-to-buffer buffer))
 
-(def-package! sml-mode
-  :defer t
-  :config
-  (require 'company-sml)
-  (add-hook 'company-sml 'company-sml-setup)
-  (set-company-backend! 'sml-mode
-    'company-keywords)
-  )
-
-;; (set-docset! 'js2-mode "JavaScript" "JQuery")
-;; (set-docset! 'haskell-mode "Haskell")
-
-;; (set-docset! 'c++-mode "C++" "Boost")
-;; (set-docset! 'css-mode "Css" "Html")
-;; (set-docset! 'html-mode "Html" "Css")
-
-;; (require 'exwm)
-;; (require 'exwm-config)
-;; (exwm-config-default)
-
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "chromium")
-(setq helm-dash-browser-func 'browse-url-generic)
-
-(setq elfeed-show-mode-hook
-      (lambda ()
-	    (set-face-attribute 'variable-pitch (selected-frame) :font (font-spec :family "Iosevka" :size 17))
-	    (setq fill-column 120)
-	    (setq elfeed-show-entry-switch #'my-show-elfeed)))
-
-(defun my-show-elfeed (buffer)
-  (with-current-buffer buffer
-    (setq buffer-read-only nil)
-    (goto-char (point-min))
-    (re-search-forward "\n\n")
-    (fill-individual-paragraphs (point) (point-max))
-    (setq buffer-read-only t))
-  (switch-to-buffer buffer))
-
-(after! elfeed
-  (setq elfeed-search-filter "@8-year-ago ")
-  )
+;; (after! elfeed
+;;   (setq elfeed-search-filter "@8-year-ago ")
+;;   )
 (def-package! org-brain
   :defer 0.3
   :init
@@ -280,45 +275,45 @@
   :config
   (setq prog-mode-hook '()))
 
-(after! flycheck
-  ;; (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  (global-flycheck-mode -1)
-  )
+;; (after! flycheck
+;;   ;; (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+;;   (global-flycheck-mode -1)
+;;   )
 
-(after! flymake-proc
-  ;; disable flymake-proc
-  (setq-default flymake-diagnostic-functions nil)
-  )
-(defvar flymake-posframe-delay 0.5)
-(defvar flymake-posframe-buffer "*flymake-posframe*")
-(defvar-local flymake-posframe-timer nil)
+;; (after! flymake-proc
+;;   ;; disable flymake-proc
+;;   (setq-default flymake-diagnostic-functions nil)
+;;   )
+;; (defvar flymake-posframe-delay 0.5)
+;; (defvar flymake-posframe-buffer "*flymake-posframe*")
+;; (defvar-local flymake-posframe-timer nil)
 
-(defun flymake-posframe-hide ()
-  (require 'posframe)
-  (posframe-hide flymake-posframe-buffer))
+;; (defun flymake-posframe-hide ()
+;;   (require 'posframe)
+;;   (posframe-hide flymake-posframe-buffer))
 
-(defun flymake-posframe-display ()
-  (when flymake-mode
-    (flymake-posframe-hide)
-    (when-let ((diag (and flymake-mode
-                          (get-char-property (point) 'flymake-diagnostic))))
-      (posframe-show
-       flymake-posframe-buffer
-       :string (propertize (concat "➤ " (flymake--diag-text diag))
-                           'face
-                           (case (flymake--diag-type diag)
-                             (:error 'error)
-                             (:warning 'warning)
-                             (:note 'info)))))))
+;; (defun flymake-posframe-display ()
+;;   (when flymake-mode
+;;     (flymake-posframe-hide)
+;;     (when-let ((diag (and flymake-mode
+;;                           (get-char-property (point) 'flymake-diagnostic))))
+;;       (posframe-show
+;;        flymake-posframe-buffer
+;;        :string (propertize (concat "➤ " (flymake--diag-text diag))
+;;                            'face
+;;                            (case (flymake--diag-type diag)
+;;                              (:error 'error)
+;;                              (:warning 'warning)
+;;                              (:note 'info)))))))
 
-(defun flymake-posframe-set-timer ()
-  (when flymake-posframe-timer
-    (cancel-timer flymake-posframe-timer))
-  (setq flymake-posframe-timer
-        (run-with-idle-timer flymake-posframe-delay nil #'flymake-posframe-display)))
-(add-hook 'post-command-hook #'flymake-posframe-set-timer)
-(add-hook! (doom-exit-buffer doom-exit-window) #'flymake-posframe-hide)
+;; (defun flymake-posframe-set-timer ()
+;;   (when flymake-posframe-timer
+;;     (cancel-timer flymake-posframe-timer))
+;;   (setq flymake-posframe-timer
+;;         (run-with-idle-timer flymake-posframe-delay nil #'flymake-posframe-display)))
+;; (add-hook 'post-command-hook #'flymake-posframe-set-timer)
+;; (add-hook! (doom-exit-buffer doom-exit-window) #'flymake-posframe-hide)
 
 (def-package! cmake-mode
   :defer t
@@ -335,52 +330,54 @@
   )
 
 
-(def-package! doc-view
-  :defer t
-  :config
-  (setq doc-view-resolution 400))
+;; (def-package! doc-view
+;;   :defer t
+;;   :config
+;;   (setq doc-view-resolution 400))
 
-(def-package! pyim
-  :demand t
-  :config
-  ;; 激活 basedict 拼音词库，五笔用户请继续阅读 README
-  (def-package! pyim-basedict
-    :config (pyim-basedict-enable))
+;; (def-package! pyim
+;;   :demand t
+;;   :custom
+;;   (pyim-dcache-directory "~/tmp")
+;;   :config
+;;   ;; 激活 basedict 拼音词库，五笔用户请继续阅读 README
+;;   (def-package! pyim-basedict
+;;     :config (pyim-basedict-enable))
 
-  (setq default-input-method "pyim")
+;;   (setq default-input-method "pyim")
 
-  ;; 我使用全拼
-  (setq pyim-default-scheme 'quanpin)
+;;   ;; 我使用全拼
+;;   (setq pyim-default-scheme 'quanpin)
 
-  ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
-  ;; 我自己使用的中英文动态切换规则是：
-  ;; 1. 光标只有在注释里面时，才可以输入中文。
-  ;; 2. 光标前是汉字字符时，才能输入中文。
-  ;; 3. 使用 M-j 快捷键，强制将光标前的拼音字符串转换为中文。
-  (setq-default pyim-english-input-switch-functions
-                '(pyim-probe-dynamic-english
-                  pyim-probe-isearch-mode
-                  pyim-probe-program-mode
-                  pyim-probe-org-structure-template))
+;;   ;; 设置 pyim 探针设置，这是 pyim 高级功能设置，可以实现 *无痛* 中英文切换 :-)
+;;   ;; 我自己使用的中英文动态切换规则是：
+;;   ;; 1. 光标只有在注释里面时，才可以输入中文。
+;;   ;; 2. 光标前是汉字字符时，才能输入中文。
+;;   ;; 3. 使用 M-j 快捷键，强制将光标前的拼音字符串转换为中文。
+;;   (setq-default pyim-english-input-switch-functions
+;;                 '(pyim-probe-dynamic-english
+;;                   pyim-probe-isearch-mode
+;;                   pyim-probe-program-mode
+;;                   pyim-probe-org-structure-template))
 
-  (setq-default pyim-punctuation-half-width-functions
-                '(pyim-probe-punctuation-line-beginning
-                  pyim-probe-punctuation-after-punctuation))
+;;   (setq-default pyim-punctuation-half-width-functions
+;;                 '(pyim-probe-punctuation-line-beginning
+;;                   pyim-probe-punctuation-after-punctuation))
 
-  ;; 开启拼音搜索功能
-  (pyim-isearch-mode 1)
+;;   ;; 开启拼音搜索功能
+;;   (pyim-isearch-mode 1)
 
-  ;; 使用 pupup-el 来绘制选词框, 如果用 emacs26, 建议设置
-  ;; 为 'posframe, 速度很快并且菜单不会变形，不过需要用户
-  ;; 手动安装 posframe 包。
-  (setq pyim-page-tooltip 'popup)
+;;   ;; 使用 pupup-el 来绘制选词框, 如果用 emacs26, 建议设置
+;;   ;; 为 'posframe, 速度很快并且菜单不会变形，不过需要用户
+;;   ;; 手动安装 posframe 包。
+;;   (setq pyim-page-tooltip 'popup)
 
-  ;; 选词框显示5个候选词
-  (setq pyim-page-length 5)
+;;   ;; 选词框显示5个候选词
+;;   (setq pyim-page-length 5)
 
-  :bind
-  (("M-j" . pyim-convert-code-at-point) ;与 pyim-probe-dynamic-english 配合
-   ("C-;" . pyim-delete-word-from-personal-buffer)))
+;;   :bind
+;;   (("M-j" . pyim-convert-code-at-point) ;与 pyim-probe-dynamic-english 配合
+;;    ("C-;" . pyim-delete-word-from-personal-buffer)))
 
 (require 'pyim)
 
@@ -388,31 +385,23 @@
 
 (setq reftex-default-bibliography '("~/bibliography/references.bib"))
 
-;; see org-ref for use of these variables
 (setq org-ref-bibliography-notes "~/bibliography/notes.org"
       org-ref-default-bibliography '("~/bibliography/references.bib")
       org-ref-pdf-directory "~/bibliography/bibtex-pdfs/")
 
-(setq org-latex-prefer-user-labels 1)
-
-;; (setq org-latex-pdf-process
-;; '("latexmk -shell-escape -pdf %f"))
 
 
-
-;; (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
-;; ;; (setq org-latex-pdf-process '("xelatex -interaction nonstopmode %f"
-;;                               ;; "xelatex -interaction nonstopmode %f"))
-;; (setq org-latex-default-packages-alist
-;;      (remove '("AUTO" "inputenc" t) org-latex-default-packages-alist))
-
-
-  ;; 使用xelatex一步生成PDF，不是org-latex-to-pdf-process这个命令
   (setq org-latex-pdf-process
         '(
       "rm -fr %b.out  %b.bbl %b.log %b.aux %b.blg %b.toc auto texput.log"
       "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
       "bibtex %b"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
       "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
       "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
       "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
@@ -424,19 +413,13 @@
 
 
 
-;; (add-to-list 'org-latex-classes
-;;              '("my-report"
-;;                "\\documentclass[11pt]{ctexrep}"
-;;                ("\\chapter{%s}" .
-;;                 "{\\ctexset{chapter={numbering=false}}\\chapter{%s}}")
-;;                ("\\section{%s}" . "\\section*{%s}")
-;;                ("\\subsection{%s}" . "\\subsection*{%s}")
-;;                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-;;                ("\\paragraph{%s}" . "\\paragraph*{%s}")))
-
-;; (setq org-latex-to-pdf-process '("xelatex %f"))
 
 (def-package! helm
   :custom
   (helm-M-x-fuzzy-match 1)
   (helm-file-cache-fuzzy-match 1))
+
+(def-package! pyim
+  :custom
+  (pyim-page-length 15)
+)
