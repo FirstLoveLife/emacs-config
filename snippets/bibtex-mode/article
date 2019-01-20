@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: article
+# key: art
+# --
+@article{$0,
+ title={$1},
+ author={$6},
+ year={$2},
+ month={$3},
+ pages={$4–$5}
+}
