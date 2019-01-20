@@ -70,9 +70,10 @@
   :defer t
   :init
   (setq lsp-prefer-flymake nil)
-  :after  cc-mode
+:after  cc-mode
   :hook (lsp-mode . flycheck-mode)
   :config
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (setq lsp-auto-guess-root t)
   ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (require 'lsp-ui-flycheck)
