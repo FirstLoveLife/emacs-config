@@ -1,0 +1,9 @@
+* build
+#+BEGIN_SRC elisp
+git clone https://github.com/hlissner/doom-emacs/ ~/.emacs.d
+cd ~/.emacs.d
+git checkout develop
+git clone https://github.com/FirstLoveLife/emacs-config ~/.doom.d
+cd ~/.doom.d
+~/.emacs.d/bin/doom refresh~
+#+END_SRC
