@@ -424,3 +424,16 @@
   :custom
   (pyim-page-length 15)
 )
+
+(defun my/add-catch2 ()
+  ""
+  (interactive)
+  (setq p (re-search-forward "\#include"))
+  (if p
+      (progn
+        (goto-char p)
+        (end-of-line)
+        (open-line 1)
+        (forward-line)
+        (insert "#include <catch2/catch.hpp>")
+        (save-buffer 1))))
