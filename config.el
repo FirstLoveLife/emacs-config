@@ -430,7 +430,7 @@
   (pyim-page-length 15)
   )
 
-(defun my/add-catch2 (file)
+(defun rx/add-catch2 (file)
   "insert catch2 header file"
   (interactive)
   (find-file file)
@@ -450,11 +450,20 @@
   )
 
 
-(defun my-dired-do-stats (&optional arg)
+(defun rx/my-dired-do-stats (&optional arg)
   "Do stats for the marked files."
   (interactive "P")
   (dolist (file  (dired-get-marked-files nil arg))
-    (my/add-catch2 file)))
+    (rx/add-catch2 file)))
 
 
-(setq delete-by-moving-to-trash t)
+(setq rx/delete-by-moving-to-trash t)
+
+;; (after! evil-matchit-c
+;;      (add-to-list 'evilmi-c-extract-keyword-howtos '("^<[ \t]*\\([a-z]+\\)\\( .*\\| *\\)>$" 1)))
+
+(defun rx/insert-nondirectory-nonextension-file-name-at-point ()
+  "e.g., /usr/share/ha.cpp => ha"
+   (interactive)
+   (insert (file-name-nondirectory (file-name-sans-extension  buffer-file-name)))
+   )
