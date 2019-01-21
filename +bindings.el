@@ -36,7 +36,7 @@
      :nm "f" #'avy-goto-char-2
       )
 (map! :after helm-projectile
-      :ine "M-r" #'helm-projectile-rg)
+      :ine "C-M-r" #'helm-projectile-rg)
 
 
 (map! :after persp-mode
