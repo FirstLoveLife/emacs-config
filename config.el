@@ -450,3 +450,6 @@
   (interactive "P")
   (dolist (file  (dired-get-marked-files nil arg))
     (my/add-catch2 file)))
+
+
+(setq delete-by-moving-to-trash t)
