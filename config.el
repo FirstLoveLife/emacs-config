@@ -425,15 +425,28 @@
   (pyim-page-length 15)
 )
 
-(defun my/add-catch2 ()
-  ""
+(defun my/add-catch2 (file)
+  "insert catch2 header file"
   (interactive)
-  (setq p (re-search-forward "\#include"))
+  (find-file file)
+  (goto-line 1)
+  (setq p (re-search-forward "\#include" nil t 1))
   (if p
       (progn
         (goto-char p)
         (end-of-line)
         (open-line 1)
-        (forward-line)
+        (forward-line 1)
         (insert "#include <catch2/catch.hpp>")
-        (save-buffer 1))))
+        )
+    (insert "#include <catch2/catch.hpp>")
+    )
+  (open-line 1)  (save-buffer 1)
+  )
+
+
+(defun my-dired-do-stats (&optional arg)
+  "Do stats for the marked files."
+  (interactive "P")
+  (dolist (file  (dired-get-marked-files nil arg))
+    (my/add-catch2 file)))
