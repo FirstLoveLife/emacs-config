@@ -3,7 +3,7 @@
 
 (setq doom-localleader-key ";")
 (def-package! cc-mode
-  ;; :hook (c++-mode . visual-line-mode)
+  :hook (c++-mode . lispy-mode)
   :init
   (visual-line-mode)
   ;; (display-line-numbers-disable))
@@ -70,10 +70,15 @@
   :defer t
   :init
   (setq lsp-prefer-flymake nil)
-:after  cc-mode
+
+  :after  cc-mode
   :hook (lsp-mode . flycheck-mode)
   :config
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  (set-face-attribute 'lsp-face-highlight-textual nil
+		              :background "#f2e8e8" :foreground "#070707"
+                      )
+
   (setq lsp-auto-guess-root t)
   ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
   (require 'lsp-ui-flycheck)
@@ -392,25 +397,25 @@
 
 
 
-  (setq org-latex-pdf-process
-        '(
-      "rm -fr %b.out  %b.bbl %b.log %b.aux %b.blg %b.toc auto texput.log"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "bibtex %b"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-      "rm -fr %b.out %b.bbl %b.log %b.aux %b.blg %b.toc auto texput.log"
-      ))
-  ;; 设置默认后端为 `xelatex'
-  (setq org-latex-compiler "xelatex")
+(setq org-latex-pdf-process
+      '(
+        "rm -fr %b.out  %b.bbl %b.log %b.aux %b.blg %b.toc auto texput.log"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "bibtex %b"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "xelatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "rm -fr %b.out %b.bbl %b.log %b.aux %b.blg %b.toc auto texput.log"
+        ))
+;; 设置默认后端为 `xelatex'
+(setq org-latex-compiler "xelatex")
 
 
 
@@ -423,7 +428,7 @@
 (def-package! pyim
   :custom
   (pyim-page-length 15)
-)
+  )
 
 (defun my/add-catch2 (file)
   "insert catch2 header file"
