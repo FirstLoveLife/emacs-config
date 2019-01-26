@@ -2,10 +2,10 @@
 
 
 (setq doom-localleader-key ";")
-(def-package! cc-mode
-  :hook (c++-mode . lispy-mode)
-  :init
-  (visual-line-mode)
+(after! cc-mode
+  ;; :hook (c++-mode . lispy-mode)
+  ;; :init
+  ;; (visual-line-mode)
   ;; (display-line-numbers-disable))
   )
 
@@ -52,19 +52,19 @@
 ;;   )
 
 
-(def-package! lispy
-  :hook ( (emacs-lisp-mode scheme-mode racket-mode) . lispy-mode)
-  :config
-  (lispy-set-key-theme '(special paredit c-digits))
-  (setq lispy-outline "^;; \\(?:;[^#]\\|\\*+\\)"
-        lispy-outline-header ";; "
-        lispy-ignore-whitespace t))
+;; (def-package! lispy
+;;   :hook ( (emacs-lisp-mode scheme-mode racket-mode) . lispy-mode)
+;;   :config
+;;   (lispy-set-key-theme '(special paredit c-digits))
+;;   (setq lispy-outline "^;; \\(?:;[^#]\\|\\*+\\)"
+;;         lispy-outline-header ";; "
+;;         lispy-ignore-whitespace t))
 
 ;; Also use lispyville in prog-mode for [ ] < >
-(def-package! lispyville
-  :demand t
-  :after (evil)
-  :hook (lispy-mode . lispyville-mode))
+;; (def-package! lispyville
+;;   :demand t
+;;   :after (evil)
+;;   :hook (lispy-mode . lispyville-mode))
 
 (def-package! lsp-mode
   :defer t
@@ -74,6 +74,7 @@
   :after  cc-mode
   :hook (lsp-mode . flycheck-mode)
   :config
+  (setq lsp-enable-snippet nil)
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (set-face-attribute 'lsp-face-highlight-textual nil
 		              :background "#f2e8e8" :foreground "#070707"
@@ -467,3 +468,11 @@
    (interactive)
    (insert (file-name-nondirectory (file-name-sans-extension  buffer-file-name)))
    )
+
+    (setq-default c-basic-offset 4)
+(setq c-syntactic-indentation nil)
+
+
+(after! python
+  (add-hook! python-mode #'lsp)
+  )
