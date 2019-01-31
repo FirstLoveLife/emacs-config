@@ -42,7 +42,7 @@
   )
 
 
-(def-package! cpp-auto-include
-  :load-path "/home/firstlove/dev/emacs-cpp-auto-include")
+;; (def-package! cpp-auto-include
+;;   :load-path "/home/firstlove/dev/emacs-cpp-auto-include")
 
 ;; :cacheDirectory ("~/tmp/cclscache")
