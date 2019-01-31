@@ -74,7 +74,7 @@
   :after  cc-mode
   :hook (lsp-mode . flycheck-mode)
   :config
-  (setq lsp-enable-snippet nil)
+  ;; (setq lsp-enable-snippet nil)
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (set-face-attribute 'lsp-face-highlight-textual nil
 		              :background "#f2e8e8" :foreground "#070707"
@@ -331,10 +331,10 @@
 
 
 (progn
-  (setq initial-buffer-choice "~/projects/faiz/include/rider/faiz/type_traits.hpp")
-  (require 'projectile)
-  (setq +workspaces-main "faiz")
-  )
+ (setq initial-buffer-choice "~/projects/faiz/include/rider/faiz/type_traits.hpp")
+ (require 'projectile)
+ (setq +workspaces-main "faiz")
+ )
 
 
 ;; (def-package! doc-view
@@ -386,9 +386,9 @@
 ;;   (("M-j" . pyim-convert-code-at-point) ;与 pyim-probe-dynamic-english 配合
 ;;    ("C-;" . pyim-delete-word-from-personal-buffer)))
 
-(require 'pyim)
+;; (require 'pyim)
 
-(require 'org-ref)
+;; (require 'org-ref)
 
 (setq reftex-default-bibliography '("~/bibliography/references.bib"))
 
@@ -476,3 +476,14 @@
 (after! python
   (add-hook! python-mode #'lsp)
   )
+
+;; (defun forward-to-word (arg)
+;;   "Move forward until encountering the beginning of a word.
+;; With argument, do this that many times."
+;;   (interactive "^p")
+;;   (or (re-search-forward (if (> arg 0) "\\W\\b" "\\b\\W") nil t arg)
+;;       (goto-char (if (> arg 0) (point-max) (point-min)))))
+
+
+(define-key evil-normal-state-map (kbd "C-a") #'forward-to-word)
+(define-key evil-normal-state-map (kbd "C-i") #'backward-to-word)

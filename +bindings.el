@@ -106,3 +106,25 @@
 (setcdr evil-insert-state-map nil)
 (define-key evil-insert-state-map (read-kbd-macro evil-toggle-key) 'evil-normal-state)
 (define-key evil-insert-state-map [escape] 'evil-normal-state)
+
+
+(defun individual-visibility-source-blocks ()
+  "Fold some blocks in the current buffer."
+  (interactive)
+  (org-show-block-all)
+  (org-block-map
+   (lambda ()
+     (let ((case-fold-search t))
+       (when (and
+              (save-excursion
+                (beginning-of-line 1)
+                (looking-at org-block-regexp))
+              (cl-assoc
+               ':hidden
+               (cl-third
+                (org-babel-get-src-block-info))))
+         (org-hide-block-toggle))))))
+
+(add-hook
+ 'org-mode-hook
+ (function individual-visibility-source-blocks))

@@ -2,7 +2,8 @@
 
 (after! cc-mode
 
-  (setq c-default-style "bsd")
+  ;; (setq c-default-style "bsd")
+  (lsp)
   (add-to-list 'auto-mode-alist '("\\.inc\\'" . +cc-c-c++-objc-mode))
   (add-hook 'c-mode-common-hook
             (lambda ()
