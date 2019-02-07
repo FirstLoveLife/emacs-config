@@ -7,6 +7,7 @@
  :inve "C-M-f" #'font-lock-mode
  )
 (map! :after company
+      :map company-active-map
       :i "C-c C-f" #'company-files)
 
 ;; (map! :after org
@@ -23,6 +24,12 @@
 (map! :after org-brain
  :leader
  :inv "ob" #'org-brain-visualize)
+
+
+(map! :after elisp-mode
+      :map emacs-lisp-mode-map
+      :inv "M-[" 'xref-find-definitions
+      :inv "M-p" 'xref-pop-marker-stack)
 
 (map! :after lsp-ui
       :inv "M-n" #'lsp-ui-peek-jump-forward
