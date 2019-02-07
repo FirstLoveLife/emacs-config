@@ -487,3 +487,12 @@
 
 (define-key evil-normal-state-map (kbd "C-a") #'forward-to-word)
 (define-key evil-normal-state-map (kbd "C-i") #'backward-to-word)
+
+
+;; (with-eval-after-load 'lsp-mode
+  ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  ;; (require 'lsp-rust)
+
+(with-eval-after-load 'lsp-mode
+  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  (require 'lsp-rust))

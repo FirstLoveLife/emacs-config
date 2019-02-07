@@ -39,7 +39,6 @@
 
 ;(package! exwm)
 (package! sicp)
-(package! lsp-rust)
 
 (package! helm-rg)
 (package! google-translate)
@@ -52,3 +51,10 @@
 (package! pyim)
 (package! pyim-basedict)
 
+(package! anki-editor)
+
+
+(package! emacs-racer :recipe (:fetcher github :repo "racer-rust/emacs-racer" :files ("*")))
+(package! rustic :recipe (:fetcher github :repo "brotzeit/rustic" :files ("*")))
+
+(package! lsp-rust :recipe (:fetcher github :repo "sethm/lsp-rust" :files ("*")))
