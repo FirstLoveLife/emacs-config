@@ -32,6 +32,7 @@
   )
 
 (after! company
+  (global-company-mode)
   (setq company-minimum-prefix-length 2
         company-quickhelp-delay nil
         company-show-numbers t
@@ -42,7 +43,7 @@
   :config
   ;; (add-hook 'java-mode-hook (lambda () (push 'company-lsp company-backends)))
   ;; (push 'java-mode company-global-modes)
-  (setq company-transformers nil company-lsp-cache-candidates nil)
+  ;; (setq company-transformers nil company-lsp-cache-candidates nil)
   )
 
 
@@ -86,7 +87,7 @@
   (require 'lsp-clients)
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (set-face-attribute 'lsp-face-highlight-textual nil
-		              :background "#f2e8e8" :foreground "#070707"
+    	              :background "#f2e8e8" :foreground "#070707"
                       )
 
   (setq lsp-auto-guess-root t)
@@ -505,7 +506,6 @@
 ;; (with-eval-after-load 'lsp-mode
   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   ;; (require 'lsp-rust))
-
 
 (def-package! rust-mode
   :defer t

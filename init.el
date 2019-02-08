@@ -23,7 +23,9 @@
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
-       company           ; the ultimate code completion backend
+       (company           ; the ultimate code completion backend
+        +auto
+        )
        helm              ; the *other* search engine for love and life
        ;;ido              ; the other *other* search engine...
        ;;ivy              ; a search engine for love and life
@@ -168,8 +170,9 @@
        ;; provides a Spacemacs-inspired keybinding scheme, a custom yasnippet
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
-       (default +bindings +smartparens +snippets +evil-commands)
+       (default +bindings +childframe +auto +smartparens +snippets +evil-commands)
+
        :private
         my-cc
         ;; my-agda
-  )
+        )
