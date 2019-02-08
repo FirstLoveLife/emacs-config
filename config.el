@@ -16,9 +16,9 @@
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
 (def-package! doom-themes
   :init
-  (setq doom-theme 'doom-nord-light)
+  ;; (setq doom-theme 'doom-nord-light)
   ;; (setq doom-theme 'doom-Iosvkem)
-  ;; (setq doom-theme 'doom-dracula)
+  (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
   )
 ;; (setq doom-theme 'doom-one))
@@ -51,7 +51,6 @@
 ;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
 ;;   )
 
-
 ;; (def-package! lispy
 ;;   :hook ( (emacs-lisp-mode scheme-mode racket-mode) . lispy-mode)
 ;;   :config
@@ -74,7 +73,17 @@
   :after  cc-mode
   :hook (lsp-mode . flycheck-mode)
   :config
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection
+'("rustup" "run" "nightly" "rls")
+;; '("rls")
+)
+                  :major-modes '(rust-mode rustic-mode)
+                  :priority -1
+                  :server-id 'rls
+                  :notification-handlers (lsp-ht ("window/progress" 'lsp-clients--rust-window-progress))))
   ;; (setq lsp-enable-snippet nil)
+  (require 'lsp-clients)
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (set-face-attribute 'lsp-face-highlight-textual nil
 		              :background "#f2e8e8" :foreground "#070707"
@@ -330,11 +339,11 @@
   )
 
 
-(progn
- (setq initial-buffer-choice "~/projects/faiz/include/rider/faiz/type_traits.hpp")
- (require 'projectile)
- (setq +workspaces-main "faiz")
- )
+;; (progn
+;;  (setq initial-buffer-choice "~/projects/faiz/include/rider/faiz/type_traits.hpp")
+;;  (require 'projectile)
+;;  (setq +workspaces-main "faiz")
+;;  )
 
 
 ;; (def-package! doc-view
@@ -493,6 +502,27 @@
   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   ;; (require 'lsp-rust)
 
-(with-eval-after-load 'lsp-mode
-  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-  (require 'lsp-rust))
+;; (with-eval-after-load 'lsp-mode
+  ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  ;; (require 'lsp-rust))
+
+
+(def-package! rust-mode
+  :defer t
+  :bind (("C-c TAB" . rust-format-buffer))
+  :hook
+  (rust-mode . lsp)
+  (prog-mode . electric-pair-mode)
+  :config
+  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+  (def-package! racer
+    :defer t)
+  (def-package! flycheck
+    )
+  )
+
+(def-package! cargo
+  :hook (rust-mode . cargo-minor-mode))
+
+(def-package! flycheck-rust
+  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
