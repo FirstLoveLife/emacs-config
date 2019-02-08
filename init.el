@@ -24,6 +24,7 @@
 
        :completion
        (company           ; the ultimate code completion backend
+        +childframe
         +auto
         )
        helm              ; the *other* search engine for love and life
