@@ -7,7 +7,7 @@
 
 
 (package! avy)
-(package! lispyville)
+;; (package! lispyville)
 (package! pamparam)
 (package! company-lsp)
 (package! clang-format)
@@ -52,6 +52,9 @@
 (package! pyim-basedict)
 
 (package! anki-editor)
+(package! rust-mode)
+(package! cargo)
+(package! flycheck-rust)
 
 
 (package! emacs-racer :recipe (:fetcher github :repo "racer-rust/emacs-racer" :files ("*")))
