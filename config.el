@@ -76,9 +76,7 @@
   :config
 (lsp-register-client
  (make-lsp-client :new-connection (lsp-stdio-connection
-'("rustup" "run" "nightly" "rls")
-;; '("rls")
-)
+'("rustup" "run" "nightly" "rls"))
                   :major-modes '(rust-mode rustic-mode)
                   :priority -1
                   :server-id 'rls
@@ -526,3 +524,8 @@
 
 (def-package! flycheck-rust
   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;; (defun +lookup*add-jump-marker (&optional marker)
+;;   (when (bound-and-true-p evil-mode)
+;;     (evil-set-jump marker)))
+;; (advice-add #'xref-push-marker-stack :after #'+lookup*add-jump-marker)

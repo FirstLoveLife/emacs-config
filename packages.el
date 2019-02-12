@@ -61,3 +61,5 @@
 (package! rustic :recipe (:fetcher github :repo "brotzeit/rustic" :files ("*")))
 
 (package! lsp-rust :recipe (:fetcher github :repo "sethm/lsp-rust" :files ("*")))
+
+(package! lsp-java)
