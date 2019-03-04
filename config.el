@@ -100,10 +100,11 @@
   :hook (lsp-mode . lsp-ui-mode)
   :config
   (setq
-   lsp-ui-sideline-enable nil
+   lsp-ui-sideline-enable t
+   lsp-ui-doc-use-webkit t
    lsp-ui-sideline-ignore-duplicate t
-   lsp-ui-doc-header nil
-   lsp-ui-doc-include-signature nil
+   ;; lsp-ui-doc-header t
+   ;; lsp-ui-doc-include-signature t
    ;; lsp-ui-doc-background (doom-color 'base4)
    ;; lsp-ui-doc-border (doom-color 'fg)
 
@@ -436,7 +437,10 @@
 
 (def-package! pyim
   :custom
-  (pyim-page-length 15)
+  (pyim-page-length 9)
+  (pyim-page-tooltip 'posframe)
+  (pyim-punctuation-translate-p '(no yes auto))
+
   )
 
 (defun rx/add-catch2 (file)
@@ -529,3 +533,6 @@
 ;;   (when (bound-and-true-p evil-mode)
 ;;     (evil-set-jump marker)))
 ;; (advice-add #'xref-push-marker-stack :after #'+lookup*add-jump-marker)
+
+(require 'edit-server)
+  (edit-server-start)

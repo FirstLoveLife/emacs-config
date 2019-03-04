@@ -30,6 +30,9 @@
       :map emacs-lisp-mode-map
       :inv "M-[" 'xref-find-definitions
       :inv "M-p" 'xref-pop-marker-stack)
+(map! :after pyim
+      :map org-mode-map
+      :inv "M-[" 'pyim-create-word-from-selection)
 
 (map! :after lsp-ui
       :inv "M-n" #'lsp-ui-peek-jump-forward

@@ -63,3 +63,5 @@
 (package! lsp-rust :recipe (:fetcher github :repo "sethm/lsp-rust" :files ("*")))
 
 (package! lsp-java)
+
+(package! edit-server)
