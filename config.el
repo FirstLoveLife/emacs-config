@@ -536,3 +536,8 @@
 
 (require 'edit-server)
   (edit-server-start)
+
+(def-package! tramp
+  :config
+      (setq tramp-default-method "ssh")
+)
