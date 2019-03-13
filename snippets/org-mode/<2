@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: <2
+# key: <2
+# --
+** ${1:front}
+:PROPERTIES:
+:ANKI_DECK: 刑法
+:ANKI_NOTE_TYPE: Basic
+:END:
+*** Front
+$1
+*** Back
+${}
