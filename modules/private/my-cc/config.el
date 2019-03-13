@@ -36,6 +36,8 @@
      :cacheDirectory "/home/firstlove/tmp/cclscache"
      )
    )
+(setq ccls-initialization-options
+                       `(:cache (:directory ,"/home/firstlove/tmp/cclscache")))
 
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp)
@@ -46,3 +48,4 @@
 ;;   :load-path "/home/firstlove/dev/emacs-cpp-auto-include")
 
 ;; :cacheDirectory ("~/tmp/cclscache")
+
