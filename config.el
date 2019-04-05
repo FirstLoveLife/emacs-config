@@ -11,14 +11,15 @@
 
 (load! "+bindings")
 (load! "+org")
-(load! "+ui")
+;; (load! "+ui")
 
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
 (def-package! doom-themes
   :init
   ;; (setq doom-theme 'doom-nord-light)
-  ;; (setq doom-theme 'doom-Iosvkem)
-  (setq doom-theme 'doom-dracula)
+  (setq doom-theme 'doom-Iosvkem)
+  ;; (setq doom-theme 'doom-peacock)
+  ;; (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
   )
 ;; (setq doom-theme 'doom-one))
@@ -35,6 +36,7 @@
   (global-company-mode)
   (setq company-minimum-prefix-length 2
         company-quickhelp-delay nil
+        company-idle-delay 0
         company-show-numbers t
         ))
 
@@ -541,3 +543,8 @@
   :config
       (setq tramp-default-method "ssh")
 )
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((gnuplot . t)
+   (ipython . t)))

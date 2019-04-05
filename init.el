@@ -2,9 +2,12 @@
 ;; Copy me to ~/.doom.d/init.el or ~/.config/doom/init.el, then edit me!
 (setq evil-want-abbrev-expand-on-insert-exit nil)
 
-(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-				("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-				("or-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+;; (setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
+;; 				("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+;; 				("or-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
+
+(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
+                         ("melpa" . "http://elpa.emacs-china.org/melpa/")))
 ;; (setq custom-file "~/.doom.d/custom.el")
 ;; (load custom-file)
 

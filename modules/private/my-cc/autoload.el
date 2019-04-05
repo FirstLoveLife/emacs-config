@@ -12,6 +12,13 @@
   ;; (setq-local lsp-ui-sideline-show-symbol nil)
   (lsp)
    )
+;;;###autoload
+(defun +cquery//enable ()
+  (require 'cquery)
+  ;; (setq-local lsp-ui-sideline-show-symbol nil)
+  (lsp)
+   )
+
 
 (defun ccls/callee ()
   (interactive)

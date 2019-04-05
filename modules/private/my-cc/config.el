@@ -21,7 +21,7 @@
 (def-package! ccls
   :init
   (add-hook! (c-mode c++-mode cuda-mode objc-mode) #'+ccls//enable)
-  (setq ccls-executable "~/dev/ccls/Release/ccls")
+  (setq ccls-executable "~/dev/ccls/build/ccls")
   :config
   ;; overlay is slow
   ;; Use https://github.com/emacs-mirror/emacs/commits/feature/noverlay
@@ -36,12 +36,13 @@
      :cacheDirectory "/home/firstlove/tmp/cclscache"
      )
    )
+)
+
 (setq ccls-initialization-options
                        `(:cache (:directory ,"/home/firstlove/tmp/cclscache")))
 
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp)
-  )
 
 
 ;; (def-package! cpp-auto-include

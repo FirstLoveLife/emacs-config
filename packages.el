@@ -55,6 +55,9 @@
 (package! rust-mode)
 (package! cargo)
 (package! flycheck-rust)
+(package! emacs-snippets)
+(package! cquery)
+(package! gnuplot)
 
 
 (package! emacs-racer :recipe (:fetcher github :repo "racer-rust/emacs-racer" :files ("*")))
@@ -65,3 +68,5 @@
 (package! lsp-java)
 
 (package! edit-server)
+
+(package! ob-ipython)
