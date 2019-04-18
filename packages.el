@@ -22,8 +22,9 @@
 (package! company-lsp)
 (package! spinner)
 (package! org-brain)
+(package! ivy)
 
-(package! nand2tetris :recipe (:fetcher github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
+;; (package! nand2tetris :recipe (:fetcher github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
 (package! flymake-sml :recipe (:fetcher github :repo "oskimura/flymake-sml" :files ("*")))
 
 (package! flycheck)
