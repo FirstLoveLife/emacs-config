@@ -17,8 +17,9 @@
 (def-package! doom-themes
   :init
   ;; (setq doom-theme 'doom-nord-light)
-  (setq doom-theme 'doom-Iosvkem)
+  ;; (setq doom-theme 'doom-Iosvkem)
   ;; (setq doom-theme 'doom-peacock)
+  (setq doom-theme 'doom-solarized-light)
   ;; (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
   )
@@ -548,3 +549,19 @@
  'org-babel-load-languages
  '((gnuplot . t)
    (ipython . t)))
+
+(def-package! hl-todo
+  :config
+  :init
+  (global-hl-todo-mode)
+  (setq hl-todo-keyword-faces
+        `(("TODO"  . ,(face-foreground 'warning))
+          ("FIXME" . ,(face-foreground 'error))
+          ("XXX" . ,(face-foreground 'warning))
+          ("NOTE"  . ,(face-foreground 'success))))
+
+  ;; Use a more primitive todo-keyword detection method in major modes that
+  ;; don't use/have a valid syntax table entry for comments.
+  (add-hook!
+    (pug-mode haml-mode)
+    #'+hl-todo|use-face-detection))
