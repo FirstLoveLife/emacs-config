@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name:target_include_directories
-# key:tid                 
+# key:tid
 # --
 target_include_directories($1)

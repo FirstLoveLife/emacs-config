@@ -1,0 +1,5 @@
+.DS_Store
+.idea
+*.log
+tmp/
+snippets/**/.yas-compiled-snippets.el
