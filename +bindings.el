@@ -10,6 +10,12 @@
       :map company-active-map
       :i "C-c C-f" #'company-files)
 
+(map! :after yasnippet
+      :map yas-minor-mode-map
+      :nmvie "M-SPC j" #'yas-next-field
+      :nmvie "M-SPC k" #'yas-prev-field
+      )
+
 ;; (map! :after org
 ;;       :nmvie "M-[" #'org-ref-insert-link)
 
