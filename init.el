@@ -40,7 +40,7 @@
        modeline     ; a snazzy Atom-inspired mode-line
        ;; doom-quit
                                         ; DOOM quit-message prompts when you quit Emacs
-       evil-goggles      ; display visual hints when editing in evil
+       ;;evil-goggles      ; display visual hints when editing in evil
        ;;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        ;; modeline          ; snazzy, Atom-inspired modeline, plus API
@@ -97,7 +97,7 @@
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
        ;; wakatime
-       vterm
+       ;; vterm
 
        :lang
        assembly          ; assembly for fun or debugging

@@ -17,9 +17,11 @@
 (def-package! doom-themes
   :init
   ;; (setq doom-theme 'doom-nord-light)
+  (setq doom-theme 'doom-opera-light)
   ;; (setq doom-theme 'doom-Iosvkem)
   ;; (setq doom-theme 'doom-peacock)
-  (setq doom-theme 'doom-solarized-light)
+
+  ;; (setq doom-theme 'doom-solarized-light)
   ;; (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
   )
@@ -193,14 +195,14 @@
 ;;                                         ;        :desc "Include header and format buffer" :nv "ih" (lambda! (my/cpp-auto-include))) )
 
 
-;; (def-package! sml-mode
-;;   :defer t
-;;   :config
-;;   (require 'company-sml)
-;;   (add-hook 'company-sml 'company-sml-setup)
-;;   (set-company-backend! 'sml-mode
-;;     'company-keywords)
-;;   )
+(def-package! sml-mode
+  :defer t
+  :config
+  (require 'company-sml)
+  (add-hook 'company-sml 'company-sml-setup)
+  (set-company-backend! 'sml-mode
+    'company-keywords)
+  )
 
 ;; ;; (set-docset! 'js2-mode "JavaScript" "JQuery")
 ;; ;; (set-docset! 'haskell-mode "Haskell")
@@ -251,80 +253,80 @@
   (setq org-brain-visualize-default-choices 'all)
   )
 
-(def-package! aweshell
-  :defer 1)
+;; (def-package! aweshell
+;;   :defer 1)
 
 
-(def-package! adoc-mode
-  :defer t
-  :hook (adoc-mode . visual-line-mode)
-  :preface (provide 'adoc-mode)
-  :mode ("\\.adoc\\'"))
+;; (def-package! adoc-mode
+;;   :defer t
+;;   :hook (adoc-mode . visual-line-mode)
+;;   :preface (provide 'adoc-mode)
+;;   :mode ("\\.adoc\\'"))
 
 
 
-(defun org-brain-insert-resource-icon (link)
-  "Insert an icon, based on content of org-mode LINK."
-  (insert (format "%s "
-                  (cond ((string-prefix-p "http" link)
-                         (cond ((string-match "wikipedia\\.org" link)
-                                (all-the-icons-faicon "wikipedia-w"))
-                               ((string-match "github\\.com" link)
-                                (all-the-icons-octicon "mark-github"))
-                               ((string-match "vimeo\\.com" link)
-                                (all-the-icons-faicon "vimeo"))
-                               ((string-match "youtube\\.com" link)
-                                (all-the-icons-faicon "youtube"))
-                               (t
-                                (all-the-icons-faicon "globe"))))
-                        ((string-prefix-p "brain:" link)
-                         (all-the-icons-fileicon "brain"))
-                        (t
-                         (all-the-icons-icon-for-file link))))))
+;; (defun org-brain-insert-resource-icon (link)
+;;   "Insert an icon, based on content of org-mode LINK."
+;;   (insert (format "%s "
+;;                   (cond ((string-prefix-p "http" link)
+;;                          (cond ((string-match "wikipedia\\.org" link)
+;;                                 (all-the-icons-faicon "wikipedia-w"))
+;;                                ((string-match "github\\.com" link)
+;;                                 (all-the-icons-octicon "mark-github"))
+;;                                ((string-match "vimeo\\.com" link)
+;;                                 (all-the-icons-faicon "vimeo"))
+;;                                ((string-match "youtube\\.com" link)
+;;                                 (all-the-icons-faicon "youtube"))
+;;                                (t
+;;                                 (all-the-icons-faicon "globe"))))
+;;                         ((string-prefix-p "brain:" link)
+;;                          (all-the-icons-fileicon "brain"))
+;;                         (t
+;;                          (all-the-icons-icon-for-file link))))))
 
-(add-hook 'org-brain-after-resource-button-functions #'org-brain-insert-resource-icon)
+;; (add-hook 'org-brain-after-resource-button-functions #'org-brain-insert-resource-icon)
 
-;; (def-package! wakatime)
+;; ;; (def-package! wakatime)
 
-;; (def-package! flycheck
-;;   :init (global-flycheck-mode))
+;; ;; (def-package! flycheck
+;; ;;   :init (global-flycheck-mode))
 
-(def-package! prog-mode
-  :hook (prog-mode . visual-line-mode)
-  :config
-  (setq prog-mode-hook '()))
+;; (def-package! prog-mode
+;;   :hook (prog-mode . visual-line-mode)
+;;   :config
+;;   (setq prog-mode-hook '()))
 
-;; (after! flycheck
-;;   ;; (setq flycheck-check-syntax-automatically '(save mode-enabled))
-;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-;;   (global-flycheck-mode -1)
-;;   )
+;; ;; (after! flycheck
+;; ;;   ;; (setq flycheck-check-syntax-automatically '(save mode-enabled))
+;; ;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+;; ;;   (global-flycheck-mode -1)
+;; ;;   )
 
-;; (after! flymake-proc
-;;   ;; disable flymake-proc
-;;   (setq-default flymake-diagnostic-functions nil)
-;;   )
-;; (defvar flymake-posframe-delay 0.5)
-;; (defvar flymake-posframe-buffer "*flymake-posframe*")
-;; (defvar-local flymake-posframe-timer nil)
+;; ;; (after! flymake-proc
+;; ;;   ;; disable flymake-proc
+;; ;;   (setq-default flymake-diagnostic-functions nil)
+;; ;;   )
+;; ;; (defvar flymake-posframe-delay 0.5)
+;; ;; (defvar flymake-posframe-buffer "*flymake-posframe*")
+;; ;; (defvar-local flymake-posframe-timer nil)
 
-;; (defun flymake-posframe-hide ()
-;;   (require 'posframe)
-;;   (posframe-hide flymake-posframe-buffer))
+;; ;; (defun flymake-posframe-hide ()
+;; ;;   (require 'posframe)
+;; ;;   (posframe-hide flymake-posframe-buffer))
 
-;; (defun flymake-posframe-display ()
-;;   (when flymake-mode
-;;     (flymake-posframe-hide)
-;;     (when-let ((diag (and flymake-mode
-;;                           (get-char-property (point) 'flymake-diagnostic))))
-;;       (posframe-show
-;;        flymake-posframe-buffer
-;;        :string (propertize (concat "➤ " (flymake--diag-text diag))
-;;                            'face
-;;                            (case (flymake--diag-type diag)
-;;                              (:error 'error)
+;; ;; (defun flymake-posframe-display ()
+;; ;;   (when flymake-mode
+;; ;;     (flymake-posframe-hide)
+;; ;;     (when-let ((diag (and flymake-mode
+;; ;;                           (get-char-property (point) 'flymake-diagnostic))))
+;; ;;       (posframe-show
+;; ;;        flymake-posframe-buffer
+;; ;;        :string (propertize (concat "➤ " (flymake--diag-text diag))
+;; ;;                            'face
+;; ;;                            (case (flymake--diag-type diag)
+;; ;;                              (:error 'error)
 ;;                              (:warning 'warning)
-;;                              (:note 'info)))))))
+;; ;;                              (:note 'info)))))))
 
 ;; (defun flymake-posframe-set-timer ()
 ;;   (when flymake-posframe-timer
@@ -342,11 +344,11 @@
   )
 
 
-;; (progn
-;;  (setq initial-buffer-choice "~/projects/faiz/include/rider/faiz/type_traits.hpp")
-;;  (require 'projectile)
-;;  (setq +workspaces-main "faiz")
-;;  )
+;; ;; (progn
+;; ;;  (setq initial-buffer-choice "~/projects/faiz/include/rider/faiz/type_traits.hpp")
+;; ;;  (require 'projectile)
+;; ;;  (setq +workspaces-main "faiz")
+;; ;;  )
 
 
 ;; (def-package! doc-view
@@ -433,135 +435,154 @@
 
 
 
-(def-package! helm
-  :custom
-  (helm-M-x-fuzzy-match 1)
-  (helm-file-cache-fuzzy-match 1))
+;; (def-package! helm
+;;   :custom
+;;   (helm-M-x-fuzzy-match 1)
+;;   (helm-file-cache-fuzzy-match 1))
 
 (def-package! pyim
   :custom
   (pyim-page-length 9)
   (pyim-page-tooltip 'posframe)
   (pyim-punctuation-translate-p '(no yes auto))
-
-  )
-
-(defun rx/add-catch2 (file)
-  "insert catch2 header file"
-  (interactive)
-  (find-file file)
-  (goto-line 1)
-  (setq p (re-search-forward "\#include" nil t 1))
-  (if p
-      (progn
-        (goto-char p)
-        (end-of-line)
-        (open-line 1)
-        (forward-line 1)
-        (insert "#include <catch2/catch.hpp>")
-        )
-    (insert "#include <catch2/catch.hpp>")
-    )
-  (open-line 1)  (save-buffer 1)
-  )
-
-
-(defun rx/my-dired-do-stats (&optional arg)
-  "Do stats for the marked files."
-  (interactive "P")
-  (dolist (file  (dired-get-marked-files nil arg))
-    (rx/add-catch2 file)))
-
-
-(setq rx/delete-by-moving-to-trash t)
-
-;; (after! evil-matchit-c
-;;      (add-to-list 'evilmi-c-extract-keyword-howtos '("^<[ \t]*\\([a-z]+\\)\\( .*\\| *\\)>$" 1)))
-
-(defun rx/insert-nondirectory-nonextension-file-name-at-point ()
-  "e.g., /usr/share/ha.cpp => ha"
-   (interactive)
-   (insert (file-name-nondirectory (file-name-sans-extension  buffer-file-name)))
-   )
-
-    (setq-default c-basic-offset 4)
-(setq c-syntactic-indentation nil)
-
-
-(after! python
-  (add-hook! python-mode #'lsp)
-  )
-
-;; (defun forward-to-word (arg)
-;;   "Move forward until encountering the beginning of a word.
-;; With argument, do this that many times."
-;;   (interactive "^p")
-;;   (or (re-search-forward (if (> arg 0) "\\W\\b" "\\b\\W") nil t arg)
-;;       (goto-char (if (> arg 0) (point-max) (point-min)))))
-
-
-(define-key evil-normal-state-map (kbd "C-a") #'forward-to-word)
-(define-key evil-normal-state-map (kbd "C-i") #'backward-to-word)
-
-
-;; (with-eval-after-load 'lsp-mode
-  ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-  ;; (require 'lsp-rust)
-
-;; (with-eval-after-load 'lsp-mode
-  ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-  ;; (require 'lsp-rust))
-
-(def-package! rust-mode
-  :defer t
-  :bind (("C-c TAB" . rust-format-buffer))
-  :hook
-  (rust-mode . lsp)
-  (prog-mode . electric-pair-mode)
   :config
-  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-  (def-package! racer
-    :defer t)
-  (def-package! flycheck
-    )
+  (setq pyim-punctuation-translate-p '(auto yes no))   ;中文使用全角标点，英文使用半角标点。
   )
 
-(def-package! cargo
-  :hook (rust-mode . cargo-minor-mode))
+;; (defun rx/add-catch2 (file)
+;;   "insert catch2 header file"
+;;   (interactive)
+;;   (find-file file)
+;;   (goto-line 1)
+;;   (setq p (re-search-forward "\#include" nil t 1))
+;;   (if p
+;;       (progn
+;;         (goto-char p)
+;;         (end-of-line)
+;;         (open-line 1)
+;;         (forward-line 1)
+;;         (insert "#include <catch2/catch.hpp>")
+;;         )
+;;     (insert "#include <catch2/catch.hpp>")
+;;     )
+;;   (open-line 1)  (save-buffer 1)
+;;   )
 
-(def-package! flycheck-rust
-  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
-;; (defun +lookup*add-jump-marker (&optional marker)
-;;   (when (bound-and-true-p evil-mode)
-;;     (evil-set-jump marker)))
-;; (advice-add #'xref-push-marker-stack :after #'+lookup*add-jump-marker)
+;; (defun rx/my-dired-do-stats (&optional arg)
+;;   "Do stats for the marked files."
+;;   (interactive "P")
+;;   (dolist (file  (dired-get-marked-files nil arg))
+;;     (rx/add-catch2 file)))
 
-(require 'edit-server)
-  (edit-server-start)
 
-(def-package! tramp
-  :config
-      (setq tramp-default-method "ssh")
-)
+;; (setq rx/delete-by-moving-to-trash t)
+
+;; ;; (after! evil-matchit-c
+;; ;;      (add-to-list 'evilmi-c-extract-keyword-howtos '("^<[ \t]*\\([a-z]+\\)\\( .*\\| *\\)>$" 1)))
+
+;; (defun rx/insert-nondirectory-nonextension-file-name-at-point ()
+;;   "e.g., /usr/share/ha.cpp => ha"
+;;    (interactive)
+;;    (insert (file-name-nondirectory (file-name-sans-extension  buffer-file-name)))
+;;    )
+
+;;     (setq-default c-basic-offset 4)
+;; (setq c-syntactic-indentation nil)
+
+
+;; (after! python
+;;   (add-hook! python-mode #'lsp)
+;;   )
+
+;; ;; (defun forward-to-word (arg)
+;; ;;   "Move forward until encountering the beginning of a word.
+;; ;; With argument, do this that many times."
+;; ;;   (interactive "^p")
+;; ;;   (or (re-search-forward (if (> arg 0) "\\W\\b" "\\b\\W") nil t arg)
+;; ;;       (goto-char (if (> arg 0) (point-max) (point-min)))))
+
+
+;; (define-key evil-normal-state-map (kbd "C-a") #'forward-to-word)
+;; (define-key evil-normal-state-map (kbd "C-i") #'backward-to-word)
+
+
+;; ;; (with-eval-after-load 'lsp-mode
+;;   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+;;   ;; (require 'lsp-rust)
+
+;; ;; (with-eval-after-load 'lsp-mode
+;;   ;; (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
+;;   ;; (require 'lsp-rust))
+
+;; (def-package! rust-mode
+;;   :defer t
+;;   :bind (("C-c TAB" . rust-format-buffer))
+;;   :hook
+;;   (rust-mode . lsp)
+;;   (prog-mode . electric-pair-mode)
+;;   :config
+;;   (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+;;   (def-package! racer
+;;     :defer t)
+;;   (def-package! flycheck
+;;     )
+;;   )
+
+;; (def-package! cargo
+;;   :hook (rust-mode . cargo-minor-mode))
+
+;; (def-package! flycheck-rust
+;;   :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
+;; ;; (defun +lookup*add-jump-marker (&optional marker)
+;; ;;   (when (bound-and-true-p evil-mode)
+;; ;;     (evil-set-jump marker)))
+;; ;; (advice-add #'xref-push-marker-stack :after #'+lookup*add-jump-marker)
+
+;; (require 'edit-server)
+;;   (edit-server-start)
+
+;; (def-package! tramp
+;;   :config
+;;       (setq tramp-default-method "ssh")
+;; )
+(require 'ob-C)
+
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((gnuplot . t)
+;;    ;; (C .t)
+;;    (ipython . t)))
 
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((gnuplot . t)
-   (ipython . t)))
+ '((python . t)
+   (ipython . t)
+   (ledger . t)
+   (latex . t)
+   (clojure .t)
+   ;; (html .t)
+   (shell .t)
+    ))
 
 (def-package! hl-todo
-  :config
-  :init
-  (global-hl-todo-mode)
-  (setq hl-todo-keyword-faces
-        `(("TODO"  . ,(face-foreground 'warning))
-          ("FIXME" . ,(face-foreground 'error))
-          ("XXX" . ,(face-foreground 'warning))
-          ("NOTE"  . ,(face-foreground 'success))))
+ :config
+ :init
+ (global-hl-todo-mode)
+ (setq hl-todo-keyword-faces
+       `(("TODO"  . ,(face-foreground 'warning))
+         ("FIXME" . ,(face-foreground 'error))
+         ("XXX" . ,(face-foreground 'warning))
+         ("NOTE"  . ,(face-foreground 'success))))
 
   ;; Use a more primitive todo-keyword detection method in major modes that
   ;; don't use/have a valid syntax table entry for comments.
   (add-hook!
     (pug-mode haml-mode)
     #'+hl-todo|use-face-detection))
+
+(after! yasnippet
+  (setq yas-triggers-in-field t))
+
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
