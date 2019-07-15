@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name:jianda
+# key:jd-a
+# --
+** $1
+:PROPERTIES:
+:ANKI_DECK: assembly
+:ANKI_NOTE_TYPE: Basic
+:END:
+*** Front
+$1
+*** Back
+$2

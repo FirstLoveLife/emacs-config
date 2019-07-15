@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: intel-word
+# key: clo-i
+# condition: t
+# --
+** $1{{c1::$2}
+:PROPERTIES:
+:ANKI_DECK: assembly
+:ANKI_NOTE_TYPE: Cloze
+:END:
+*** Text
+$1{{c1::$2}}
+*** Extra

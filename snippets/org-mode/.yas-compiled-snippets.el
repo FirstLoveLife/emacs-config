@@ -12,4 +12,10 @@
                        ("<2" "** ${1:front}\n:PROPERTIES:\n:ANKI_DECK: 刑法\n:ANKI_NOTE_TYPE: Basic\n:END:\n*** Front\n$1\n*** Back\n${}" "<2" nil nil nil "/home/firstlove/.doom.d/snippets/org-mode/<2" nil nil)))
 
 
-;;; Do not edit! File generated at Sat May 25 09:45:50 2019
+;;; Snippet definitions:
+;;;
+(yas-define-snippets 'org-mode
+                     '(("clo-i" "** $1{{c1::$2}\n:PROPERTIES:\n:ANKI_DECK: assembly\n:ANKI_NOTE_TYPE: Cloze\n:END:\n*** Text\n$1{{c1::$2}}\n*** Extra\n" "intel-word" t nil nil "/home/firstlove/.doom.d/snippets/org-mode/assembly/cloz-i" nil nil)))
+
+
+;;; Do not edit! File generated at Wed Jul 10 08:57:02 2019

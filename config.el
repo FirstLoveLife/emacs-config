@@ -17,11 +17,12 @@
 (def-package! doom-themes
   :init
   ;; (setq doom-theme 'doom-nord-light)
-  (setq doom-theme 'doom-opera-light)
+  ;; (setq doom-theme 'doom-opera-light)
   ;; (setq doom-theme 'doom-Iosvkem)
   ;; (setq doom-theme 'doom-peacock)
+  ;; (setq doom-theme 'doom-one)
 
-  ;; (setq doom-theme 'doom-solarized-light)
+  (setq doom-theme 'doom-solarized-light)
   ;; (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
   )
@@ -86,7 +87,7 @@
                   :priority -1
                   :server-id 'rls
                   :notification-handlers (lsp-ht ("window/progress" 'lsp-clients--rust-window-progress))))
-  ;; (setq lsp-enable-snippet nil)
+  (setq lsp-enable-snippet nil)
   (require 'lsp-clients)
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (set-face-attribute 'lsp-face-highlight-textual nil
@@ -543,10 +544,10 @@
 ;; (require 'edit-server)
 ;;   (edit-server-start)
 
-;; (def-package! tramp
-;;   :config
-;;       (setq tramp-default-method "ssh")
-;; )
+(def-package! tramp
+  :config
+      (setq tramp-default-method "ssh")
+)
 (require 'ob-C)
 
 ;; (org-babel-do-load-languages
@@ -586,3 +587,14 @@
   (setq yas-triggers-in-field t))
 
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+(setq global-visual-line-mode t)
+
+(electric-pair-mode)
+
+(require 'dired)
+(defun s60 ()
+  (interactive)
+  (dired "/ssh:deepin@192.168.1.60:/"))
+(defun s210 ()
+  (interactive)
+  (dired "/ssh:deepin@192.168.1.210:/"))

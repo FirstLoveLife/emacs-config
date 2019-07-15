@@ -9,4 +9,4 @@
                        ("add_e" "add_executable($0)" "add_executable" nil nil nil "/home/firstlove/.doom.d/snippets/cmake-mode/add_executable" nil nil)))
 
 
-;;; Do not edit! File generated at Sat May 25 09:45:50 2019
+;;; Do not edit! File generated at Wed Jul 10 08:57:02 2019

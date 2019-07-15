@@ -8,4 +8,4 @@
                        ("" "" "" nil nil nil "/home/firstlove/.doom.d/snippets/c++-mode/+new-snippet+" nil nil)))
 
 
-;;; Do not edit! File generated at Sat May 25 09:45:50 2019
+;;; Do not edit! File generated at Wed Jul 10 08:57:01 2019

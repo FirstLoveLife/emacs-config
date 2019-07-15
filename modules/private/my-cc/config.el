@@ -19,8 +19,9 @@
 
 
 (def-package! ccls
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp)))
   :init
-  (add-hook! (c-mode c++-mode cuda-mode objc-mode) #'+ccls//enable)
   (setq ccls-executable "~/dev/ccls/build/ccls")
   :config
   ;; overlay is slow
@@ -36,17 +37,16 @@
      :cacheDirectory "/home/firstlove/tmp/cclscache"
      )
    )
-)
+  )
 
 (setq ccls-initialization-options
-                       `(:cache (:directory ,"/home/firstlove/tmp/cclscache")))
+      `(:cache (:directory ,"/home/firstlove/tmp/cclscache")))
 
-  (evil-set-initial-state 'ccls-tree-mode 'emacs)
-  (set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp)
+(evil-set-initial-state 'ccls-tree-mode 'emacs)
+(set-company-backend! '(c-mode c++-mode cuda-mode objc-mode) 'company-lsp)
 
 
 ;; (def-package! cpp-auto-include
 ;;   :load-path "/home/firstlove/dev/emacs-cpp-auto-include")
 
 ;; :cacheDirectory ("~/tmp/cclscache")
-
