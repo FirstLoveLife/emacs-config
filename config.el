@@ -598,3 +598,14 @@
 (defun s210 ()
   (interactive)
   (dired "/ssh:deepin@192.168.1.210:/"))
+
+(defun s223 ()
+  (interactive)
+  (dired "/ssh:deepin@10.2.3.223:/"))
+
+(defun s25 ()
+  (interactive)
+  (dired "/ssh:deepin@120.219.11.25:/"))
+
+;; (after! magit-todos
+;; (setq magit-todos-depth 2))
