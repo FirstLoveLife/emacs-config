@@ -56,7 +56,7 @@
 (package! rust-mode)
 (package! cargo)
 (package! flycheck-rust)
-(package! emacs-snippets)
+;(package! emacs-snippets)
 (package! cquery)
 (package! gnuplot)
 
@@ -71,3 +71,6 @@
 (package! edit-server)
 
 (package! ob-ipython)
+
+(package! mediawiki)
+(package! magit-todos :disable t)
