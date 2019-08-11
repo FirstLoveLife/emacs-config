@@ -19,7 +19,7 @@
 
 
 (def-package! ccls
-  :hook ((c-mode c++-mode objc-mode) .
+  :hook ((cc-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp)))
   :init
   (setq ccls-executable "~/dev/ccls/build/ccls")

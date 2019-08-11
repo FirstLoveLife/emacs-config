@@ -54,6 +54,12 @@
     (map! :after helm-projectile
           :ine "C-M-r" #'helm-projectile-rg)
 
+    (map!
+     :ine "C-M-r" #'helm-rg)
+
+    (map!
+     :ine "/" #'swiper-helm)
+
 
     (map! :after persp-mode
           :nmvie "C-;" #'+workspace/switch-to
@@ -78,7 +84,7 @@
      :inve "C-M-l" #'lsp
      (
       :leader
-      :nve "l-f-r" #'lsp-find-references
+      :nve "lfr" #'lsp-find-references
       )
      )
 

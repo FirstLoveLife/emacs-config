@@ -20,9 +20,33 @@
   ;; (setq doom-theme 'doom-opera-light)
   ;; (setq doom-theme 'doom-Iosvkem)
   ;; (setq doom-theme 'doom-peacock)
-  ;; (setq doom-theme 'doom-one)
-
-  (setq doom-theme 'doom-solarized-light)
+  ;; (setq doom-theme 'doom-one-light)
+  ;; (setq doom-theme 'doom-vibrant)
+  ;; (setq doom-theme 'doom-city-lights)
+  ;; (setq doom-theme 'doom-challenger-deep)
+  ;; (setq doom-theme 'doom-fairy-floss)
+  ;; (setq doom-theme 'doom-gruvbox)
+  ;; (setq doom-theme 'doom-molokai)
+  ;; (setq doom-theme 'doom-nord)
+  ;; (setq doom-theme 'doom-opera)
+  ;; (setq doom-theme 'doom-outrun-electric)
+  ;; (setq doom-theme 'doom-nova)
+  ;; (setq doom-theme 'doom-solarized-dark)
+  ;; (setq doom-theme 'doom-snazzy)
+  ;; (setq doom-theme 'doom-sourcerer)
+  ;; (setq doom-theme 'doom-spacegrey)
+  ;; (setq doom-theme 'doom-tomorrow-night)
+  ;; (setq doom-theme 'doom-tomorrow-day)
+  ;; (setq doom-theme 'doom-mono-dark)
+  ;; (setq doom-theme 'doom-mono-light)
+  ;; (setq doom-theme 'doom-tron)
+  ;; (setq doom-theme ')
+  ;; (setq doom-theme ')
+  ;; (setq doom-theme ')
+  ;; (setq doom-theme ')
+  ;; (setq doom-theme ')
+  (setq doom-theme 'doom-one)
+  ;; (setq doom-theme 'doom-solarized-light)
   ;; (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
   )
@@ -80,18 +104,18 @@
   :after  cc-mode
   :hook (lsp-mode . flycheck-mode)
   :config
-(lsp-register-client
- (make-lsp-client :new-connection (lsp-stdio-connection
-'("rustup" "run" "nightly" "rls"))
-                  :major-modes '(rust-mode rustic-mode)
-                  :priority -1
-                  :server-id 'rls
-                  :notification-handlers (lsp-ht ("window/progress" 'lsp-clients--rust-window-progress))))
+  (lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection
+                                     '("rustup" "run" "nightly" "rls"))
+                    :major-modes '(rust-mode rustic-mode)
+                    :priority -1
+                    :server-id 'rls
+                    :notification-handlers (lsp-ht ("window/progress" 'lsp-clients--rust-window-progress))))
   (setq lsp-enable-snippet nil)
   (require 'lsp-clients)
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (set-face-attribute 'lsp-face-highlight-textual nil
-    	              :background "#f2e8e8" :foreground "#070707"
+    	                :background "#f2e8e8" :foreground "#070707"
                       )
 
   (setq lsp-auto-guess-root t)
@@ -254,8 +278,8 @@
   (setq org-brain-visualize-default-choices 'all)
   )
 
-;; (def-package! aweshell
-;;   :defer 1)
+(def-package! aweshell
+  :defer 1)
 
 
 ;; (def-package! adoc-mode
@@ -546,8 +570,8 @@
 
 (def-package! tramp
   :config
-      (setq tramp-default-method "ssh")
-)
+  (setq tramp-default-method "ssh")
+  )
 (require 'ob-C)
 
 ;; (org-babel-do-load-languages
@@ -565,17 +589,17 @@
    (clojure .t)
    ;; (html .t)
    (shell .t)
-    ))
+   ))
 
 (def-package! hl-todo
- :config
- :init
- (global-hl-todo-mode)
- (setq hl-todo-keyword-faces
-       `(("TODO"  . ,(face-foreground 'warning))
-         ("FIXME" . ,(face-foreground 'error))
-         ("XXX" . ,(face-foreground 'warning))
-         ("NOTE"  . ,(face-foreground 'success))))
+  :config
+  :init
+  (global-hl-todo-mode)
+  (setq hl-todo-keyword-faces
+        `(("TODO"  . ,(face-foreground 'warning))
+          ("FIXME" . ,(face-foreground 'error))
+          ("XXX" . ,(face-foreground 'warning))
+          ("NOTE"  . ,(face-foreground 'success))))
 
   ;; Use a more primitive todo-keyword detection method in major modes that
   ;; don't use/have a valid syntax table entry for comments.
@@ -609,3 +633,260 @@
 
 ;; (after! magit-todos
 ;; (setq magit-todos-depth 2))
+
+(require 'aweshell)
+(defun t223 ()
+  (interactive)
+  (let ((default-directory "/ssh:deepin@10.2.3.223:"))
+    (shell)))
+
+(require 'hydra)
+
+(bind-key "C-c o c" 'hydra-org-clock/body)
+;; (bind-key "C-c w" 'hydra-org-clock/body)
+(defhydra hydra-org-clock (:color blue :hint nil)
+  "
+^Clock:^ ^In/out^     ^Edit^   ^Summary^    | ^Timers:^ ^Run^           ^Insert
+-^-^-----^-^----------^-^------^-^----------|--^-^------^-^-------------^------
+(_?_)    _i_n         _e_dit   _g_oto entry | (_z_)     _r_elative      ti_m_e
+ ^ ^     _c_ontinue   _q_uit   _d_isplay    |  ^ ^      cou_n_tdown     i_t_em
+ ^ ^     _o_ut        ^ ^      _r_eport     |  ^ ^      _p_ause toggle
+ ^ ^     ^ ^          ^ ^      ^ ^          |  ^ ^      _s_top
+"
+  ("i" org-clock-in)
+  ("c" org-clock-in-last)
+  ("o" org-clock-out)
+
+  ("e" org-clock-modify-effort-estimate)
+  ("q" org-clock-cancel)
+
+  ("g" org-clock-goto)
+  ("d" org-clock-display)
+  ("r" org-clock-report)
+  ("?" (org-info "Clocking commands"))
+
+  ("r" org-timer-start)
+  ("n" org-timer-set-timer)
+  ("p" org-timer-pause-or-continue)
+  ("s" org-timer-stop)
+
+  ("m" org-timer)
+  ("t" org-timer-item)
+  ("z" (org-info "Timers")))
+
+
+;; Hydra for org agenda (graciously taken from Spacemacs)
+(defhydra hydra-org-agenda (:pre (setq which-key-inhibit t)
+                                 :post (setq which-key-inhibit nil)
+                                 :hint none)
+  "
+Org agenda (_q_uit)
+
+^Clock^      ^Visit entry^              ^Date^             ^Other^
+^-----^----  ^-----------^------------  ^----^-----------  ^-----^---------
+_ci_ in      _SPC_ in other window      _ds_ schedule      _gr_ reload
+_co_ out     _TAB_ & go to location     _dd_ set deadline  _._  go to today
+_cq_ cancel  _RET_ & del other windows  _dt_ timestamp     _gd_ go to date
+_cj_ jump    _o_   link                 _+_  do later      ^^
+^^           ^^                         _-_  do earlier    ^^
+^^           ^^                         ^^                 ^^
+^View^          ^Filter^                 ^Headline^         ^Toggle mode^
+^----^--------  ^------^---------------  ^--------^-------  ^-----------^----
+_vd_ day        _ft_ by tag              _ht_ set status    _tf_ follow
+_vw_ week       _fr_ refine by tag       _hk_ kill          _tl_ log
+_vt_ fortnight  _fc_ by category         _hr_ refile        _ta_ archive trees
+_vm_ month      _fh_ by top headline     _hA_ archive       _tA_ archive files
+_vy_ year       _fx_ by regexp           _h:_ set tags      _tr_ clock report
+_vn_ next span  _fd_ delete all filters  _hp_ set priority  _td_ diaries
+_vp_ prev span  ^^                       ^^                 ^^
+_vr_ reset      ^^                       ^^                 ^^
+^^              ^^                       ^^                 ^^
+"
+  ;; Entry
+  ("hA" org-agenda-archive-default)
+  ("hk" org-agenda-kill)
+  ("hp" org-agenda-priority)
+  ("hr" org-agenda-refile)
+  ("h:" org-agenda-set-tags)
+  ("ht" org-agenda-todo)
+  ;; Visit entry
+  ("o"   link-hint-open-link :exit t)
+  ("<tab>" org-agenda-goto :exit t)
+  ("TAB" org-agenda-goto :exit t)
+  ("SPC" org-agenda-show-and-scroll-up)
+  ("RET" org-agenda-switch-to :exit t)
+  ;; Date
+  ("dt" org-agenda-date-prompt)
+  ("dd" org-agenda-deadline)
+  ("+" org-agenda-do-date-later)
+  ("-" org-agenda-do-date-earlier)
+  ("ds" org-agenda-schedule)
+  ;; View
+  ("vd" org-agenda-day-view)
+  ("vw" org-agenda-week-view)
+  ("vt" org-agenda-fortnight-view)
+  ("vm" org-agenda-month-view)
+  ("vy" org-agenda-year-view)
+  ("vn" org-agenda-later)
+  ("vp" org-agenda-earlier)
+  ("vr" org-agenda-reset-view)
+  ;; Toggle mode
+  ("ta" org-agenda-archives-mode)
+  ("tA" (org-agenda-archives-mode 'files))
+  ("tr" org-agenda-clockreport-mode)
+  ("tf" org-agenda-follow-mode)
+  ("tl" org-agenda-log-mode)
+  ("td" org-agenda-toggle-diary)
+  ;; Filter
+  ("fc" org-agenda-filter-by-category)
+  ("fx" org-agenda-filter-by-regexp)
+  ("ft" org-agenda-filter-by-tag)
+  ("fr" org-agenda-filter-by-tag-refine)
+  ("fh" org-agenda-filter-by-top-headline)
+  ("fd" org-agenda-filter-remove-all)
+  ;; Clock
+  ("cq" org-agenda-clock-cancel)
+  ("cj" org-agenda-clock-goto :exit t)
+  ("ci" org-agenda-clock-in :exit t)
+  ("co" org-agenda-clock-out)
+  ;; Other
+  ("q" nil :exit t)
+  ("gd" org-agenda-goto-date)
+  ("." org-agenda-goto-today)
+  ("gr" org-agenda-redo))
+
+
+(bind-key "C-c o a" 'hydra-org-agenda/body)
+
+(defhydra hydra-yasnippet (:color blue :hint nil)
+  "
+              ^YASnippets^
+--------------------------------------------
+  Modes:    Load/Visit:    Actions:
+
+ _g_lobal  _d_irectory    _i_nsert
+ _m_inor   _f_ile         _t_ryout
+ _e_xtra   _l_ist         _n_ew
+         _a_ll
+"
+  ("d" yas-load-directory)
+  ("e" yas-activate-extra-mode)
+  ("i" yas-insert-snippet)
+  ("f" yas-visit-snippet-file :color blue)
+  ("n" yas-new-snippet)
+  ("t" yas-tryout-snippet)
+  ("l" yas-describe-tables)
+  ("g" yas/global-mode)
+  ("m" yas/minor-mode)
+  ("a" yas-reload-all))
+(bind-key "C-c y" 'hydra-yasnippet/body)
+
+(defhydra hydra-lsp (:exit t :hint nil)
+  "
+ Buffer^^               Server^^                   Symbol
+-------------------------------------------------------------------------------------
+ [_f_] format           [_M-r_] restart            [_d_] declaration  [_i_] implementation  [_o_] documentation
+ [_m_] imenu            [_S_]   shutdown           [_D_] definition   [_t_] type            [_r_] rename
+ [_x_] execute action   [_M-s_] describe session   [_R_] references   [_s_] signature"
+  ("d" lsp-find-declaration)
+  ("D" lsp-ui-peek-find-definitions)
+  ("R" lsp-ui-peek-find-references)
+  ("i" lsp-ui-peek-find-implementation)
+  ("t" lsp-find-type-definition)
+  ("s" lsp-signature-help)
+  ("o" lsp-describe-thing-at-point)
+  ("r" lsp-rename)
+
+  ("f" lsp-format-buffer)
+  ("m" lsp-ui-imenu)
+  ("x" lsp-execute-code-action)
+
+  ("M-s" lsp-describe-session)
+  ("M-r" lsp-restart-workspace)
+  ("S" lsp-shutdown-workspace))
+
+
+(bind-key "C-c l" 'hydra-lsp/body)
+
+(use-package lsp-mode :commands lsp)
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
+
+(def-package! ccls
+  :hook ((c-mode c++-mode objc-mode) .
+         (lambda () (require 'ccls) (lsp)))
+  :config
+
+  (ccls-use-default-rainbow-sem-highlight)
+  (setq ccls-sem-highlight-method 'overlay)
+  (setq ccls-executable "~/dev/ccls/build/ccls")
+  )
+
+(def-package! erc
+  :custom
+  (erc-autojoin-channels-alist '(("freenode.net" "#archlinux" "#bash" "#bitcoin"
+                                  "#emacs" "#gentoo" "#i3" "#latex" "#org-mode" "#python")))
+  (erc-autojoin-timing 'ident)
+  (erc-fill-function 'erc-fill-static)
+  (erc-fill-static-center 22)
+  (erc-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-lurker-threshold-time 43200)
+  (erc-prompt-for-nickserv-password nil)
+  (erc-server-reconnect-attempts 5)
+  (erc-server-reconnect-timeout 3)
+  (erc-track-exclude-types '("JOIN" "MODE" "NICK" "PART" "QUIT"
+                             "324" "329" "332" "333" "353" "477"))
+  :config
+  (add-to-list 'erc-modules 'notifications)
+  (add-to-list 'erc-modules 'spelling)
+  (erc-services-mode 1)
+  (erc-update-modules))
+
+
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
+
+
+(setq exwm-workspace-number 9)
+
+
+
+
+
+(defun fhd/exwm-input-line-mode ()
+  "Set exwm window to line-mode and show mode line"
+  (call-interactively #'exwm-input-grab-keyboard)
+  (exwm-layout-show-mode-line))
+
+(defun fhd/exwm-input-char-mode ()
+  "Set exwm window to char-mode and hide mode line"
+  (call-interactively #'exwm-input-release-keyboard)
+  (exwm-layout-hide-mode-line))
+
+(defun fhd/exwm-input-toggle-mode ()
+  "Toggle between line- and char-mode"
+  (interactive)
+  (with-current-buffer (window-buffer)
+    (when (eq major-mode 'exwm-mode)
+      (if (equal (second (second mode-line-process)) "line")
+          (fhd/exwm-input-char-mode)
+        (fhd/exwm-input-line-mode)))))
+
+(exwm-input-set-key (kbd "s-i") #'fhd/exwm-input-toggle-mode)
+
+(defun fhd/toggle-exwm-input-line-mode-passthrough ()
+  (interactive)
+  (if exwm-input-line-mode-passthrough
+    (progn
+      (setq exwm-input-line-mode-passthrough nil)
+      (message "App receives all the keys now (with some simulation)"))
+   (progn
+     (setq exwm-input-line-mode-passthrough t)
+     (message "emacs receives all the keys now")))
+  (force-mode-line-update))
+
+(exwm-input-set-key (kbd "s-p") 'fhd/toggle-exwm-input-line-mode-passthrough)
+
+(exwm-input-set-key (kbd "s-c") #'list-processes)

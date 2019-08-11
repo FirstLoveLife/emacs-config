@@ -38,7 +38,7 @@
 ;          :fetcher gitlab
 ;          :repo "jgkamat/rmsbolt"))
 
-;(package! exwm)
+(package! exwm)
 (package! sicp)
 
 (package! helm-rg)
@@ -74,3 +74,6 @@
 
 (package! mediawiki)
 (package! magit-todos :disable t)
+
+(package! alert)
+(package! hydra)
