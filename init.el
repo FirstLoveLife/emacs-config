@@ -2,10 +2,6 @@
 ;; Copy me to ~/.doom.d/init.el or ~/.config/doom/init.el, then edit me!
 (setq evil-want-abbrev-expand-on-insert-exit nil)
 
-(setq package-archives '(("gnu"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
-				("melpa" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-				("or-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")))
-
 ;;(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
  ;                        ("melpa" . "http://elpa.emacs-china.org/melpa/")
 ;			 ("org"   . "http://mirrors.cloud.tencent.com/elpa/org/")
@@ -188,6 +184,6 @@
        ;; provides a Spacemacs-inspired keybinding scheme and a smartparens
        ;; config. Use it as a reference for your own modules.
        (default +bindings +smartparens)
-       ;; :private
+       :private
        ;; my-cc
        )

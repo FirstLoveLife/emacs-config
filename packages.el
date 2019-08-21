@@ -77,3 +77,5 @@
 
 (package! alert)
 (package! hydra)
+
+(package! dts-mode)
