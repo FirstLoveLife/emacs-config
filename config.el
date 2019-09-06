@@ -817,6 +817,8 @@
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp)))
   :config
+  (setq ccls-initialization-options
+        `(:cache (:directory ,"/home/firstlove/tmp/cclscache")))
 
   (ccls-use-default-rainbow-sem-highlight)
   (setq ccls-sem-highlight-method 'overlay)

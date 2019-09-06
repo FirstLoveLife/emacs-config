@@ -45,6 +45,8 @@
           :inv "M-p" #'lsp-ui-peek-jump-backward
           :inv "M-[" #'lsp-ui-peek-find-definitions
           :inv "M-]" #'lsp-ui-peek-find-implementation
+          :inv "C-M-p" #'lsp-ui-find-prev-reference
+          :inv "C-M-n" #'lsp-ui-find-next-reference
           )
     (map! :after flymake
           :nmvie "C-c ! n" #'flymake-goto-next-error)
@@ -58,7 +60,8 @@
      :ine "C-M-r" #'helm-rg)
 
     (map!
-     :ine "/" #'swiper-helm)
+     :after swiper
+     :ine "/" #'swiper)
 
 
     (map! :after persp-mode
