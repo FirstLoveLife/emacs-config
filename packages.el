@@ -64,7 +64,6 @@
 (package! emacs-racer :recipe (:fetcher github :repo "racer-rust/emacs-racer" :files ("*")))
 (package! rustic :recipe (:fetcher github :repo "brotzeit/rustic" :files ("*")))
 
-(package! lsp-rust :recipe (:fetcher github :repo "sethm/lsp-rust" :files ("*")))
 
 (package! lsp-java)
 
@@ -79,3 +78,6 @@
 (package! hydra)
 
 (package! dts-mode)
+
+
+(package! rust-analyzer :recipe (:fetcher github :repo "rust-analyzer/rust-analyzer" :files ("editors/emacs/ra-emacs-lsp.el")))
