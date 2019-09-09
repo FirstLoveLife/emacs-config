@@ -61,7 +61,7 @@
 
     (map!
      :after swiper
-     :ine "/" #'swiper)
+     :ne "/" #'swiper)
 
 
     (map! :after persp-mode
