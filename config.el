@@ -22,7 +22,7 @@
   ;; (setq doom-theme 'doom-peacock)
   ;; (setq doom-theme 'doom-one-light)
   ;; (setq doom-theme 'doom-vibrant)
-  ;; (setq doom-theme 'doom-city-lights)
+  (setq doom-theme 'doom-city-lights)
   ;; (setq doom-theme 'doom-challenger-deep)
   ;; (setq doom-theme 'doom-fairy-floss)
   ;; (setq doom-theme 'doom-gruvbox)
@@ -45,7 +45,7 @@
   ;; (setq doom-theme ')
   ;; (setq doom-theme ')
   ;; (setq doom-theme ')
-  (setq doom-theme 'doom-one)
+  ;; (setq doom-theme 'doom-one)
   ;; (setq doom-theme 'doom-solarized-light)
   ;; (setq doom-theme 'doom-dracula)
   ;; (setq doom-theme 'doom-tomorrow-day)
@@ -96,51 +96,51 @@
 ;;   :after (evil)
 ;;   :hook (lispy-mode . lispyville-mode))
 
-(def-package! lsp-mode
-  :defer t
-  :init
-  (setq lsp-prefer-flymake nil)
+;; (def-package! lsp-mode
+;;   :defer t
+;;   :init
+;;   (setq lsp-prefer-flymake nil)
 
-  :after  cc-mode
-  :hook (lsp-mode . flycheck-mode)
-  :config
-  (lsp-register-client
-   (make-lsp-client :new-connection (lsp-stdio-connection
-                                     '("rustup" "run" "nightly" "rls"))
-                    :major-modes '(rust-mode rustic-mode)
-                    :priority -1
-                    :server-id 'rls
-                    :notification-handlers (lsp-ht ("window/progress" 'lsp-clients--rust-window-progress))))
-  (setq lsp-enable-snippet nil)
-  (require 'lsp-clients)
-  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  (set-face-attribute 'lsp-face-highlight-textual nil
-    	                :background "#f2e8e8" :foreground "#070707"
-                      )
+;;   :after  cc-mode rustic-mode
+;;   :hook (lsp-mode . flycheck-mode)
+;;   :config
+;;   (lsp-register-client
+;;    (make-lsp-client :new-connection (lsp-stdio-connection
+;;                                      '("rustup" "run" "nightly" "rls"))
+;;                     :major-modes '(rust-mode rustic-mode)
+;;                     :priority -1
+;;                     :server-id 'rls
+;;                     :notification-handlers (lsp-ht ("window/progress" 'lsp-clients--rust-window-progress))))
+;;   (setq lsp-enable-snippet nil)
+;;   (require 'lsp-clients)
+;;   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+;;   (set-face-attribute 'lsp-face-highlight-textual nil
+;;     	                :background "#f2e8e8" :foreground "#070707"
+;;                       )
 
-  (setq lsp-auto-guess-root t)
-  ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-  (require 'lsp-ui-flycheck)
-  (with-eval-after-load 'lsp-mode
-    (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
-  )
+;;   (setq lsp-auto-guess-root t)
+;;   ;; (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;;   (require 'lsp-ui-flycheck)
+;;   (with-eval-after-load 'lsp-mode
+;;     (add-hook 'lsp-after-open-hook (lambda () (lsp-ui-flycheck-enable 1))))
+;;   )
 
-(def-package! lsp-ui
-  :demand t
-  :hook (lsp-mode . lsp-ui-mode)
-  :config
-  (setq
-   lsp-ui-sideline-enable t
-   lsp-ui-doc-use-webkit t
-   lsp-ui-sideline-ignore-duplicate t
-   ;; lsp-ui-doc-header t
-   ;; lsp-ui-doc-include-signature t
-   ;; lsp-ui-doc-background (doom-color 'base4)
-   ;; lsp-ui-doc-border (doom-color 'fg)
+;; (def-package! lsp-ui
+;;   :demand t
+;;   :hook (lsp-mode . lsp-ui-mode)
+;;   :config
+;;   (setq
+;;    lsp-ui-sideline-enable t
+;;    lsp-ui-doc-use-webkit t
+;;    lsp-ui-sideline-ignore-duplicate t
+;;    ;; lsp-ui-doc-header t
+;;    ;; lsp-ui-doc-include-signature t
+;;    ;; lsp-ui-doc-background (doom-color 'base4)
+;;    ;; lsp-ui-doc-border (doom-color 'fg)
 
-   lsp-ui-peek-force-fontify nil
-   lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs)))
-  )
+;;    lsp-ui-peek-force-fontify nil
+;;    lsp-ui-peek-expand-function (lambda (xs) (mapcar #'car xs)))
+;;   )
 
 
 
@@ -899,3 +899,29 @@
 
 (after! ediff-diff
   (setq-default ediff-forward-word-function 'forward-char))
+
+
+(after! lsp-mode
+      (require 'ra-emacs-lsp)
+      (setq rustic-lsp-server 'rust-analyzer)
+       )
+
+;; borrowed from the :term term module
+(add-hook 'term-mode-hook #'doom-mark-buffer-as-real-h)
+
+(add-to-list 'org-capture-templates
+             '("w" "Work-related Task"  entry
+               (file "~/org/work.org")
+               "* TODO %?" :empty-lines 1))
+
+(require 'org-expiry)
+(add-hook 'org-capture-before-finalize-hook
+         #'(lambda()
+               (save-excursion
+                    (org-back-to-heading)
+                    (org-expiry-insert-created))))
+(add-hook 'org-insert-heading-hook
+         #'(lambda()
+               (save-excursion
+                    (org-back-to-heading)
+                    (org-expiry-insert-created))))
