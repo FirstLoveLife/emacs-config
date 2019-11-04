@@ -81,3 +81,5 @@
 
 
 (package! rust-analyzer :recipe (:fetcher github :repo "rust-analyzer/rust-analyzer" :files ("editors/emacs/ra-emacs-lsp.el")))
+
+(package! adoc-mode)
