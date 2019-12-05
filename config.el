@@ -11,7 +11,7 @@
 
 (load! "+bindings")
 (load! "+org")
-;; (load! "+ui")
+(load! "+ui")
 
 (setq doom-scratch-buffer-major-mode 'emacs-lisp-mode)
 (def-package! doom-themes
@@ -130,9 +130,9 @@
 
 
 (after! lsp-mode
-      (require 'ra-emacs-lsp)
-      (setq rustic-lsp-server 'rust-analyzer)
-       )
+  ;; (require 'ra-emacs-lsp)
+  ;; (setq rustic-lsp-server 'rust-analyzer)
+  )
 
 ;; borrowed from the :term term module
 (add-hook 'term-mode-hook #'doom-mark-buffer-as-real-h)
@@ -144,12 +144,22 @@
 
 (require 'org-expiry)
 (add-hook 'org-capture-before-finalize-hook
-         #'(lambda()
-               (save-excursion
-                    (org-back-to-heading)
-                    (org-expiry-insert-created))))
+          #'(lambda()
+              (save-excursion
+                (org-back-to-heading)
+                (org-expiry-insert-created))))
 (add-hook 'org-insert-heading-hook
-         #'(lambda()
-               (save-excursion
-                    (org-back-to-heading)
-                    (org-expiry-insert-created))))
+          #'(lambda()
+              (save-excursion
+                (org-back-to-heading)
+                (org-expiry-insert-created))))
+(require 'ox-mediawiki)
+
+(after! helm-rg
+  (setq
+   helm-ag-base-command "rg --no-heading"))
+
+
+;; line numbers in most modes
+(remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
+           #'display-line-numbers-mode)
