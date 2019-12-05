@@ -1,9 +1,9 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; private/my/packages.el
 
-(package!  aweshell :recipe (:fetcher github :repo "manateelazycat/aweshell" :files ("*")))
+(package!  aweshell :recipe (:host github :repo "manateelazycat/aweshell" :files ("*")))
 
-;; (package! evil-matchit :recipe (:fetcher github :repo "redguardtoo/evil-matchit" :commit "7d65b4167b1f0086c2b42b3aec805e47a0d355c4"))
+;; (package! evil-matchit :recipe (:host github :repo "redguardtoo/evil-matchit" :commit "7d65b4167b1f0086c2b42b3aec805e47a0d355c4"))
 
 
 (package! avy)
@@ -24,19 +24,19 @@
 (package! org-brain)
 (package! ivy)
 
-;; (package! nand2tetris :recipe (:fetcher github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
-(package! flymake-sml :recipe (:fetcher github :repo "oskimura/flymake-sml" :files ("*")))
+(package! nand2tetris :recipe (:host github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
+(package! flymake-sml :recipe (:host github :repo "oskimura/flymake-sml" :files ("*")))
 
 (package! flycheck)
-(package! pyim-greatdict :recipe (:fetcher github :repo "tumashu/pyim-greatdict" :files ("*")))
+(package! pyim-greatdict :recipe (:host github :repo "tumashu/pyim-greatdict" :files ("*")))
 
-(package! company-sml :recipe (:fetcher github :repo "nverno/company-sml" :files ("*")))
+(package! company-sml :recipe (:host github :repo "nverno/company-sml" :files ("*")))
 
-;(package! rmsbolt
-;	  :recipe
-;  (:files (:defaults "starters")
-;          :fetcher gitlab
-;          :repo "jgkamat/rmsbolt"))
+(package! rmsbolt
+	  :recipe
+ (:files (:defaults "starters")
+         :host gitlab
+         :repo "jgkamat/rmsbolt"))
 
 (package! exwm)
 (package! sicp)
@@ -61,8 +61,8 @@
 (package! gnuplot)
 
 
-(package! emacs-racer :recipe (:fetcher github :repo "racer-rust/emacs-racer" :files ("*")))
-(package! rustic :recipe (:fetcher github :repo "brotzeit/rustic" :files ("*")))
+(package! emacs-racer :recipe (:host github :repo "racer-rust/emacs-racer" :files ("*")))
+(package! rustic :recipe (:host github :repo "brotzeit/rustic" :files ("*")))
 
 
 (package! lsp-java)
@@ -80,6 +80,12 @@
 (package! dts-mode)
 
 
-(package! rust-analyzer :recipe (:fetcher github :repo "rust-analyzer/rust-analyzer" :files ("editors/emacs/ra-emacs-lsp.el")))
+(package! rust-analyzer :recipe (:host github :repo "rust-analyzer/rust-analyzer" :files ("editors/emacs/ra-emacs-lsp.el")))
 
 (package! adoc-mode)
+
+(package! ox-mediawiki)
+
+(package! pandoc)
+
+(package! ox-pandoc)
