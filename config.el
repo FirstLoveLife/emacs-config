@@ -163,3 +163,8 @@
 ;; line numbers in most modes
 (remove-hook! '(prog-mode-hook text-mode-hook conf-mode-hook)
            #'display-line-numbers-mode)
+
+
+(setq lsp-erlang-server-path "/home/firstlove/projects/erlang_ls/_build/default/bin/erlang_ls")
+
+(require 'lsp-python-ms)

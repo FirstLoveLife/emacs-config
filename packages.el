@@ -24,7 +24,6 @@
 (package! org-brain)
 (package! ivy)
 
-(package! nand2tetris :recipe (:host github :repo "FirstLoveLife/nand2tetris.el" :files ("*")))
 (package! flymake-sml :recipe (:host github :repo "oskimura/flymake-sml" :files ("*")))
 
 (package! flycheck)
@@ -89,3 +88,9 @@
 (package! pandoc)
 
 (package! ox-pandoc)
+
+(package! erlang)
+
+
+
+  (package! lsp-python-ms)

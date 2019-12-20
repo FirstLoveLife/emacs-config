@@ -10,6 +10,10 @@
           :map company-active-map
           :i "C-c C-f" #'company-files)
 
+(map! :after helm-rg
+          :map helm-map
+          :inv "C-c f" #'helm-rg--set-glob)
+
     (map! :after yasnippet
           :map yas-minor-mode-map
           :nmvie "M-SPC j" #'yas-next-field
