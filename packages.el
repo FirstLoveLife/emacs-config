@@ -90,7 +90,6 @@
 (package! ox-pandoc)
 
 (package! erlang)
+(package! cloc)
 
-
-
-  (package! lsp-python-ms)
+(package! lsp-python-ms)
