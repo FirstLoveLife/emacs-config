@@ -168,3 +168,14 @@
 (setq lsp-erlang-server-path "/home/firstlove/projects/erlang_ls/_build/default/bin/erlang_ls")
 
 (require 'lsp-python-ms)
+
+(use-package eaf
+  :load-path "~/.doom.d/emacs-application-framework"
+  :custom
+  (eaf-find-alternate-file-in-dired t)
+  :config
+  (eaf-bind-key scroll_up "RET" eaf-pdf-viewer-keybinding)
+  (eaf-bind-key scroll_down_page "DEL" eaf-pdf-viewer-keybinding)
+  (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+  (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+  (eaf-bind-key take_photo "p" eaf-camera-keybinding))
