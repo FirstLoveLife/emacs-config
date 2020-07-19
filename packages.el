@@ -65,3 +65,5 @@
 (package! anki-editor)
 
 (package! irony :disable t)
+(package! mediawiki)
+(package! kconfig-mode)
