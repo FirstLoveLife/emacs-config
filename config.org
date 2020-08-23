@@ -21,10 +21,150 @@
 ** presuite
 *** arch
 #+BEGIN_SRC bash
-sudo pacman -S fcitx-im fcitx-configtool fcitx-rime librime privoxy aspell-en v2ray tclap
+sudo pacman -S fcitx-im fcitx-configtool fcitx-rime librime privoxy aspell-en v2ray tclap arandr
 #+END_SRC
 ** bashrc
 #+BEGIN_SRC conf :tangle ~/.bashrc
+#
+# ~/.bashrc
+#
+
+[[ $- != *i* ]] && return
+
+colors() {
+	local fgc bgc vals seq0
+
+	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
+
+	# foreground colors
+	for fgc in {30..37}; do
+		# background colors
+		for bgc in {40..47}; do
+			fgc=${fgc#37} # white
+			bgc=${bgc#40} # black
+
+			vals="${fgc:+$fgc;}${bgc}"
+			vals=${vals%%;}
+
+			seq0="${vals:+\e[${vals}m}"
+			printf "  %-9s" "${seq0:-(default)}"
+			printf " ${seq0}TEXT\e[m"
+			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+		done
+		echo; echo
+	done
+}
+
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
+# Change the window title of X terminals
+case ${TERM} in
+	xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|interix|konsole*)
+		PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
+		;;
+	screen*)
+		PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
+		;;
+esac
+
+use_color=true
+
+# Set colorful PS1 only on colorful terminals.
+# dircolors --print-database uses its own built-in database
+# instead of using /etc/DIR_COLORS.  Try to use the external file
+# first to take advantage of user additions.  Use internal bash
+# globbing instead of external grep binary.
+safe_term=${TERM//[^[:alnum:]]/?}   # sanitize TERM
+match_lhs=""
+[[ -f ~/.dir_colors   ]] && match_lhs="${match_lhs}$(<~/.dir_colors)"
+[[ -f /etc/DIR_COLORS ]] && match_lhs="${match_lhs}$(</etc/DIR_COLORS)"
+[[ -z ${match_lhs}    ]] \
+	&& type -P dircolors >/dev/null \
+	&& match_lhs=$(dircolors --print-database)
+[[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
+
+if ${use_color} ; then
+	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
+	if type -P dircolors >/dev/null ; then
+		if [[ -f ~/.dir_colors ]] ; then
+			eval $(dircolors -b ~/.dir_colors)
+		elif [[ -f /etc/DIR_COLORS ]] ; then
+			eval $(dircolors -b /etc/DIR_COLORS)
+		fi
+	fi
+
+	if [[ ${EUID} == 0 ]] ; then
+		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+	else
+		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+	fi
+
+	alias ls='ls --color=auto'
+	alias grep='grep --colour=auto'
+	alias egrep='egrep --colour=auto'
+	alias fgrep='fgrep --colour=auto'
+else
+	if [[ ${EUID} == 0 ]] ; then
+		# show root@ when we don't have colors
+		PS1='\u@\h \W \$ '
+	else
+		PS1='\u@\h \w \$ '
+	fi
+fi
+
+unset use_color safe_term match_lhs sh
+
+alias cp="cp -i"                          # confirm before overwriting something
+alias df='df -h'                          # human-readable sizes
+alias free='free -m'                      # show sizes in MB
+alias np='nano -w PKGBUILD'
+alias more=less
+
+xhost +local:root > /dev/null 2>&1
+
+complete -cf sudo
+
+# Bash won't get SIGWINCH if another process is in the foreground.
+# Enable checkwinsize so that bash will check the terminal size when
+# it regains control.  #65623
+# http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
+shopt -s checkwinsize
+
+shopt -s expand_aliases
+
+# export QT_SELECT=4
+
+# Enable history appending instead of overwriting.  #139609
+shopt -s histappend
+
+#
+# # ex - archive extractor
+# # usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
 export CMAKE_EXPORT_COMPILE_COMMANDS=1
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
@@ -33,7 +173,50 @@ PATH=$PATH:~/.gem/ruby/2.7.0/bin/
 PATH=$PATH:~/.opam/default/bin/
 export NODE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/
 #+END_SRC
-
+** fish
+#+BEGIN_SRC conf :tangle ~/.config/fish/config.fish :mkdirp yes
+set -Ux CMAKE_EXPORT_COMPILE_COMMANDS 1
+set -Ux CMAKE_GENERATOR 'Unix Makefiles'
+set -Ux http_proxy 'http://127.0.0.1:8889'
+set -Ux https_proxy 'http://127.0.0.1:8889'
+set -Ux NODE_MIRROR 'https://mirrors.tuna.tsinghua.edu.cn/nodejs-release'
+set -Ux GO111MODULE 'on'
+set -Ux GOPROXY "https://goproxy.cn"
+#+END_SRC
+#+BEGIN_SRC conf :tangle ~/.config/fish/fish_variables :mkdirp yes
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR __fish_initialized:3100
+SETUVAR fish_color_autosuggestion:555\x1ebrblack
+SETUVAR fish_color_cancel:\x2dr
+SETUVAR fish_color_command:005fd7
+SETUVAR fish_color_comment:990000
+SETUVAR fish_color_cwd:green
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_end:009900
+SETUVAR fish_color_error:ff0000
+SETUVAR fish_color_escape:00a6b2
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
+SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
+SETUVAR fish_color_normal:normal
+SETUVAR fish_color_operator:00a6b2
+SETUVAR fish_color_param:00afff
+SETUVAR fish_color_quote:999900
+SETUVAR fish_color_redirection:00afff
+SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
+SETUVAR fish_color_status:red
+SETUVAR fish_color_user:brgreen
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_completion:\x1d
+SETUVAR fish_pager_color_description:B3A06D\x1eyellow
+SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
+SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+#+END_SRC
 ** tmux
 #+BEGIN_SRC conf :tangle ~/.tmux.conf
 set-option -g default-shell /usr/bin/xonsh
@@ -259,9 +442,9 @@ forward-socks5 / 127.0.0.1:1092 .
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = ~/.gitignore
 [http]
-    proxy = http://127.0.0.1:8118
+    proxy = http://127.0.0.1:8889
 [https]
-    proxy = http://127.0.0.1:8118
+    proxy = http://127.0.0.1:8889
 [am]
         threeWay = true
 #+END_SRC
@@ -324,8 +507,8 @@ $XONSH_STORE_STDOUT = True
 $CMAKE_EXPORT_COMPILE_COMMANDS=1
 $BROWSER = 'chromium'
 $LANG="en_US.UTF-8"
-$http_proxy="http://127.0.0.1:8118/"
-$https_proxy="https://127.0.0.1:8118/"
+$http_proxy="http://127.0.0.1:8889/"
+$https_proxy="http://127.0.0.1:8889/"
 $PATH.append('~/.opam/default/bin/')
 $NODE_MIRROR="https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/"
 $GO111MODULE="on"
@@ -348,47 +531,142 @@ patch:
 fcitx-im fcitx-configtool fcitx-rime is necessary to use rime in pyim somehow.
 ** xmonad
 #+BEGIN_SRC haskell :tangle ~/.xmonad/xmonad.hs
+import XMonad hiding ((|||))
 import qualified XMonad.StackSet as W
-import XMonad.Actions.UpdateFocus
-import XMonad.Util.EZConfig
+import qualified Data.Map        as M
+
+-- Useful for rofi
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
-import XMonad
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys, additionalKeysP, additionalMouseBindings)
+import System.IO
+import System.Exit
+-- Last window
+import XMonad.Actions.GroupNavigation
+-- Last workspace. Seems to conflict with the last window hook though so just
+-- disabled it.
+-- import XMonad.Actions.CycleWS
+-- import XMonad.Hooks.WorkspaceHistory (workspaceHistoryHook)
+import XMonad.Layout.Tabbed
+import XMonad.Hooks.InsertPosition
+import XMonad.Layout.SimpleDecoration (shrinkText)
+-- Imitate dynamicLogXinerama layout
+import XMonad.Util.WorkspaceCompare
+import XMonad.Hooks.ManageHelpers
+-- Order screens by physical location
+import XMonad.Actions.PhysicalScreens
+import Data.Default
+-- For getSortByXineramaPhysicalRule
+import XMonad.Layout.LayoutCombinators
+-- smartBorders and noBorders
+import XMonad.Layout.NoBorders
+-- spacing between tiles
+import XMonad.Layout.Spacing
+-- Insert new tabs to the right: https://stackoverflow.com/questions/50666868/how-to-modify-order-of-tabbed-windows-in-xmonad?rq=1
+-- import XMonad.Hooks.InsertPosition
+
+--- Layouts
+-- Resizable tile layout
+import XMonad.Layout.ResizableTile
+-- Simple two pane layout.
+import XMonad.Layout.TwoPane
+import XMonad.Layout.BinarySpacePartition
+import XMonad.Layout.Dwindle
+
+myTabConfig = def { activeColor = "#556064"
+                  , inactiveColor = "#2F3D44"
+                  , urgentColor = "#FDF6E3"
+                  , activeBorderColor = "#454948"
+                  , inactiveBorderColor = "#454948"
+                  , urgentBorderColor = "#268BD2"
+                  , activeTextColor = "#80FFF9"
+                  , inactiveTextColor = "#1ABC9C"
+                  , urgentTextColor = "#1ABC9C"
+                  , fontName = "xft:Noto Sans CJK:size=10:antialias=true"
+                  }
+
+myLayout = avoidStruts $
+  noBorders (tabbed shrinkText myTabConfig)
+  ||| tiled
+  ||| Mirror tiled
+  -- ||| noBorders Full
+  ||| twopane
+  ||| Mirror twopane
+  ||| emptyBSP
+  ||| Spiral L XMonad.Layout.Dwindle.CW (3/2) (11/10) -- L means the non-main windows are put to the left.
+
+  where
+     -- The last parameter is fraction to multiply the slave window heights
+     -- with. Useless here.
+     tiled = spacing 3 $ ResizableTall nmaster delta ratio []
+     -- In this layout the second pane will only show the focused window.
+     twopane = spacing 3 $ TwoPane delta ratio
+     -- The default number of windows in the master pane
+     nmaster = 1
+     -- Default proportion of screen occupied by master pane
+     ratio   = 1/2
+     -- Percent of screen to increment by when resizing panes
+     delta   = 3/100
+
+myPP = def { ppCurrent = xmobarColor "#1ABC9C" "" . wrap "[" "]"
+           , ppTitle = xmobarColor "#1ABC9C" "" . shorten 60
+           , ppVisible = wrap "(" ")"
+           , ppUrgent  = xmobarColor "red" "yellow"
+           , ppSort = getSortByXineramaPhysicalRule def
+           }
+
+myManageHook = composeAll [ isFullscreen --> doFullFloat
+
+                          ]
 
 myStartupHook :: X()
 myStartupHook = do
-    -- background
-    -- spawn "bash ~/.screenlayout/arandr.sh"
-    spawn "feh --bg-center ~/Downloads/road-landscape-nature-forest-39811.jpg  ~/Downloads/bird-s-eye-photography-of-mountain-1624496.jpg    ~/Downloads/photography-of-person-walking-on-road-1236701.jpg"
-    -- autocutsel
-    spawn "unclutter -grab &"
-    -- redshift
-    spawn "redshift -P -O 2800"
-    -- unclutter
-    spawn "unclutter"
-    -- compositor
-    spawn "picom -b"
+  spawn "bash ~/.screenlayout/arandr.sh"
+  spawn "unclutter -grab &"
+  spawn "redshift -P -O 3000"
+  spawn "picom -b"
+  spawn "feh --bg-center --bg-fill ~/projects/org/v1.jpg ~/projects/org/v2.jpg ~/projects/org/w.jpg"
+
 
 main = do
-  xmonad $ defaultConfig
-    { terminal    = myTerminal
-    , modMask     = myModMask
-    , focusFollowsMouse = False
-    , startupHook        = myStartupHook <+> docksStartupHook
-    } `additionalKeysP` myKeys
+    xmproc <- spawnPipe "xmobar"
+    xmonad $ defaultConfig
+        { modMask = mod4Mask
+        -- , keys = myKeys
+        , manageHook = manageDocks <+> myManageHook
+        , layoutHook = myLayout
+        , handleEventHook = handleEventHook def <+> docksEventHook
+        , startupHook = myStartupHook <+> docksStartupHook
+        , logHook = dynamicLogWithPP myPP {
+                                          ppOutput = hPutStrLn xmproc
+                                          }
+                        >> historyHook
+        , terminal = "terminator"
+        -- This is the color of the borders of the windows themselves.
+        , normalBorderColor  = "#2f3d44"
+        , focusedBorderColor = "#1ABC9C"
+        }
+        `additionalKeysP`
+        [
+          ("M-b", spawn "rofi -combi-modi window,run,drun -show combi -modi combi")
+          , ("M-S-b", spawn "rofi -show run")
+          -- Restart xmonad. This is the same keybinding as from i3
+          , ("M-S-c", spawn "xmonad --recompile; xmonad --restart")
+          , ("M-S-q", kill)
+          , ("M-'", windows W.swapMaster)
+          , ("M-<Return>", spawn "terminator")
+          -- Make it really hard to mispress...
+          , ("M-M1-S-e", io (exitWith ExitSuccess))
+          , ("M-M1-S-l", spawn "xlock")
+          , ("M-M1-S-s", spawn "xlock && systemctl suspend")
+          , ("M-M1-S-h", spawn "xlock && systemctl hibernate")
+        ] `additionalMouseBindings`
+        [ ((mod4Mask, button4), (\w -> windows W.focusUp))
+        , ((mod4Mask, button5), (\w -> windows W.focusDown))
+        ]
 
-myTerminal    = "konsole"
-myModMask     = mod4Mask -- Win key or Super_L
-myBorderWidth = 5
-
-myKeys =
-    [
-    -- other additional keys
-    ]
-    ++
-    [ (mask ++ "M-" ++ [key], screenWorkspace scr >>= flip whenJust (windows . action))
-         | (key, scr)  <- zip "weruio" [1,2,0,1,2,3] -- was [0..] *** change to match your screen order ***
-         , (action, mask) <- [ (W.view, "") , (W.shift, "S-")]
-    ]
 #+END_SRC
 ** xinitrc
 #+BEGIN_SRC conf :tangle ~/.xinitrc :mkdirp yes
@@ -400,7 +678,9 @@ xmonad
 ** xarand
 #+BEGIN_SRC conf :tangle ~/.screenlayout/arandr.sh :mkdirp yes
 #!/bin/sh
-xrandr --output DisplayPort-1 --mode 3840x2160 --pos 0x0 --rotate left --output DisplayPort-0 --mode 3840x2160 --pos 6000x0 --rotate left --output DisplayPort-2 --primary --mode 3840x2160 --pos 2160x1520 --rotate normal --output DVI-D-0 --off --output HDMI-A-0 --off
+
+xrandr --output DisplayPort-0 --mode 3840x2160 --pos 3840x0 --rotate normal --output DisplayPort-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DisplayPort-2 --mode 3840x2160 --pos 7680x0 --rotate normal --output HDMI-A-0 --off --output DVI-D-0 --off
+
 #+END_SRC
 ** org-protocol
 *** test
@@ -524,8 +804,8 @@ wintypes:
 ** wget
 #+BEGIN_SRC conf :tangle  ~/.wgetrc :mkdirp yes
 use_proxy=on
-http_proxy=127.0.0.1:8118
-https_proxy=127.0.0.1:8118
+http_proxy=127.0.0.1:8889
+https_proxy=127.0.0.1:8889
 #+END_SRC
 ** redshift
 #+BEGIN_SRC conf :tangle  ~/.config/redshift/redshift.conf :mkdirp yes
@@ -537,25 +817,18 @@ https_proxy=127.0.0.1:8118
  lon=2.349
 #+END_SRC
 ** stack
-增加以下参数
-#+BEGIN_SRC conf ~/.stack/config.yaml :mkdirp yes
-package-indices:
-- download-prefix: https://mirrors.ustc.edu.cn/hackage/package/
-  hackage-security:
-    keyids:
-    - 0a5c7ea47cd1b15f01f5f51a33adda7e655bc0f0b0615baa8e271f4c3351e21d
-    - 1ea9ba32c526d1cc91ab5e5bd364ec5e9e8cb67179a471872f6e26f0ae773d42
-    - 280b10153a522681163658cb49f632cde3f38d768b736ddbc901d99a1a772833
-    - 2a96b1889dc221c17296fcc2bb34b908ca9734376f0f361660200935916ef201
-    - 2c6c3627bd6c982990239487f1abd02e08a02e6cf16edb105a8012d444d870c3
-    - 51f0161b906011b52c6613376b1ae937670da69322113a246a09f807c62f6921
-    - 772e9f4c7db33d251d5c6e357199c819e569d130857dc225549b40845ff0890d
-    - aa315286e6ad281ad61182235533c41e806e5a787e0b6d1e7eef3f09d137d2e9
-    - fe331502606802feac15e514d9b9ea83fee8b6ffef71335479a2e68d84adc6b0
-    key-threshold: 3 # number of keys required
+#+BEGIN_SRC conf :tangle ~/.stack/config.yaml :mkdirp yes
+templates:
+  params:
+    author-name: chenli
+    author-email: chenli@uniontech.com
+    category: code
+    copyright: 'Copyright: (c) 2016 li chen'
+    github-username: firstlove
 
-    # ignore expiration date, see https://github.com/commercialhaskell/stack/pull/4614
-    ignore-expiry: true
+setup-info-locations: ["http://mirrors.tuna.tsinghua.edu.cn/stackage/stack-setup.yaml"]
+urls:
+  latest-snapshot: http://mirrors.tuna.tsinghua.edu.cn/stackage/snapshots.json
 #+END_SRC
 
 ** cabal
@@ -568,3 +841,38 @@ Cabal < 1.24
 #+END_SRC
 
 但是替换仓库就行了，不需要全覆盖，所以不 tangle 了
+** xmobar
+#+BEGIN_SRC haskell :tangle ~/.xmobarrc
+ Config {
+       font = "xft:Noto Sans:size=9:antialias=true,Noto Sans CJK SC:size=9:antialias=true"
+       , bgColor = "#283339"
+       , fgColor = "#F9fAF9"
+       , position = TopW L 85
+       , commands = [
+                    Run Battery [ "--template" , "B: <acstatus>"
+                                , "--L" , "15"
+                                , "--H" , "75"
+                                , "--low"      , "darkred"
+                                , "--normal"   , "darkorange"
+                                , "--high"     , "#1ABC9C"
+                                , "--" -- battery specific options
+                                       -- discharging status
+                                       , "-o"   , "<left>% (<timeleft>)"
+                                       -- AC "on" status
+                                       , "-O"   , "<fc=#dAA520>Charging</fc>"
+                                       -- charged status
+                                       , "-i"   , "<fc=#1ABC9C>Charged</fc>"
+                                ] 50
+                    -- , Run Cpu [ "--template" , "C: <total>%", "-L","0","-H","50","--normal","#1ABC9C","--high","darkred"] 10
+                    -- , Run Memory ["-t","M: <usedratio>%"] 10
+                    , Run DiskU [("/", "D: <free>")] ["-L", "20", "-H", "60"] 10
+                    -- , Run Swap [] 10
+                    , Run Date "%a %d.%m. %H:%M" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %battery% | %disku% | %date%"
+       }
+
+#+END_SRC

@@ -22,7 +22,7 @@
        ophints
        (popup +all +defaults)
        ;; treemacs
-       pretty-code
+       ligatures
        unicode
        ;;tabs
        vc-gutter
@@ -35,31 +35,34 @@
        chinese
        ;; japanese
 
+       :os
+       tty
+
        :editor
        ;; uos-keybinding
        (evil +everywhere)
        ;; file-templates
-       fold              ; (nigh) universal code folding
+       fold                 ; (nigh) universal code folding
        ;;objed
-       format            ; automated prettiness
-       lispy             ; vim for lisp, for people who dont like vim
-       multiple-cursors  ; editing in many places at once
+       format               ; automated prettiness
+       lispy                ; vim for lisp, for people who dont like vim
+       multiple-cursors     ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
        ;; rotate-text       ; cycle region at point between text candidates
        snippets
        ;;word-wrap
 
        :emacs
-       dired             ; making dired pretty [functional]
-       electric          ; smarter, keyword-based electric-indent
+       dired                 ; making dired pretty [functional]
+       electric              ; smarter, keyword-based electric-indent
        ;;ibuffer           ; interactive buffer management
        vc
        (undo +tree)
 
        :term
-       eshell            ; a consistent, cross-platform shell (WIP)
+       eshell                         ; a consistent, cross-platform shell (WIP)
        shell
-       term              ; terminals in Emacs
+       term                             ; terminals in Emacs
        vterm
 
        :checkers
@@ -79,15 +82,15 @@
        (lookup +docsets +dictionary)
        lsp
        ;;macos             ; MacOS-specific commands
-       magit             ;
+       (magit +forge)        ;
        ;;make              ; run make tasks from Emacs
        ;; pass                ; password manager for nerds
-       pdf               ; pdf enhancements
+       pdf                              ; pdf enhancements
        ;;prodigy           ; FIXME managing external services & code builders
        ;;rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
        ;; tmux              ; an API for interacting with tmux
-       upload            ; map local to remote projects via ssh/ftp
+       upload                         ; map local to remote projects via ssh/ftp
 
        :lang
        ;; assembly
@@ -106,7 +109,7 @@
        emacs-lisp
        ;;ess
        ;;faust
-       ;;go
+       (go +lsp)
        (haskell +lsp)
        ;;hy
        ;;(java +lsp)
@@ -118,8 +121,8 @@
        markdown
        ;;nim
        ;; nix
-       ;;ocaml
-       (org +present +procotol +journal +brain)
+       ocaml
+       (org +present +procotol +journal +brain +roam)
        ;;perl
        ;;php
        ;;plantuml
@@ -138,7 +141,7 @@
        :email
        ;;(mu4e +gmail)       ; WIP
        ;;notmuch             ; WIP
-       (wanderlust) ; WIP
+       (wanderlust)                     ; WIP
 
        :app
        ;;calendar

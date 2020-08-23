@@ -40,7 +40,6 @@
 ;;    :no-byte-compile t
 ;;    :repo "manateelazycat/aweshell"))
 
-(package! ccls)
 (package! lsp-mode)
 (package! lsp-ui)
 (package! ox-mediawiki)
@@ -67,3 +66,5 @@
 (package! irony :disable t)
 (package! mediawiki)
 (package! kconfig-mode)
+(package! dts-mode)
+(package! ccls)

@@ -88,6 +88,7 @@
 (modify-syntax-entry ?_ "w")
 
 (after! wl
+  (setq wl-mime-save-directory "/home/firstlove/projects/org/mime/")
   (setq shimbun-rss-hash-group-path-alist
         '(("xkcd" "https://xkcd.com/rss.xml")
           ("acgpiping" "http://www.acgpiping.net/feed/")
@@ -117,3 +118,29 @@
 ;; (add-to-list 'magic-mode-alist '("#include.*\\.h\s" . c++-mode))
 
 (remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
+
+(after! mediawiki
+  (setq mediawiki-site-default "jungong")
+  (setq mediawiki-site-alist '("jungong" "http://10.2.10.220:8081/index.php/" "Chenli" "17126724" nil "首页")))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(eaf-find-alternate-file-in-dired t t)
+ '(safe-local-variable-values '((projectile-project-compilation-cmd . "./bindeb-pkg.sh"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(remove-hook! (prog-mode text-mode conf-mode special-mode) #'hl-line-mode)
+(put 'magit-clean 'disabled nil)
+
+(after! lsp-haskell
+  (setq lsp-haskell-process-path-hie "haskell-language-server-wrapper")
+  ;; Comment/uncomment this line to see interactions between lsp client/server.
+  ;;(setq lsp-log-io t)
+  )

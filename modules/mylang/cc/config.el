@@ -8,10 +8,10 @@
          )
   ;; :mode ("^D.*" . (lambda ()(require'ccls)(lsp)(modify-syntax-entry ?_ "w")))
   :config
-  (setq ccls-executable "/usr/bin/ccls")
+  (setq ccls-executable "/home/firstlove/projects/github/ccls/build/ccls")
   (setq ccls-sem-highlight-method 'overlay)
   (ccls-use-default-rainbow-sem-highlight)
-  (setq ccls-args '("--log-file=/tmp/ccls.log"))
+  ;; (setq ccls-args '("--log-file=/tmp/ccls.log"))
   (evil-set-initial-state 'ccls-tree-mode 'emacs)
   (setq ccls-initialization-options
         '(:compilationDatabaseDirectory "build"
@@ -23,6 +23,6 @@
                                                             "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
                                                            )
                                         :cache (:directory "/home/firstlove/tmp")
-                                        :index (:threads 16)
+                                        :index (:threads 1)
                                         )
         ))

@@ -16,12 +16,12 @@
   :custom
   (eaf-find-alternate-file-in-dired t)
   :config
-  (setq eaf-proxy-type "socks5")
+  (setq eaf-proxy-type "http")
   (eaf-setq eaf-browser-default-zoom "2")
   (eaf-setq eaf-browser-dark-mode "true")
   (add-to-list 'evil-emacs-state-modes 'eaf-mode)
   (setq eaf-proxy-host "127.0.0.1")
-  (setq eaf-proxy-port "1092")
+  (setq eaf-proxy-port "8889")
   (eaf-bind-key scroll_up "RET" eaf-pdf-viewer-keybinding)
   (eaf-bind-key scroll_down_page "DEL" eaf-pdf-viewer-keybinding)
   (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)

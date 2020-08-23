@@ -32,13 +32,13 @@ WORK{
           .janitors
           .kbuild
           .kernel
+          .kernel-package
           .kselftest
-          .linux
+          .linux-kernel
           .linux-arch
           .man
           .module
           .netdev
-          .netdev-owner
           .next
           .patching
           .pci
