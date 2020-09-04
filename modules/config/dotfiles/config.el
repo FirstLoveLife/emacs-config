@@ -5,7 +5,7 @@
        tangled."
   (when (equal (buffer-file-name)
                (expand-file-name (concat doom-private-dir
-                                         "/config.org")))
+                                         "/README.org")))
     (org-babel-tangle)))
 
 (add-hook 'after-save-hook 'dotfiles-hook)

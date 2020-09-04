@@ -23,6 +23,6 @@
                                                             "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
                                                            )
                                         :cache (:directory "/home/firstlove/tmp")
-                                        :index (:threads 1)
+                                        :index (:threads 8)
                                         )
         ))

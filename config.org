@@ -678,9 +678,7 @@ xmonad
 ** xarand
 #+BEGIN_SRC conf :tangle ~/.screenlayout/arandr.sh :mkdirp yes
 #!/bin/sh
-
-xrandr --output DisplayPort-0 --mode 3840x2160 --pos 3840x0 --rotate normal --output DisplayPort-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DisplayPort-2 --mode 3840x2160 --pos 7680x0 --rotate normal --output HDMI-A-0 --off --output DVI-D-0 --off
-
+xrandr --output DisplayPort-0 --mode 3840x2160 --pos 3840x404 --rotate normal --output DisplayPort-1 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DisplayPort-2 --mode 3840x2160 --pos 7680x0 --rotate normal --output HDMI-A-0 --off --output DVI-D-0 --off
 #+END_SRC
 ** org-protocol
 *** test
@@ -755,6 +753,11 @@ shadow-exclude = [
 	"_GTK_FRAME_EXTENTS@:c",
 	"bounding_shaped && !rounded_corners"
 ];
+
+opacity-rule = [
+    "100:class_g = 'Chromium' && focused",
+    "80:class_g = 'Chromium' && !focused"
+]
 
 fading = true;
 fade-delta = 5;
@@ -875,4 +878,24 @@ Cabal < 1.24
        , template = "%StdinReader% }{ %battery% | %disku% | %date%"
        }
 
+#+END_SRC
+** coc-nvim
+#+BEGIN_SRC json :tangle ~/.config/nvim/coc-settings.json :mkdirp yes
+{
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/home/firstlove/tmp/"
+        },
+        "client": {
+          "snippetSupport": true
+        }
+      }
+    }
+  }
+}
 #+END_SRC

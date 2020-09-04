@@ -72,7 +72,7 @@
 
        :tools
        ;;ansible
-       ;; debugger
+       (debugger +lsp)
        ;; direnv
        ;; docker
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -112,7 +112,7 @@
        (go +lsp)
        (haskell +lsp)
        ;;hy
-       ;;(java +lsp)
+       (java +lsp)
        ;;(javascript +lsp)
        ;;julia
        ;;latex
