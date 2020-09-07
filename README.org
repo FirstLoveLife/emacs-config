@@ -184,6 +184,9 @@ set -Ux https_proxy 'http://127.0.0.1:8889'
 set -Ux NODE_MIRROR 'https://mirrors.tuna.tsinghua.edu.cn/nodejs-release'
 set -Ux GO111MODULE 'on'
 set -Ux GOPROXY "https://goproxy.cn"
+set -Ux JAVA_TOOL_OPTIONS "-Djava.net.useSystemProxies=true"
+set -Ux JAVA_FLAGS "-Dhttp.proxyHost=127.0.0.1 -Dhttp.proxyPort=8889"
+set -Ux MAVEN_OPTS "-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1089"
 #+END_SRC
 
 #+BEGIN_SRC conf :tangle ~/.config/fish/fish_variables :mkdirp yes
@@ -449,7 +452,13 @@ forward-socks5 / 127.0.0.1:1092 .
 [https]
     proxy = http://127.0.0.1:8889
 [am]
-        threeWay = true
+    threeWay = true
+[core]
+    autocrlf = input
+    eol = lf
+    whitespace = cr-at-eol
+[auto]
+    crlf = false
 #+END_SRC
 ** gitignore
 #+BEGIN_SRC conf :tangle ~/.gitignore
