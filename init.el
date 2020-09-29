@@ -21,8 +21,8 @@
        ;;neotree
        ophints
        (popup +all +defaults)
-       ;; treemacs
-       ligatures
+       treemacs
+       (ligatures +extra +iosevka)
        unicode
        ;;tabs
        vc-gutter
