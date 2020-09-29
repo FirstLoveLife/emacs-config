@@ -156,3 +156,8 @@
 
 (after! counsel
   (setq counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)\\|\\.*\\.o\\|\\.*\\.a\\|\\.*\\.builtin"))
+
+
+(setq doom-theme 'doom-tomorrow-day)
+(with-eval-after-load 'em-term
+  (add-to-list 'eshell-visual-commands "watch"))
