@@ -230,6 +230,7 @@ SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 ** tmux
 #+BEGIN_SRC conf :tangle ~/.tmux.conf
 set-option -g default-shell /usr/bin/fish
+set-option -g excape-time 0
 #+END_SRC
 ** zshrc
 #+BEGIN_SRC conf :tangle ~/.zshrc
