@@ -72,3 +72,5 @@
 
 (unpin! apel)
 (package! apel :recipe (:branch "lexical-binding") :pin "414dc330cc8327fdaf6aeb5234e9fafdd69964ca")
+
+(unpin! t)
