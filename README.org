@@ -175,6 +175,10 @@ PATH=$PATH:~/.local/bin/
 PATH=$PATH:~/.opam/default/bin/
 export NODE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/
 #+END_SRC
+** emacs
+#+BEGIN_SRC conf
+--with-xwidgets --with-imagemagick --with-sound=alsa --with-mailutils
+#+END_SRC
 ** fish
 #+BEGIN_SRC conf :tangle ~/.config/fish/config.fish :mkdirp yes
 set -Ux CMAKE_EXPORT_COMPILE_COMMANDS 1
