@@ -21,7 +21,7 @@
 ** presuite
 *** arch
 #+BEGIN_SRC bash
-sudo pacman -S fcitx-im fcitx-configtool fcitx-rime librime privoxy aspell-en v2ray tclap arandr neovim chromium
+yay -S fcitx-im fcitx-configtool fcitx-rime librime privoxy aspell-en v2ray tclap arandr neovim chromium fd jq cmake-language-server
 yay -S qv2ray qv2ray-plugin-ssr-git
 #+END_SRC
 ** bashrc
