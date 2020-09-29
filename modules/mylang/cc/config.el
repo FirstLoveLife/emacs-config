@@ -2,6 +2,10 @@
 
 (use-package! ccls
   :init
+  (after! projectile
+  (add-to-list 'projectile-globally-ignored-directories ".ccls-cache")
+  (add-to-list 'projectile-project-root-files-bottom-up ".ccls-root")
+  (add-to-list 'projectile-project-root-files-top-down-recurring "compile_commands.json"))
   :hook (((c-mode-local-vars c-mode c++-mode-local-vars objc-mode-local-vars) . (lambda ()(require'ccls)(lsp)(modify-syntax-entry ?_ "w")))
          ;; (lsp-after-open . ccls-code-lens-mode)
          (find-file . (lambda ()(require'ccls)(lsp)(modify-syntax-entry ?_ "w")(my-c++-mode-check-buffers)))
