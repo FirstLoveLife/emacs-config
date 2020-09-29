@@ -153,3 +153,6 @@
   ;; Comment/uncomment this line to see interactions between lsp client/server.
   ;;(setq lsp-log-io t)
   )
+
+(after! counsel
+  (setq counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)\\|\\.*\\.o\\|\\.*\\.a\\|\\.*\\.builtin"))
