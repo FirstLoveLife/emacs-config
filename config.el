@@ -49,14 +49,21 @@
 (setq direnv-always-show-summary nil)
 
 ;;; :tools magit
-(setq magit-repository-directories '(("~/projects" . 2))
-      magit-save-repository-buffers nil
-      ;; Don't restore the wconf after quitting magit
-      magit-inhibit-save-previous-winconf t
-      ;; transient-values '((magit-commit "--gpg-sign=859058B499061C01")
-      ;;                    (magit-rebase "--autosquash" "--gpg-sign=859058B499061C01")
-      ;;                    (magit-pull "--rebase" "--gpg-sign=859058B499061C01"))
-      )
+(after! magit
+  (setq magit-repository-directories '(("~/projects" . 2))
+        magit-save-repository-buffers nil
+        ;; Don't restore the wconf after quitting magit
+        magit-inhibit-save-previous-winconf t
+        ;; transient-values '((magit-commit "--gpg-sign=859058B499061C01")
+        ;;                    (magit-rebase "--autosquash" "--gpg-sign=859058B499061C01")
+        ;;                    (magit-pull "--rebase" "--gpg-sign=859058B499061C01"))
+
+        magit-revision-insert-related-refs 'all))
+                                        ;(after! transient
+                                        ;  (transient-append-suffix 'magit-log "-A"
+                                        ;    '("-m" "Omit merge commits" "--no-merges"))
+                                        ; (transient-append-suffix 'magit-log "-A"
+                                        ;    '("-f" "Follow only the first parent commit upon seeing a merge commit" "--first-parent")) )
 
 
 
