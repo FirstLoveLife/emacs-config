@@ -122,7 +122,7 @@
        ;;nim
        ;; nix
        ocaml
-       (org +present +procotol +journal +brain +roam)
+       (org +present +procotol +journal +brain +roam +pretty +present)
        ;;perl
        ;;php
        ;;plantuml
