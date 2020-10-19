@@ -6,12 +6,21 @@
 # will be washed out by wl-fldmgr.
 #
 
-%firstlove:"czxyl@firstlove.life"/clear@mail.privateemail.com:993!	"firstlove"
+shit{
+    %Inbox:"czxyl@firstlove.life"/clear@mail.privateemail.com:993!	"Inbox"
+}
+FOXMAIL{
+        %Inbox:"firstlove@foxmail.com"/clear@imap.qq.com:993!	"Inbox"
+}
+
 WORK{
     .ToMe
     .CcMe
     .colleague
     .IT
+    .gnu-libc{
+        .alpha
+    }
 	linux kernel maillisting{
           .alpha
           .announce
@@ -164,6 +173,9 @@ WORK{
     +ltp
     }
     .deepin
+}
+YANDEX {
+       %Inbox:"firstlovelife@yandex.com"/clear@imap.yandex.com:993! "Inbox"
 }
 NEWS {
 	@rss-hash.xkcd	"xkcd"

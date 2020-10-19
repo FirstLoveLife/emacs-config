@@ -7,63 +7,10 @@
 (setq wl-smtp-posting-server "smtp.263.net")
 (setq wl-local-domain "uniontech.com")
 
-;; (setq
-;;  wl-smtp-connection-type 'ssl
-;;  wl-smtp-posting-port 465
-;;  wl-smtp-authenticate-type "plain"
-;;  wl-smtp-posting-user "chenli"
-;;  wl-smtp-posting-server "mail.privateemail.com"
-;;  wl-local-domain "privateemail.com"
-;;  wl-message-id-domain "mail.privateemail.com")
-
-;; 更加复杂的多账号设置
-(setq wl-user-mail-address-list (quote ("chenli@uniontech.com" "czxyl@firstlove.life")))
-
-(setq wl-draft-config-alist
-      '(((string-match "uniontech.com" wl-draft-parent-folder)
-         (template . "uniontech"))
-        ((string-match "mail.privateemail.com" wl-draft-parent-folder)
-         (template . "firstlove.life"))
-        ;; automatic for replies
-        (reply "\\(To\\|Cc\\|Delivered-To\\): uniontech"
-               (template . "uniontech"))
-        (reply "\\(To\\|Cc\\|Delivered-To\\): firstlove.life"
-               (template . "firstlove.life"))))
-
-(setq wl-template-alist
-      '(("uniontech"
-         (wl-smtp-connection-type . 'nil)
-         (wl-smtp-posting-port . 25)
-         (wl-smtp-authenticate-type . "plain")
-         (wl-smtp-posting-user . "chenli@uniontech.com")
-         (wl-smtp-posting-server . "smtp.263.net")
-         (wl-local-domain . "uniontech.com")
-         (wl-refile-rule-alist .       '(("x-ml-name"
-                                          ("^Wanderlust" . "+wl")
-                                          ("^Elisp" . "+elisp"))
-                                         ;; (("To" "Cc")
-                                         ;;  ("\\([a-z]+\\)@gohome\\.org" . "+\\1"))
-                                         ;; ("From"
-                                         ;;  ("me@gohome\\.org" . ("To" ("you@gohome\\.org" .
-                                         ;;                              "+from-me-to-you"))))
-                                         (("Subject" "To")
-                                          ("\\([a-zA-Z-]+\\)@vger\\.kernel\\.org" . "+\\1"))
-                                         ))
-         )
-        ("firstlove.life"
-         ;; ("Fcc" . "%INBOX.Sent:\"czxyl@firstlove.life\"/clear@mail.privateemail.com")
-         (wl-from . "陈力 <chenli@firstlove.com>")
-         (wl-smtp-posting-user . "czxyl@firstlove.life")
-         (wl-smtp-connection-type 'ssl)
-         (wl-smtp-authenticate-type . "plain")
-         (wl-smtp-posting-server . "mail.privateemail.com")
-         (wl-local-domain . "mail.privateemail.com"))
-        (wl-smtp-posting-port . 465)
-        ))
-
 (setq wl-subscribed-mailing-list
       '("wl@ml.gentei.org"
         "apel-ja@m17n.org"
+        "libc-alpha@sourceware.org"
         "linux-alpha@vger.kernel.org"
         "linux-media@vger.kernel.org"
         "linux-kernel@vger.kernel.org"
@@ -145,19 +92,62 @@
          ("chenli@uniontech\\.com" . ".ToMe")
          ("git-commits-head@vger\\.kernel\\.org" . ".git-commits-head"))
         (("Cc")
-         ("chenli@uniontech\\.com" . ".CcMe"))
+         ("chenli@uniontech\\.com" . ".CcMe")
+         ("libc-\\([a-zA-z]+\\)@sourceware\\.org" . "%[WORK]\\/\\.gnu-libc\\/.\\1" )
+         )
         (("Subject" "To")
          ("\\([a-zA-Z-]+\\)-owner@vger\\.kernel\\.org" . ".\\1")
-         ("ltp@lists\\.linux\\.it" . "%ltp-try:\"chenli@uniontech.com\"/clear@imap.263.net:143"  )
          ("openssh-unix-dev" . ".openssh")
+         ("libc-\\([a-zA-z]+\\)@sourceware\\.org" . "%[WORK]\\/\\.gnu-libc\\/.\\1")
          )
         ( ("From")
           ("it@uniontech.com" . ".IT")
-         ("PMS" . "+PMS")
-         ("Majordomo@vger\\.kernel\\.org" . ".archive")
-         (".*@uniontech.com" . ".colleague")
-         ("*@deepin.com" . ".deepin")
-         )
+          ("PMS" . "+PMS")
+          ("Majordomo@vger\\.kernel\\.org" . ".archive")
+          (".*@uniontech.com" . ".colleague")
+          ("*@deepin.com" . ".deepin")
+          )
         ))
+
+(defun user/wanderlust-set-user (user/mail
+                                 user/inbox user/imap
+                                 user/smtp-connection-type
+                                 user/smtp-server
+                                 user/smtp-port
+                                 user/smtp-auth-type)
+  "Configure Wanderlust to use \"FULLNAME\" <USERNAME@USER/MAIL.com>."
+  (lambda (fullname username)
+    (let* (
+           (folder-template (format "\"%s@%s\"/%s" username user/mail user/imap))
+           (email-address (concat username "@" user/mail))
+           (email-inbox (concat user/inbox folder-template)))
+
+      (add-to-list 'wl-user-mail-address-list email-address)
+
+      (add-to-list 'wl-template-alist
+                   `(,email-address
+                     (wl-from . ,(concat fullname "<" email-address ">"))
+                     ("From" . wl-from)
+                     (wl-smtp-connection-type . ,user/smtp-connection-type)
+                     (wl-smtp-posting-port . ,user/smtp-port)
+                     (wl-smtp-authenticate-type . ,user/smtp-auth-type)
+                     (wl-smtp-posting-user . ,email-address)
+                     (wl-smtp-posting-server . ,user/smtp-server)
+                     (wl-local-domain . ,user/mail)
+                     (wl-default-folder . ,email-inbox)
+                     ))
+      ;; XXX: add check list here will cause auth fail somehow.
+      ;; (add-to-list 'wl-biff-check-folder-list email-inbox)
+      (add-to-list 'wl-auto-check-folder-name email-inbox)))
+  )
+(setq user/wanderlust-set-yandex-user (user/wanderlust-set-user "yandex.com" "%[YANDEX]/Inbox" "clean@imap.yandex.com:993!" ''ssl "smtp.yandex.com" 465 "cram-md5"))
+(setq user/wanderlust-set-uniontech-user (user/wanderlust-set-user "uniontech.com" "%[WORK]/INBOX" "clear@imap.263.net:143" ''nil "smtp.263.net" 25 "cram-md5"))
+(setq user/wanderlust-set-foxmail-user (user/wanderlust-set-user "foxmail.com" "%[FOXMAIL]/Inbox" "login@imap.qq.com:993!" ''ssl "smtp.qq.com" 465 "cram-md5"))
+(setq user/wanderlust-set-privatemail-user (user/wanderlust-set-user "firstlove.life" "%[shit]/INBOX" "clear@mail.privateemail.com:993!" ''ssl "mail.privateemail.com" 465 "cram-md5"))
+
+(funcall user/wanderlust-set-uniontech-user "Chen Li" "chenli")
+(funcall user/wanderlust-set-yandex-user "Chen Li" "firstlovelife")
+(funcall user/wanderlust-set-foxmail-user "Chen Li " "firstlovelife")
+(funcall user/wanderlust-set-privatemail-user "Chen Li " "czxyl")
 
 (setq wl-summary-auto-refile-skip-marks nil)
