@@ -13,6 +13,7 @@
        doom-dashboard
        ;;doom-quit
        ;;fill-column
+       (emoji +unicode)  ; 🙂
        hl-todo
        ;;hydra
        ;;indent-guides     ; highlighted indent columns
@@ -21,7 +22,7 @@
        ;;neotree
        ophints
        (popup +all +defaults)
-       treemacs
+       ;; treemacs
        (ligatures +extra +iosevka)
        unicode
        ;;tabs
@@ -32,7 +33,7 @@
        ;; zen
 
        :input
-       chinese
+       ;; chinese
        ;; japanese
 
        :os
@@ -53,11 +54,11 @@
        ;;word-wrap
 
        :emacs
-       dired                 ; making dired pretty [functional]
+       (dired +icons)                 ; making dired pretty [functional]
        electric              ; smarter, keyword-based electric-indent
        ;;ibuffer           ; interactive buffer management
        vc
-       (undo +tree)
+       (undo)
 
        :term
        eshell                         ; a consistent, cross-platform shell (WIP)
@@ -73,6 +74,7 @@
        :tools
        ;;ansible
        (debugger +lsp)
+       takrunner
        ;; direnv
        ;; docker
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -94,9 +96,10 @@
 
        :lang
        ;; assembly
-       (cc)
+       (cc +lsp)
        ;; qt
        sml
+       rst
        ;;crystal
        ;;clojure
        ;;(csharp +unity)
@@ -122,7 +125,7 @@
        ;;nim
        ;; nix
        ocaml
-       (org +present +procotol +journal +brain +roam +pretty +present)
+       (org +present +procotol +journal +brain +pretty +pandoc)
        ;;perl
        ;;php
        ;;plantuml
@@ -140,25 +143,25 @@
 
        :email
        ;;(mu4e +gmail)       ; WIP
-       ;;notmuch             ; WIP
-       (wanderlust)                     ; WIP
+       ;; notmuch             ; WIP
+       ;; (wanderlust)
+       ;;                                  ; WIP
 
        :app
        ;;calendar
-       ;;irc
+       irc
        ;;(rss +org)
-
-       :config
+:config
        (default +bindings +smartparens)
        dotfiles
        :lazycat
-       eaf
+       ;eaf
        ;; awesome-tab
        ;; snails
        :mylang
-       cc
+       ;; cc
        lsp
        org
        )
 
-(defvar uos/leader "s")
+;; (defvar uos/leader "s")

@@ -22,7 +22,8 @@
 (setq org-directory "~/projects/org/"
       org-archive-location (concat org-directory "archive/%s::")
       org-ellipsis " ▼ "
-      org-bullets-bullet-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷"))
+      ;; org-bullets-bullet-list '("☰" "☱" "☲" "☳" "☴" "☵" "☶" "☷" "☷" "☷" "☷")
+      )
 
 (after! org-journal
   (add-to-list 'org-agenda-files org-journal-dir)
@@ -30,15 +31,15 @@
   (setq org-journal-enable-agenda-integration t)
   )
 
-(map!
- (
-  :map general-override-mode-map
-  :prefix uos/leader
-  (
-   (:prefix ("n" . "notes")
-     (:prefix ("c" . "en/decrypt")
-       :n      "e" #'org-encrypt-entry
-       :n "d" #'org-decrypt-entry)))))
+;(map!
+; (
+;  :map general-override-mode-map
+;  :prefix uos/leader
+;  (
+;   (:prefix ("n" . "notes")
+;     (:prefix ("c" . "en/decrypt")
+;       :n      "e" #'org-encrypt-entry
+;       :n "d" #'org-decrypt-entry)))))
 
 (after! org
   (pushnew! org-capture-templates

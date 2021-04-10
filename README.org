@@ -21,9 +21,170 @@
 ** presuite
 *** arch
 #+BEGIN_SRC bash
-yay -S fcitx-im fcitx-configtool fcitx-rime librime privoxy aspell-en v2ray tclap arandr neovim chromium fd jq cmake-language-server
-yay -S qv2ray qv2ray-plugin-ssr-git
+yay -S fcitx5-im fcitx5-configtool fcitx5-rime librime privoxy aspell-en v2ray tclap arandr neovim chromium fd jq cmake-language-server yarn manjaro-asian-input-support-fcitx5 qv2ray qv2ray-plugin-ssr-git rime-luna-pinyin rime-luna-pinyin rime-emoji xorg-fonts-misc
 #+END_SRC
+** rime and fcitx5
+
+#+begin_src conf :tangle ~/.local/share/fcitx5/rime/default.custom.yaml :mkdirp yes
+
+patch:
+  schema_list:
+    - schema: luna_pinyin
+patch:
+  "menu/page_size": 9
+  'punctuator/import_preset': alternative
+  'key_binder/import_preset': alternative
+#+end_src
+
+#+begin_src conf :tangle ~/.local/share/fcitx5/rime/alternative.yaml :mkdirp yes
+# Rime alternative settings
+# encoding: utf-8
+#
+# difference from default settings:
+# 1. ascii-style punctuation in half-shape mode
+# 2. [ ] as paging keys
+#
+# save this file as:
+# (Linux)   ~/.config/ibus/rime/alternative.yaml
+# (Mac OS)  ~/Library/Rime/alternative.yaml
+# (Windows) "%APPDATA%\Rime\alternative.yaml"
+#
+# edit <SCHEMA_ID>.custom.yaml:
+# >> patch:
+# >>   'punctuator/import_preset': alternative
+# >>   'key_binder/import_preset': alternative
+#
+# for detailed explanation, refer to:
+# http://code.google.com/p/rimeime/wiki/CustomizationGuide#%E4%BD%BF%E7%94%A8%E5%85%A8%E5%A5%97%E8%A5%BF%E6%96%87%E6%A8%99%E9%BB%9E
+
+config_version: "0.3"
+
+punctuator:
+  full_shape:
+    " " : { commit: "　" }
+    "," : { commit: ， }
+    "." : { commit: 。 }
+    "<" : [ 《, 〈, «, ‹ ]
+    ">" : [ 》, 〉, », › ]
+    "/" : [ 、, ／, "/", ÷ ]
+    "?" : { commit: ？ }
+    ";" : { commit: ； }
+    ":" : ：
+    "'" : { pair: [ "‘", "’" ] }
+    "\"" : { pair: [ "“", "”" ] }
+    "\\" : [ 、, ＼, "\\" ]
+    "|" : [ ・, ｜, "|", "§", "¦" ]
+    "`" : [ ｀, "`" ]
+    "~" : [ 〜, "~", ～, 〰 ]
+    "!" : { commit: ！ }
+    "@" : [ ＠, "@", ☯ ]
+    "#" : [ ＃, "#", ⌘ ]
+    "%" : [ ％, "%", "°", "℃" ]
+    "$" : [ ￥, "$", "€", "£", "¥", "¢", "¤" ]
+    "^" : { commit: …… }
+    "&" : [ ＆, "&" ]
+    "*" : [ ＊, "*", ・, ×, ※, ❂, · ]
+    "(" : （
+    ")" : ）
+    "-" : [ －, "-" ]
+    "_" : ——
+    "+" : [ ＋, "+" ]
+    "=" : [ ＝, "=" ]
+    "[" : [ 「, 【, 〔, ［ ]
+    "]" : [ 」, 】, 〕, ］ ]
+    "{" : [ 『, 〖, ｛ ]
+    "}" : [ 』, 〗, ｝ ]
+  half_shape:
+    "," : { commit: "," }
+    "." : { commit: "." }
+    "<" : "<"
+    ">" : ">"
+    "/" : "/"
+    "?" : { commit: "?" }
+    ";" : { commit: ";" }
+    ":" : { commit: ":" }
+    "'" : "'"
+    "\"" : "\""
+    "\\" : "\\"
+    "|" : "|"
+    "`" : "`"
+    "~" : "~"
+    "!" : { commit: "!" }
+    "@" : "@"
+    "#" : "#"
+    "%" : "%"
+    "$" : "$"
+    "^" : "^"
+    "&" : "&"
+    "*" : "*"
+    "(" : "("
+    ")" : ")"
+    "-" : "-"
+    "_" : "_"
+    "+" : "+"
+    "=" : "="
+    "[" : "["
+    "]" : "]"
+    "{" : "{"
+    "}" : "}"
+
+key_binder:
+  bindings:
+    # commonly used paging keys
+    - { when: composing, accept: ISO_Left_Tab, send: Page_Up }
+    - { when: composing, accept: Shift+Tab, send: Page_Up }
+    - { when: composing, accept: Tab, send: Page_Down }
+    - { when: has_menu, accept: minus, send: Page_Up }
+    - { when: has_menu, accept: equal, send: Page_Down }
+    - { when: paging, accept: comma, send: Page_Up }
+    - { when: has_menu, accept: period, send: Page_Down }
+    - { when: paging, accept: bracketleft, send: Page_Up }
+    - { when: has_menu, accept: bracketright, send: Page_Down }
+
+#+end_src
+
+#+begin_src conf :tangle ~/.local/share/fcitx5/rime/luna_pinyin.custom.yaml
+patch:
+  "menu/page_size": 7
+  "punctuator/import_preset": alternative
+  "key_binder/import_preset": alternative
+  "switches/@0/reset": 1 #表示將 switcher 列表中的第一個元素（即 ascii_mode 開關）的初始值重設爲狀態1（即「英文」）。
+  switches:                   # 注意缩进
+    - name: ascii_mode
+      reset: 0                # reset 0 的作用是当从其他输入法切换到本输入法重设为指定状态
+      states: [ 中文, 西文 ]   # 选择输入方案后通常需要立即输入中文，故重设 ascii_mode = 0
+    - name: full_shape
+      states: [ 半角, 全角 ]   # 而全／半角则可沿用之前方案的用法。
+    - name: simplification
+      reset: 1                # 增加这一行：默认启用「繁→簡」转换。
+      states: [ 漢字, 汉字 ]
+
+#+end_src
+
+#+begin_src conf :tangle ~/.config/fcitx5/profile
+[Groups/0]
+# Group Name
+Name=Default
+# Layout
+Default Layout=us
+# Default Input Method
+DefaultIM=rime
+
+[Groups/0/Items/0]
+# Name
+Name=keyboard-us
+# Layout
+Layout=
+
+[Groups/0/Items/1]
+# Name
+Name=rime
+# Layout
+Layout=
+
+[GroupOrder]
+0=Default
+#+end_src
 ** bashrc
 #+BEGIN_SRC conf :tangle ~/.bashrc
 #
@@ -230,8 +391,12 @@ SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 ** tmux
 #+BEGIN_SRC conf :tangle ~/.tmux.conf
 set-option -g default-shell /usr/bin/fish
-set-option -g excape-time 0
+set -sg escape-time 0
 #+END_SRC
+** tmate
+#+begin_src ~/.tmate.conf
+source-file ~/.tmux.conf
+#+end_src
 ** zshrc
 #+BEGIN_SRC conf :tangle ~/.zshrc
 ## Options section
@@ -445,13 +610,14 @@ forward-socks5 / 127.0.0.1:1092 .
 #+END_SRC
 #+BEGIN_SRC conf :tangle ~/.gitconfig
 [user]
-	name = chenli
+	name = "Chen Li"
 	email = chenli@uniontech.com
-	username = chenli
+	username = "Chen Li"
 [core]
 	editor = emacs
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = ~/.gitignore
+    filemode = false
 [http]
     proxy = http://127.0.0.1:8889
 [https]
@@ -531,23 +697,8 @@ $NODE_MIRROR="https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/"
 $GO111MODULE="on"
 $GOPROXY="https://goproxy.cn"
 #+END_SRC
-** rime
-some useful posts:
-- https://gist.github.com/merrickluo/553f39c131d0eb717cd59f72c9d4b60d
-- https://github.com/rime/home/wiki/UserGuide#%E5%90%8C%E6%AD%A5%E7%94%A8%E6%88%B6%E8%B3%87%E6%96%99
-- https://manateelazycat.github.io/emacs/2019/09/12/make-rime-works-with-linux.html
-
-#+BEGIN_SRC conf :tangle ~/.emacs.d/rime/default.custom.yaml :mkdirp yes
-patch:
-  menu:
-    page_size: 100
-  schema_list:
-    - schema: luna_pinyin_simp
-#+END_SRC
-*** arch/manjaro
-fcitx-im fcitx-configtool fcitx-rime is necessary to use rime in pyim somehow.
 ** xmonad
-#+BEGIN_SRC haskell :tangle ~/.xmonad/xmonad.hs
+#+BEGIN_SRC haskell :tangle ~/.xmonad/xmonad.hs :mkdirp yes
 import XMonad hiding ((|||))
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -644,7 +795,7 @@ myStartupHook = do
   spawn "unclutter -grab &"
   spawn "redshift -P -O 3000"
   spawn "picom -b"
-  spawn "feh --bg-center --bg-fill ~/projects/org/v1.jpg ~/projects/org/v2.jpg ~/projects/org/w.jpg"
+  -- spawn "feh --bg-center --bg-fill ~/projects/org/v1.jpg ~/projects/org/v2.jpg ~/projects/org/w.jpg"
 
 
 main = do
@@ -660,7 +811,7 @@ main = do
                                           ppOutput = hPutStrLn xmproc
                                           }
                         >> historyHook
-        , terminal = "terminator"
+        , terminal = "konsole"
         -- This is the color of the borders of the windows themselves.
         , normalBorderColor  = "#2f3d44"
         , focusedBorderColor = "#1ABC9C"
@@ -673,7 +824,7 @@ main = do
           , ("M-S-c", spawn "xmonad --recompile; xmonad --restart")
           , ("M-S-q", kill)
           , ("M-'", windows W.swapMaster)
-          , ("M-<Return>", spawn "terminator")
+          , ("M-<Return>", spawn "konsole")
           -- Make it really hard to mispress...
           , ("M-M1-S-e", io (exitWith ExitSuccess))
           , ("M-M1-S-l", spawn "xlock")
