@@ -161,7 +161,7 @@ patch:
 
 #+end_src
 
-#+begin_src conf :tangle ~/.config/fcitx5/profile
+#+begin_src conf :tangle ~/.config/fcitx5/profile :mkdirp yes
 [Groups/0]
 # Group Name
 Name=Default
