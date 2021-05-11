@@ -224,6 +224,7 @@ sohu {
      %:"firstlovelife@sohu.com"/clear@imap.sohu.com:43/
 }
 NEWS {
+    @rss-hash.planet-kernel "planet-kernel"
     @rss-hash.biscuitos "biscuitos"
 	@rss-hash.linuxjournal	"linuxjournal"
 	@rss-hash.lwn	"lwn"

@@ -343,6 +343,7 @@
           ("linuxjournal" "https://www.linuxjournal.com/node/feed")
           ("ffwll" "https://blog.ffwll.ch/feed.xml")
           ("biscuitos" "https://biscuitos.github.io/feed.xml")
+          ("planet-kernel" "https://planet.kernel.org/rss10.xml")
           ))
   (setq wl-refile-rule-alist
         '(
