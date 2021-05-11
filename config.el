@@ -154,7 +154,7 @@
   (setq counsel-find-file-ignore-regexp "\\(?:^[#.]\\)\\|\\(?:[#~]$\\)\\|\\(?:^Icon?\\)\\|\\.*\\.o\\|\\.*\\.a\\|\\.*\\.builtin"))
 
 
-(setq doom-theme 'doom-solarized-light)
+(setq doom-theme 'doom-outrun-electric)
 (with-eval-after-load 'em-term
   (add-to-list 'eshell-visual-commands "watch"))
 
