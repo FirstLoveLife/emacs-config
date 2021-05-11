@@ -1081,3 +1081,19 @@ with open(".config", 'r') as fin, open(".ccls", "a+") as ccls:
         if re.search(r'CONFIG_.*=.', line):
             ccls.write("-D"+line)
 #+END_SRC
+** kak
+#+begin_src conf :tangle ~/.config/kak-lsp/kak-lsp.toml :mkdirp yes
+[language.c_cpp]
+filetypes = ["c", "cpp"]
+roots = [".ccls-root", "compile_commands.json"]
+command = "ccls"
+# kak-lsp does not support newText https://github.com/ul/kak-lsp/issues/40
+args = ["--init={\"completion\":{\"detailedLabel\":false}}"]
+#+end_src
+
+#+begin_src conf :tangle ~/.config/kak/kakrc :mkdirp yes
+eval %sh{kak-lsp --kakoune -s $kak_session}
+hook global WinSetOption filetype=(c|cpp) %{
+    lsp-enable-window
+}
+#+end_src
