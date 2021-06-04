@@ -218,6 +218,7 @@
           "libc-alpha@sourceware.org"
           "linux-alpha@vger.kernel.org"
           "linux-media@vger.kernel.org"
+          "linux-mm@kvack.org"
           "linux-kernel@vger.kernel.org"
           "linux-rtc@vger.kernel.org"
           "backports@vger.kernel.org"
@@ -364,6 +365,7 @@
            ("emacs-\\([a-zA-Z-]+\\)@gnu\\.org" . ".emacs-\\1" )
            ("\\([a-zA-Z-]+\\)@lists.freedesktop.org" . ".\\1")
            ("ltp" . ".ltp")
+           ("linux-mm@kvack\\.org" . ".linux-mm")
            ("^gitlab" . ".gitlab")
            )
 

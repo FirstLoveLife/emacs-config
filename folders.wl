@@ -74,6 +74,7 @@ WORK{
           .kernel
           .kernel-package
           .kselftest
+          .linux-mm
           .linux-kernel
           .linux-arch
           .man
