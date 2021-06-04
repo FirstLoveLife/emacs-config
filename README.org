@@ -799,7 +799,7 @@ myStartupHook = do
 
 
 main = do
-    xmproc <- spawnPipe "xmobar"
+    -- xmproc <- spawnPipe "xmobar"
     xmonad $ defaultConfig
         { modMask = mod4Mask
         -- , keys = myKeys
@@ -807,11 +807,11 @@ main = do
         , layoutHook = myLayout
         , handleEventHook = handleEventHook def <+> docksEventHook
         , startupHook = myStartupHook <+> docksStartupHook
-        , logHook = dynamicLogWithPP myPP {
-                                          ppOutput = hPutStrLn xmproc
-                                          }
-                        >> historyHook
-        , terminal = "konsole"
+        --, logHook = dynamicLogWithPP myPP {
+        --                                 ppOutput = hPutStrLn xmproc
+        --                                  }
+        --                >> historyHook
+        , terminal = "terminology"
         -- This is the color of the borders of the windows themselves.
         , normalBorderColor  = "#2f3d44"
         , focusedBorderColor = "#1ABC9C"
