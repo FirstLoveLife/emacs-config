@@ -48,7 +48,12 @@
 (package! wanderlust)
 (package! w3m)
 (package! lsp-docker)
-(package! nov)
+;; (package! nov)
+;; XXX: fatal: dumb http transport does not support shallow capabilities, full depth can fix this.
+(package! nov
+  :recipe (:host nil :repo "https://depp.brause.cc/nov.el.git" :depth full))
+
+
 (package! shr-tag-pre-highlight)
 
 (package! notdeft
@@ -83,3 +88,4 @@
 
 (package! shrface)
 (package! adoc-mode)
+(package! journalctl-mode)
