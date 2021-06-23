@@ -11,13 +11,6 @@
 (package! evil-anzu)
 (package! posframe)
 
-(package! liberime-config
-  :recipe
-  (
-   :host github
-   :repo "merrickluo/liberime"
-   :files ("CMakeLists.txt" "Makefile" "src" "*.el")))
-
 ;; (package! awesome-tab
 ;;   :recipe
 ;;   (

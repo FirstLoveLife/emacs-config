@@ -33,7 +33,7 @@
        ;; zen
 
        :input
-       ;; chinese
+       chinese
        ;; japanese
 
        :os

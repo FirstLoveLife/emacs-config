@@ -219,6 +219,7 @@
           "linux-alpha@vger.kernel.org"
           "linux-media@vger.kernel.org"
           "linux-mm@kvack.org"
+          "linux-fsdevel@vger.kernel.org"
           "linux-kernel@vger.kernel.org"
           "linux-rtc@vger.kernel.org"
           "backports@vger.kernel.org"

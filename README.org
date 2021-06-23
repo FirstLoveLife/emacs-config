@@ -21,7 +21,8 @@
 ** presuite
 *** arch
 #+BEGIN_SRC bash
-yay -S fcitx5-im fcitx5-configtool fcitx5-rime librime privoxy aspell-en v2ray tclap arandr neovim chromium fd jq cmake-language-server yarn manjaro-asian-input-support-fcitx5 qv2ray qv2ray-plugin-ssr-git rime-luna-pinyin rime-luna-pinyin rime-emoji xorg-fonts-misc
+yay -S fcitx5-im fcitx5-configtool fcitx5-rime librime privoxy aspell-en v2ray tclap arandr neovim chromium fd jq cmake-language-server yarn manjaro-asian-input-support-fcitx5 qv2ray qv2ray-plugin-ssr-git rime-luna-pinyin rime-luna-pinyin rime-emoji xorg-fonts-misc fcitx5-pinyin-zhwiki rime-pinyin-zhwiki fcitx5-pinyin-moegirl
+
 #+END_SRC
 ** rime and fcitx5
 
@@ -145,7 +146,8 @@ key_binder:
 
 #+begin_src conf :tangle ~/.local/share/fcitx5/rime/luna_pinyin.custom.yaml
 patch:
-  "menu/page_size": 7
+  "menu/page_size": 9
+  "translator/dictionary": luna_pinyin.extended # 指定字典
   "punctuator/import_preset": alternative
   "key_binder/import_preset": alternative
   "switches/@0/reset": 1 #表示將 switcher 列表中的第一個元素（即 ascii_mode 開關）的初始值重設爲狀態1（即「英文」）。
@@ -158,6 +160,20 @@ patch:
     - name: simplification
       reset: 1                # 增加这一行：默认启用「繁→簡」转换。
       states: [ 漢字, 汉字 ]
+
+#+end_src
+
+#+begin_src conf :tangle ~/.local/share/fcitx5/rime/luna_pinyin.extended.dict.yaml
+---
+# encoding: utf-8
+name: luna_pinyin.extended
+version: "2014.05.05"
+sort: by_weight
+use_preset_vocabulary: true
+import_tables:
+  - luna_pinyin
+  - zhwiki # 导入zhwiki字典
+  - moegirl
 
 #+end_src
 
