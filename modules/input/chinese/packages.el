@@ -3,5 +3,5 @@
 
 ;(package! liberime-config)
 (package! rime)
-;; (package! sis)
+(package! sis)
 ;; (package! pyim)
