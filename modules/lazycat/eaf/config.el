@@ -15,10 +15,10 @@
 (use-package! eaf
   :defer t
   :init
-      (use-package epc :defer t :ensure t)
-      (use-package ctable :defer t :ensure t)
-      (use-package deferred :defer t :ensure t)
-      (use-package s :defer t :ensure t)
+      (use-package! epc :defer t)
+      (use-package! ctable :defer t)
+      (use-package! deferred :defer t)
+      (use-package! s :defer t :ensure t)
   :custom
   (eaf-find-alternate-file-in-dired t)
   :config
