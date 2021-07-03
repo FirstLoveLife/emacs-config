@@ -499,3 +499,10 @@
 ;;   (define-key eww-mode-map (kbd "C-k") 'shrface-previous-headline)
 ;;   (define-key eww-mode-map (kbd "M-l") 'shrface-links-counsel) ; or 'shrface-links-helm
 ;;   (define-key eww-mode-map (kbd "M-h") 'shrface-headline-counsel)) ; or 'shrface-headline-helm
+
+
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
