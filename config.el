@@ -23,7 +23,7 @@
 ;; TODO: adajust font according to display-pixels-per-inch
 ;; (setq doom-font (font-spec :family "Sarasa Term J" :size (if (> (x-display-pixel-width) 1600) 28 12) :weight 'semi-light))
 ;; (setq doom-font (font-spec :family "Sarasa Fixed CL" :size 28 :weight 'semi-light))
-(setq doom-font (font-spec :family "Iosevka Term" :size 28 :weight 'semi-light))
+(setq doom-font (font-spec :family "Iosevka" :size 28 :weight 'semi-light))
 
 ;;; Frames/Windows
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
