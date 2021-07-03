@@ -2,7 +2,7 @@
 
 (doom! :completion
        (company +childframe)
-       (ivy +icons)
+       (ivy)
        ;; (helm +icons +fuzzy)
        ;;ido
 
@@ -13,7 +13,8 @@
        doom-dashboard
        ;;doom-quit
        ;;fill-column
-       (emoji +unicode)  ; 🙂
+       ;; (emoji +unicode)
+                                        ; 🙂
        hl-todo
        ;;hydra
        ;;indent-guides     ; highlighted indent columns
@@ -23,8 +24,8 @@
        ophints
        (popup +all +defaults)
        ;; treemacs
-       (ligatures +extra +iosevka)
-       unicode
+       ;; (ligatures +extra +iosevka)
+       ;; unicode
        ;;tabs
        vc-gutter
        vi-tilde-fringe
@@ -54,7 +55,7 @@
        ;;word-wrap
 
        :emacs
-       (dired +icons)                 ; making dired pretty [functional]
+       (dired)                 ; making dired pretty [functional]
        electric              ; smarter, keyword-based electric-indent
        ;;ibuffer           ; interactive buffer management
        vc
@@ -118,7 +119,7 @@
        (java +lsp)
        ;;(javascript +lsp)
        ;;julia
-       ;;latex
+       latex
        ;;ledger
        ;; (lua +moonscript)
        markdown
