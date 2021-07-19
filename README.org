@@ -879,7 +879,7 @@ emacsclient -n "org-protocol:///capture?url=http%3a%2f%2fduckduckgo%2ecom&title=
 add the following location in a firefox bookmark:
 javascript:location.href="org-protocol:///capture?url="+encodeURIComponent(location.href)+"&title="+encodeURIComponent(document.title||"[untitled page]")
 #+END_SRC
-#+BEGIN_SRC conf :tangle ~/.local/share/applications/org-protocol.desktop
+#+BEGIN_SRC conf :tangle ~/.local/share/applications/org-protocol.desktop :mkdirp yes
 [Desktop Entry]
 Name=org-protocol
 Exec=emacsclient -n %u

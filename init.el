@@ -132,6 +132,7 @@
        ;;plantuml
        ;;purescript
        (python +lsp)
+       (kotlin +lsp)
        ;;rest
        ;; (ruby +lsp)
        (rust +lsp)
