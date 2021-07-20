@@ -423,17 +423,15 @@
   (setq ccls-executable "/home/firstlove/projects/github/ccls/build/ccls")
   (ccls-use-default-rainbow-sem-highlight)
 (setq ccls-initialization-options
-        '(:compilationDatabaseDirectory "build"
-          :clang (:extraArgs ["-I/usr/include/qt" "-I/usr/include/libdtk-2.1.1/DCore" "/usr/include/qt/QtWidgets/" "-std=c++20"]
+        '(;; :compilationDatabaseDirectory "build"
+          :clang (;; :extraArgs ["-I/usr/include/qt" "-I/usr/include/libdtk-2.1.1/DCore" "/usr/include/qt/QtWidgets/" "-std=c++20"]
                   :excludeArgs
                   ;; Linux's gcc options. See ccls/wiki
                   ["-falign-jumps=1" "-falign-loops=1" "-fconserve-stack" "-fmerge-constants" "-fno-code-hoisting" "-fno-schedule-insns" "-fno-var-tracking-assignments" "-fsched-pressure"
                    "-mhard-float" "-mindirect-branch-register" "-mindirect-branch=thunk-inline" "-mpreferred-stack-boundary=2" "-mpreferred-stack-boundary=3" "-mpreferred-stack-boundary=4" "-mrecord-mcount" "-mindirect-branch=thunk-extern" "-mno-fp-ret-in-387" "-mskip-rax-setup"
-                   "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"]
-                  )
+                   "--param=allow-store-data-races=0" "-Wa arch/x86/kernel/macros.s" "-Wa -"])
           :cache (:directory "/home/firstlove/tmp")
-          :index (:threads 5)
-          )
+          :index (:threads 5))
         )
   )
 (use-package! shr-tag-pre-highlight
